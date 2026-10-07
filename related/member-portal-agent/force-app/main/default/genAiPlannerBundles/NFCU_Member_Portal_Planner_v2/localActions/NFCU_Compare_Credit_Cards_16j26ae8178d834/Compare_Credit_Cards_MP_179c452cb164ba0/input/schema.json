@@ -1,0 +1,21 @@
+{
+  "required" : [ "contactId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "contactId" : {
+      "title" : "contactId",
+      "description" : "The Salesforce Contact ID of the signed-in member. Use the ContactId context variable.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "memberPriorities" : {
+      "title" : "memberPriorities",
+      "description" : "What the member said they want from a card or what is coming up for them, in their words (for example: travel, honeymoon, moving overseas, cash back, everyday spending, paying off a big purchase, balance transfer)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

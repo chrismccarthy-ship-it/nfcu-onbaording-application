@@ -78,10 +78,12 @@ Windows tip: run `sf` through `powershell -NoProfile -Command "..."` and target 
 | `nfcuJoinAndApply` | Experience page `/join` | Five-step join and apply form |
 | `nfcuFirstThirtyDays` | Experience page `/welcome` | First 30 days checklist |
 | `nfcuOpenDepositAccounts` | Flow `NFCU_Open_Deposit_Accounts` → Case quick action | Products, KYC and identity, open and fund |
-| `cardActionBar`, `cardActionFlowModal` | Case record page | Guided card application action bar |
+| `cardActionBar`, `cardActionFlowModal` | Case record page | Guided action list: Review, Complete, Verify Identity, Open Deposit Accounts, Email Requirements |
 | `cardApplicationWizard` | Flow screen, Case quick action | Card Application Wizard |
 | `ccApplicationReview`, `ccApplicationWizard`, `ccIdentityDocuments`, `ccRequirementsEmail` | Flow screens, Case quick actions | Review, complete, verify identity, email requirements |
 
 **Objects.** Standard: Lead, Account (Person Account), Contact, Case, CaseComment, ContentVersion, ContentDocumentLink, Product2, ApplicationForm, ApplicationFormProduct, PartyProfile, IdentityDocument, FinancialAccount, FinancialAccountParty, FinancialAccountTransaction, FinancialAccountBalance, AppFormProdtFinclAccount, Knowledge__kav. Custom: `ApplicantForm__c` (onboarding record: KYC, onboarding token, debit card, direct deposit and digital banking status), `Application__c`, `Case.Application__c`.
 
-**Apex.** `NfcuJoinApplyController`, `NfcuDepositOpeningController`, `NfcuOnboardingController`, `NfcuWelcomeEmail`, `NfcuActivateDebitCard` (invocable agent action, not attached to an agent), with tests for each.
+**Apex.** `NfcuJoinApplyController`, `NfcuDepositOpeningController`, `NfcuOnboardingController`, `NfcuWelcomeEmail`, `NfcuKnowledgeAnswer` (agent action: answers from published Knowledge articles), `NfcuActivateDebitCard` (invocable agent action, not attached to an agent), with tests for each.
+
+**Member Portal Agent.** The active version (`related/member-portal-agent/.../NFCU_Member_Portal_Planner_v2`) has a **Member Banking FAQ** topic that calls `NfcuKnowledgeAnswer`, so "How do I switch my direct deposit?" is answered from the published article. The agent has no Agentforce Data Library assigned, so the standard Answer Questions with Knowledge action cannot be used. Assign `NFCU_Agent_Knowledge` to the agent user. Changing the active agent requires deactivating and reactivating it.

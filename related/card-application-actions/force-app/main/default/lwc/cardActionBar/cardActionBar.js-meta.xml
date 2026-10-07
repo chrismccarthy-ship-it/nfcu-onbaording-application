@@ -3,7 +3,7 @@
     <apiVersion>62.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Card Application Action Bar</masterLabel>
-    <description>Buttons for the four card-application actions (Review, Complete, Verify Identity, Email Requirements). Each opens the same flow as its quick action.</description>
+    <description>Buttons for the five onboarding actions (Review, Complete, Verify Identity, Open Deposit Accounts, Email Requirements). Each opens the same flow as its quick action.</description>
     <targets>
         <target>lightning__RecordPage</target>
     </targets>

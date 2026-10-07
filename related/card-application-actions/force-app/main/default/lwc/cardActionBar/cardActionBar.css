@@ -47,7 +47,8 @@
 .bar__btn_step1 { --step-color: #043370; --step-tint: #eaf0f8; --step-tint-hover: #dbe5f3; }
 .bar__btn_step2 { --step-color: #b35400; --step-tint: #fdf1e6; --step-tint-hover: #fbe3cc; }
 .bar__btn_step3 { --step-color: #0b7a75; --step-tint: #e6f4f3; --step-tint-hover: #d2ebe9; }
-.bar__btn_step4 { --step-color: #6b3fa0; --step-tint: #f2ecf8; --step-tint-hover: #e6dbf2; }
+.bar__btn_step4 { --step-color: #2e7d4f; --step-tint: #e8f4ec; --step-tint-hover: #d4ebdc; }
+.bar__btn_step5 { --step-color: #6b3fa0; --step-tint: #f2ecf8; --step-tint-hover: #e6dbf2; }
 
 .bar__btn {
     display: flex;

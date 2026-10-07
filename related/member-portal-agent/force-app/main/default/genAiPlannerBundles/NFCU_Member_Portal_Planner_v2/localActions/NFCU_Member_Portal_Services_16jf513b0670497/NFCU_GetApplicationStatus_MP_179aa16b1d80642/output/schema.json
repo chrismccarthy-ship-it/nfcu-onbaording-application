@@ -1,0 +1,60 @@
+{
+  "properties" : {
+    "applicationStatus" : {
+      "title" : "applicationStatus",
+      "description" : "The current application status",
+      "lightning:type" : "lightning__textType"
+    },
+    "productType" : {
+      "title" : "productType",
+      "description" : "The product type being applied for",
+      "lightning:type" : "lightning__textType"
+    },
+    "applicationDate" : {
+      "title" : "applicationDate",
+      "description" : "The application date",
+      "lightning:type" : "lightning__textType"
+    },
+    "remainingSteps" : {
+      "title" : "remainingSteps",
+      "description" : "A summary of remaining steps or next actions",
+      "lightning:type" : "lightning__textType"
+    },
+    "applicationNumber" : {
+      "title" : "applicationNumber",
+      "description" : "The application record number",
+      "lightning:type" : "lightning__textType"
+    },
+    "applicationFound" : {
+      "title" : "applicationFound",
+      "description" : "Whether an application was found",
+      "lightning:type" : "lightning__textType"
+    },
+    "identityVerificationStatus" : {
+      "title" : "identityVerificationStatus",
+      "description" : "Identity verification status",
+      "lightning:type" : "lightning__textType"
+    },
+    "kycStatus" : {
+      "title" : "kycStatus",
+      "description" : "KYC compliance status",
+      "lightning:type" : "lightning__textType"
+    },
+    "hasFraudFlag" : {
+      "title" : "hasFraudFlag",
+      "description" : "Whether a fraud flag exists on the application",
+      "lightning:type" : "lightning__textType"
+    },
+    "fraudFlagReason" : {
+      "title" : "fraudFlagReason",
+      "description" : "The reason for any fraud flag",
+      "lightning:type" : "lightning__textType"
+    },
+    "memberFirstName" : {
+      "title" : "memberFirstName",
+      "description" : "First name of the member who owns the application, for greeting them by name",
+      "lightning:type" : "lightning__textType"
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

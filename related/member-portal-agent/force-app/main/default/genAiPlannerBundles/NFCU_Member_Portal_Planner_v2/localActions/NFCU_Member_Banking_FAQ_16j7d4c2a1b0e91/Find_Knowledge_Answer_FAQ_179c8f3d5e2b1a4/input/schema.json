@@ -1,0 +1,16 @@
+{
+  "required": [
+    "question"
+  ],
+  "unevaluatedProperties": false,
+  "properties": {
+    "question": {
+      "title": "question",
+      "description": "The member question, in their words.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": true
+    }
+  },
+  "lightning:type": "lightning__objectType"
+}

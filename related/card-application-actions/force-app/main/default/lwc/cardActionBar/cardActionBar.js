@@ -2,11 +2,13 @@ import { LightningElement, api } from 'lwc';
 import { RefreshEvent } from 'lightning/refresh';
 import CardActionFlowModal from 'c/cardActionFlowModal';
 
-/* Same actions, same flows, as the Case quick actions in the Card Application Actions launcher. */
+/* Same actions, same flows, as the Case quick actions in the Card Application Actions launcher.
+   Open Deposit Accounts comes after identity is verified; Email Requirements is last. */
 const ACTIONS = [
     { name: 'review', label: 'Review Card Application', icon: 'utility:preview', flow: 'CC_QA_Review_Application', size: 'large' },
     { name: 'complete', label: 'Complete Card Application', icon: 'utility:edit_form', flow: 'CC_QA_Complete_Application', size: 'large' },
     { name: 'verify', label: 'Verify Identity', icon: 'utility:identity', flow: 'MSR_Identity_Verification', size: 'medium' },
+    { name: 'open', label: 'Open Deposit Accounts', icon: 'utility:moneybag', flow: 'NFCU_Open_Deposit_Accounts', size: 'large' },
     { name: 'email', label: 'Email Application Requirements', icon: 'utility:email', flow: 'CC_QA_Email_Requirements', size: 'large' }
 ];
 
