@@ -1,0 +1,105 @@
+<template>
+    <div class="uw-shell">
+        <header class="uw-hero">
+            <span class="uw-hero__icon">
+                <lightning-icon icon-name="standard:email" size="small" alternative-text=""></lightning-icon>
+            </span>
+            <div class="uw-hero__text">
+                <span class="uw-hero__eyebrow">Open a credit card · Case {caseNumber}</span>
+                <h2 class="uw-hero__title">Email application requirements</h2>
+                <p class="uw-hero__sub">Tell {memberName} exactly what is still needed to finish the application.</p>
+            </div>
+        </header>
+
+        <template lwc:if={isCompose}>
+            <div class="uw-grid uw-fade-in">
+                <div class="uw-stack">
+                    <div>
+                        <span class="uw-section-label">Send to</span>
+                        <template lwc:if={hasRecipient}>
+                            <div class="uw-tile recipient" aria-checked="true">
+                                <span class="uw-tile__body">
+                                    <span class="uw-tile__title">{memberName}</span>
+                                    <span class="uw-tile__desc recipient-email">{toEmail}</span>
+                                    <span class="uw-tile__desc">Email on the member record. The message is logged to this case.</span>
+                                </span>
+                                <span class="uw-badge uw-badge--success">On record</span>
+                            </div>
+                        </template>
+                        <template lwc:else>
+                            <div class="uw-alert uw-alert--error" role="alert">
+                                <lightning-icon icon-name="utility:error" variant="error" size="x-small" alternative-text=""></lightning-icon>
+                                <p class="uw-alert__body">This case has no contact with an email address. Add one before sending.</p>
+                            </div>
+                        </template>
+                    </div>
+
+                    <div>
+                        <div class="uw-between">
+                            <span class="uw-section-label">Items to request</span>
+                            <span class="uw-caption">{selectedCount} selected</span>
+                        </div>
+                        <div class="uw-cluster" role="group" aria-label="Items to request">
+                            <template for:each={itemChips} for:item="chip">
+                                <button key={chip.id} type="button" class="uw-chip" data-id={chip.id}
+                                    aria-pressed={chip.pressed} onclick={handleItem}>
+                                    <lightning-icon icon-name={chip.icon} size="xx-small" alternative-text=""></lightning-icon>
+                                    {chip.label}
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <lightning-input label="Subject" value={subject} onchange={handleSubject} required></lightning-input>
+                    <lightning-textarea class="body-input" label="Message" value={body} onchange={handleBody} required></lightning-textarea>
+                    <div class="uw-between">
+                        <span class="uw-caption">Edits are kept until you change the items.</span>
+                        <lightning-button variant="base" label="Regenerate" icon-name="utility:refresh" onclick={handleReset}></lightning-button>
+                    </div>
+                </div>
+
+                <div class="uw-card uw-card--muted preview">
+                    <span class="uw-section-label">Preview</span>
+                    <div class="mail">
+                        <div class="mail__head">
+                            <span class="uw-avatar">{initials}</span>
+                            <div class="mail__meta">
+                                <span class="mail__to">To: {memberName} &lt;{toEmail}&gt;</span>
+                                <span class="uw-caption">From: {fromLabel}</span>
+                            </div>
+                        </div>
+                        <p class="mail__subject">{subject}</p>
+                        <p class="mail__body">{body}</p>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template lwc:if={isSent}>
+            <div class="uw-success uw-fade-in" role="status" aria-live="polite">
+                <div class="uw-success__ring">
+                    <lightning-icon icon-name="utility:success" variant="success" size="medium" alternative-text="Sent"></lightning-icon>
+                </div>
+                <p class="uw-success__title">Requirements sent to {memberName}</p>
+                <p class="uw-muted">{sentSubject}</p>
+                <div class="uw-card uw-card--muted receipt">
+                    <div class="uw-between"><span class="uw-caption">Recipient</span><span>{toEmail}</span></div>
+                    <div class="uw-between"><span class="uw-caption">Items requested</span><span>{sentItemCount}</span></div>
+                    <div class="uw-between"><span class="uw-caption">Logged to</span><span>Case {caseNumber} activity</span></div>
+                    <div class="uw-between"><span class="uw-caption">Case status</span><span class="uw-badge uw-badge--warning">Waiting on Customer</span></div>
+                </div>
+            </div>
+        </template>
+
+        <footer class="uw-footer">
+            <template lwc:if={isCompose}>
+                <lightning-button label="Cancel" onclick={handleDone}></lightning-button>
+                <lightning-button variant="brand" label={sendLabel} icon-name="utility:send"
+                    disabled={sendDisabled} onclick={handleSend}></lightning-button>
+            </template>
+            <template lwc:if={isSent}>
+                <lightning-button variant="brand" label="Done" onclick={handleDone}></lightning-button>
+            </template>
+        </footer>
+    </div>
+</template>

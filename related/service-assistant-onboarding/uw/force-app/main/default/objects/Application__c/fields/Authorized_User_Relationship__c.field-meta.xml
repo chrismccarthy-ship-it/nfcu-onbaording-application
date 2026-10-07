@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Authorized_User_Relationship__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Authorized user's relationship to the applicant.</inlineHelpText>
+    <label>Authorized User Relationship</label>
+    <length>40</length>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+</CustomField>

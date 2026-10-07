@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "face4922-a025-4c8d-9171-750ee2cdf1f4",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "Personal_Banking__c",
+  "id" : "8811ea67-3421-4279-b760-6eee13e08821",
+  "label" : "Personal Banking",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-personal-banking",
+  "type" : "route",
+  "urlPrefix" : "personal-banking"
+}

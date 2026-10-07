@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Underwriter Workflow: compose and send (mock) a stipulation, correction, conditional approval, or funding email to the borrower.</description>
+    <flowDefinition>UW_QA_Email_Customer</flowDefinition>
+    <label>Email Customer</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

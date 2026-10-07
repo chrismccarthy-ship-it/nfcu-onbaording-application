@@ -1,0 +1,234 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "face4922-a025-4c8d-9171-750ee2cdf1f4",
+  "label" : "Personal Banking",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "1641ba1c-129d-4df1-bea9-e4cdae6179e1",
+          "columns" : [ {
+            "UUID" : "39cbef6e-c90c-42a8-b444-b46ef7c97b9c",
+            "columnKey" : "1d90f",
+            "columnName" : "Column 1",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "50a0a2a8-c320-4b71-8e9c-3ed45ab31ee4",
+            "columnKey" : "5462f",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "1641ba1c-129d-4df1-bea9-e4cdae6179e1",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "audienceMode" : "retail",
+            "backgroundColor" : "#DBE0EA",
+            "brandName" : "",
+            "defaultSide" : "",
+            "hideNav" : false,
+            "labelChecking" : "Checking",
+            "labelCommercialCard" : "Business Card",
+            "labelCommercialCreditScore" : "Business Credit",
+            "labelCommercialOnboarding" : "Business Onboarding",
+            "labelConsumerCard" : "Apply for a Card",
+            "labelLending" : "Lending",
+            "labelLoans" : "Loans",
+            "labelPayments" : "Payments & Wires",
+            "labelRetailCreditScore" : "Credit Score",
+            "labelRetailOnboarding" : "Open an Account",
+            "labelSavings" : "Savings",
+            "labelTreasury" : "Treasury",
+            "logoHeight" : 36,
+            "logoUrl" : "https://storm-6269dbe2d00053--c.vf.force.com/resource/1785924335000/BOA?",
+            "showChecking" : true,
+            "showCommercialCard" : true,
+            "showCommercialCreditScore" : true,
+            "showCommercialOnboarding" : true,
+            "showConsumerCard" : true,
+            "showLending" : true,
+            "showLoans" : true,
+            "showPayments" : true,
+            "showRetailCreditScore" : true,
+            "showRetailOnboarding" : true,
+            "showSavings" : true,
+            "showTreasury" : true,
+            "urlChecking" : "/s/checking",
+            "urlCommercialCard" : "/s/business-card",
+            "urlCommercialCreditScore" : "/s/business-credit",
+            "urlCommercialOnboarding" : "/s/business-onboarding",
+            "urlConsumerCard" : "/s/apply-card",
+            "urlLending" : "/s/lending",
+            "urlLoans" : "/s/loans",
+            "urlPayments" : "/s/payments",
+            "urlRetailCreditScore" : "/s/credit-score",
+            "urlRetailOnboarding" : "/s/join",
+            "urlSavings" : "/s/savings",
+            "urlTreasury" : "/s/treasury"
+          },
+          "componentName" : "c:bxShell",
+          "id" : "6f97d20e-2d2b-4807-9392-aa72e7da4efb",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "39cbef6e-c90c-42a8-b444-b46ef7c97b9c",
+        "regionLabel" : "Column 1",
+        "regionName" : "1d90f",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "hideAccountGrid" : true,
+            "hideDetailPanel" : false
+          },
+          "componentName" : "c:bxAccounts",
+          "id" : "d9d04e2e-550e-40c8-86d2-fc3c722a3b92",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "50a0a2a8-c320-4b71-8e9c-3ed45ab31ee4",
+        "regionLabel" : "Column 2",
+        "regionName" : "5462f",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "32c8651b-286d-44db-a29c-1df0031ec14d",
+          "columns" : [ {
+            "UUID" : "6f59186e-85c6-4b0f-9577-77a82dfb12d9",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "6fd1cba8-71a8-42e7-b68c-b21aebdbf478",
+            "columnKey" : "6d357",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "32c8651b-286d-44db-a29c-1df0031ec14d",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "primaryBrandUrl" : "bankofamerica.com"
+          },
+          "componentName" : "c:bxDesignPreview",
+          "id" : "c42f03c9-da86-4b8f-8797-1523666fee14",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "6f59186e-85c6-4b0f-9577-77a82dfb12d9",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "contactId" : "003Kh00001upF3hIAE",
+            "customTitle" : "Your Credit Score",
+            "fallbackScore" : 720,
+            "gaugeMode" : "consumer",
+            "scoreMax" : 850,
+            "scoreMin" : 300
+          },
+          "componentName" : "c:bxCreditGauge",
+          "id" : "6681a5e3-1c35-4798-bfbd-93f0c41c64b6",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<h3>Additional Information</h3><p>Use this section to provide supplementary information, related resources, or any other relevant content. This could include links to external websites, downloadable files, or additional reading material.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "a52d58a6-32b4-4a6a-b181-f2b1e0be2448",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<div class=\"slds-card slds-p-vertical_large\" style=\"text-align:center;border:none;box-shadow:none;\">\n     <a href=\"{!Global.PathPrefix}/learning/blog\"> \n        <button class=\"slds-button slds-button_brand\" style=\"font-size:14px; height:46px; border-radius:5px; width:100%;\">\n            Learn More\n        </button>\n    </a>\n</div>"
+          },
+          "componentName" : "forceCommunity:htmlBlock",
+          "id" : "c82c59cc-9097-4143-a26f-a82bae80ad92",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<h1>Welcome to the Template Page</h1><p>Welcome to your new custom page. Use this space to introduce the purpose of the page and provide any necessary context or instructions for your audience. Below, you can add and organize different sections and components to meet your specific needs. Whether you're showcasing data, providing resources, or facilitating interactions, this template is designed to help you create a functional and engaging page.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "429c75ac-b627-43a8-b39b-3ddb58e3284a",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : { },
+          "componentName" : "c:bxLayout",
+          "id" : "08539172-926e-4547-b9b6-b0d33610e23f",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "6fd1cba8-71a8-42e7-b68c-b21aebdbf478",
+        "regionLabel" : "Column 2",
+        "regionName" : "6d357",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "16bcf9bf-798c-42b7-a80c-eebadb152417",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "f9cbbfb3-ac3f-46d1-9cc5-da20801e4e93",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a407610a-ce4a-40a9-b602-9d214a63324c",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-personal-banking"
+}

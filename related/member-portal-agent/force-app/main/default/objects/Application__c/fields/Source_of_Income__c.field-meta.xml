@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_of_Income__c</fullName>
+    <label>Source of Income</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Employment Income</fullName>
+                <default>false</default>
+                <label>Employment Income</label>
+            </value>
+            <value>
+                <fullName>Inheritance/Trust</fullName>
+                <default>false</default>
+                <label>Inheritance/Trust</label>
+            </value>
+            <value>
+                <fullName>Investment Income</fullName>
+                <default>false</default>
+                <label>Investment Income</label>
+            </value>
+            <value>
+                <fullName>Retirement Income</fullName>
+                <default>false</default>
+                <label>Retirement Income</label>
+            </value>
+            <value>
+                <fullName>Social Security</fullName>
+                <default>false</default>
+                <label>Social Security</label>
+            </value>
+            <value>
+                <fullName>Unemployment/Other Income</fullName>
+                <default>false</default>
+                <label>Unemployment/Other Income</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

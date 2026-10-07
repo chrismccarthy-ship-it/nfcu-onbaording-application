@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>NfcuJoinApplyController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>NfcuOnboardingController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <description>Lets the SDO - Consumer site guest user submit the Join and Apply form and use the First 30 Days checklist.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>NFCU Join and Apply (Guest)</label>
+</PermissionSet>

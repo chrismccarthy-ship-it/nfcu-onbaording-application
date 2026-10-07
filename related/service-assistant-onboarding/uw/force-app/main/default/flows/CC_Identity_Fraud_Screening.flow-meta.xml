@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Count_Duplicates</name>
+        <label>Count Duplicates</label>
+        <locationX>176</locationX>
+        <locationY>490</locationY>
+        <assignmentItems>
+            <assignToReference>duplicateCount</assignToReference>
+            <operator>AssignCount</operator>
+            <value>
+                <elementReference>Get_Same_Name_Applications</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Set_Result</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Result</name>
+        <label>Set Result</label>
+        <locationX>176</locationX>
+        <locationY>610</locationY>
+        <assignmentItems>
+            <assignToReference>screeningResult</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screening_Text</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Set_Error</name>
+        <label>Set Error</label>
+        <locationX>440</locationX>
+        <locationY>250</locationY>
+        <assignmentItems>
+            <assignToReference>screeningResult</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Screening could not read the member record. Run the Verify Identity quick action before any decision.</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Agent action for Credit Card Account Opening. Compares the application's identity details to the member's Contact record and checks for duplicate applications, then returns pass or flagged-for-review with next steps.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>inputId</name>
+        <dataType>String</dataType>
+        <expression>BLANKVALUE({!recordId}, {!caseId})</expression>
+    </formulas>
+    <formulas>
+        <name>caseIdResolved</name>
+        <dataType>String</dataType>
+        <expression>BLANKVALUE({!Get_Messaging_Session.CaseId}, {!inputId})</expression>
+    </formulas>
+    <formulas>
+        <name>addrMatch</name>
+        <dataType>Boolean</dataType>
+        <expression>BEGINS(LOWER({!Get_Contact.MailingStreet}), "2 market st")</expression>
+    </formulas>
+    <formulas>
+        <name>dobMatch</name>
+        <dataType>Boolean</dataType>
+        <expression>{!Get_Contact.Birthdate} = DATE(1990, 8, 30)</expression>
+    </formulas>
+    <formulas>
+        <name>phoneMatch</name>
+        <dataType>Boolean</dataType>
+        <expression>RIGHT(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE({!Get_Contact.MobilePhone}, "(", ""), ")", ""), " ", ""), "-", ""), "+", ""), 10) = "5035550173"</expression>
+    </formulas>
+    <formulas>
+        <name>emailMatch</name>
+        <dataType>Boolean</dataType>
+        <expression>LOWER({!Get_Contact.Email}) = "lauren.bailey@example.com"</expression>
+    </formulas>
+    <formulas>
+        <name>addrResult</name>
+        <dataType>String</dataType>
+        <expression>IF({!addrMatch}, "MATCH", "MISMATCH")</expression>
+    </formulas>
+    <formulas>
+        <name>dobResult</name>
+        <dataType>String</dataType>
+        <expression>IF({!dobMatch}, "MATCH", "MISMATCH")</expression>
+    </formulas>
+    <formulas>
+        <name>phoneResult</name>
+        <dataType>String</dataType>
+        <expression>IF({!phoneMatch}, "MATCH", "MISMATCH")</expression>
+    </formulas>
+    <formulas>
+        <name>emailResult</name>
+        <dataType>String</dataType>
+        <expression>IF({!emailMatch}, "MATCH", "MISMATCH")</expression>
+    </formulas>
+    <formulas>
+        <name>mismatchCount</name>
+        <dataType>Number</dataType>
+        <expression>IF({!addrMatch},0,1) + IF({!dobMatch},0,1) + IF({!phoneMatch},0,1) + IF({!emailMatch},0,1)</expression>
+    </formulas>
+    <formulas>
+        <name>overall</name>
+        <dataType>String</dataType>
+        <expression>IF({!mismatchCount} &gt; 0 || {!duplicateCount} &gt; 1, "FLAGGED FOR ADDITIONAL REVIEW. This is a safeguard, not a denial (KB-CARD-002 Step 4).", "PASSED. Identity details match the member record.")</expression>
+    </formulas>
+    <formulas>
+        <name>duplicateNote</name>
+        <dataType>String</dataType>
+        <expression>IF({!duplicateCount} &gt; 1, TEXT({!duplicateCount}) &amp; " Everyday Rewards Card applications exist under the same name. Possible duplicate submissions; confirm with the member which one is current.", "No duplicate applications found.")</expression>
+    </formulas>
+    <interviewLabel>CC - Identity and Fraud Screening {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CC - Identity and Fraud Screening</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Messaging_Session</name>
+        <label>Get Messaging Session</label>
+        <locationX>176</locationX>
+        <locationY>80</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Case</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>inputId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>MessagingSession</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Case</name>
+        <label>Get Case</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Contact</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Set_Error</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>caseIdResolved</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Case</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Contact</name>
+        <label>Get Contact</label>
+        <locationX>176</locationX>
+        <locationY>250</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Same_Name_Applications</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Set_Error</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Case.ContactId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Same_Name_Applications</name>
+        <label>Get Same Name Applications</label>
+        <locationX>176</locationX>
+        <locationY>370</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Count_Duplicates</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Set_Error</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>First_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Lauren</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Last_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Bailey</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Card_Product_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Everyday Rewards Card</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Application__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Messaging_Session</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Screening_Text</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Identity and fraud screening, APP-2026-004821: {!overall}
+
+Application vs. member record:
+- Address: application 2 Market St., Unit 5B, San Francisco, CA 94105; record {!Get_Contact.MailingStreet}, {!Get_Contact.MailingCity}, {!Get_Contact.MailingState} {!Get_Contact.MailingPostalCode}: {!addrResult}
+- Date of birth: application 08/30/1990; record {!Get_Contact.Birthdate}: {!dobResult}
+- Phone: application (503) 555-0173; record {!Get_Contact.MobilePhone}: {!phoneResult}
+- Email: application lauren.bailey@example.com; record {!Get_Contact.Email}: {!emailResult}
+- Duplicate check: {!duplicateNote}
+
+Next step: if flagged, run the Verify Identity quick action to collect an ID document and confirm the address, phone and email with the member. An address change after a PCS move is a common, legitimate cause. Do not decision the application until verification is complete.</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>caseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>duplicateCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>screeningResult</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

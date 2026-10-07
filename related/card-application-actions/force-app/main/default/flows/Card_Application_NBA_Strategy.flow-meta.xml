@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <description>Recommendation strategy for Case, Contact and Person Account pages. Returns the active Card Application Wizard recommendation.</description>
+    <environments>Default</environments>
+    <interviewLabel>Card Application NBA Strategy {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Card Application NBA Strategy</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>RecommendationStrategy</processType>
+    <recordLookups>
+        <name>Get_Card_Recommendation</name>
+        <label>Get Card Recommendation</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ActionReference</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Card_Application_Wizard</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActionActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Recommendation</object>
+        <outputReference>outputRecommendations</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Description</queriedFields>
+        <queriedFields>ActionReference</queriedFields>
+        <queriedFields>AcceptanceLabel</queriedFields>
+        <queriedFields>RejectionLabel</queriedFields>
+        <queriedFields>ImageId</queriedFields>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Card_Recommendation</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>outputRecommendations</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Recommendation</objectType>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

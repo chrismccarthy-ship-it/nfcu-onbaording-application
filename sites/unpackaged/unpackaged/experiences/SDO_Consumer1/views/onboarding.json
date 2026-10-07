@@ -1,0 +1,168 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "c7ae6c94-825d-4e50-a6ea-e30e83e4a35b",
+  "label" : "Onboarding",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "ff77b57e-90f6-4185-b0ad-b0162800ccbf",
+          "columns" : [ {
+            "UUID" : "c91917ea-b01c-41b4-a677-d12ebd1bb211",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "f9b03ec3-ff44-48c4-8771-15df33fa251a",
+            "columnKey" : "29b3b",
+            "columnName" : "Column 2",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "ff77b57e-90f6-4185-b0ad-b0162800ccbf",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "hideDocumentUpload" : false,
+            "hideDocumentsStep" : false,
+            "submitButtonLabel" : "Submit Application"
+          },
+          "componentName" : "c:bxCommercialOnboarding",
+          "id" : "7bddc338-e369-493a-b2ec-8b706cb1d1bf",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<h1>Welcome to the Template Page</h1><p>Welcome to your new custom page. Use this space to introduce the purpose of the page and provide any necessary context or instructions for your audience. Below, you can add and organize different sections and components to meet your specific needs. Whether you're showcasing data, providing resources, or facilitating interactions, this template is designed to help you create a functional and engaging page.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "383876fb-de27-4466-806c-4eb6a3a48b5d",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : { },
+          "componentName" : "c:onboardingPortal",
+          "id" : "17b6d31d-8476-4f0f-821e-39a1ebea530d",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "c91917ea-b01c-41b4-a677-d12ebd1bb211",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "id" : "f9b03ec3-ff44-48c4-8771-15df33fa251a",
+        "regionLabel" : "Column 2",
+        "regionName" : "29b3b",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "212fbcdd-5f3e-4325-a63e-1be98564c67b",
+          "columns" : [ {
+            "UUID" : "6423e82d-ec55-47af-8ab2-d6093eac25d2",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "64177b41-6a00-4b29-bb19-6e051184ad7f",
+            "columnKey" : "6d357",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "212fbcdd-5f3e-4325-a63e-1be98564c67b",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<h2>Main Content</h2><p>This is where your main content will go. Add text, images, charts, or any other components that best convey your message. You can use this space to provide detailed information, tell a story, or present key data points. Consider using headings and subheadings to organize your content and make it easy to navigate.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "abace0cc-14dc-4d91-b21e-ac3b1aa1f6a9",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "6423e82d-ec55-47af-8ab2-d6093eac25d2",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<h3>Additional Information</h3><p>Use this section to provide supplementary information, related resources, or any other relevant content. This could include links to external websites, downloadable files, or additional reading material.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "f19fd399-0982-409b-b8eb-0e9cd79e2288",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<div class=\"slds-card slds-p-vertical_large\" style=\"text-align:center;border:none;box-shadow:none;\">\n     <a href=\"{!Global.PathPrefix}/learning/blog\"> \n        <button class=\"slds-button slds-button_brand\" style=\"font-size:14px; height:46px; border-radius:5px; width:100%;\">\n            Learn More\n        </button>\n    </a>\n</div>"
+          },
+          "componentName" : "forceCommunity:htmlBlock",
+          "id" : "5007ad6b-a252-4c91-88e5-f800ea49c99d",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "64177b41-6a00-4b29-bb19-6e051184ad7f",
+        "regionLabel" : "Column 2",
+        "regionName" : "6d357",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "2420e968-cc16-47a3-83c4-d4b9442f98cd",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "44d7a17f-46f9-4159-8363-05fa11a58819",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "70750c19-0993-4f40-ae43-a82fb6a33044",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-onboarding"
+}

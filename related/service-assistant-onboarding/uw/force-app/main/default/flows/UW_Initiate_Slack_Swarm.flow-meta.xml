@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Set_Result</name>
+        <label>Set Result</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>swarmResult</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Result_Text</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Agent action for the Underwriter Workflow topic. Mocks starting a Slack swarm channel with the right experts for the stated reason. No Slack channel is created.</description>
+    <environments>Default</environments>
+    <interviewLabel>UW - Initiate Slack Swarm {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UW - Initiate Slack Swarm</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value><stringValue>AUTO_LAYOUT_CANVAS</stringValue></value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Result</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Result_Text</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Slack swarm started (demo mode, no channel was created).
+Reason: {!swarmReason}
+Channel: #uw-swarm-case-review (private, linked to this case)
+Invited: Priya Natarajan (Senior Credit Risk Manager), Dana Ortiz (Funding QC Lead), Sam Kowalski (Dealer Relationship Manager)
+Posted: case summary, decision rationale, and extracted document data.
+
+Funding stays on hold until the swarm agrees on next steps. To change the reason, urgency, or experts, open the Initiate Slack Swarm quick action on this case.</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>swarmReason</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>caseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>swarmResult</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

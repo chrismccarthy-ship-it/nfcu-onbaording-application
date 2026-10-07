@@ -1,0 +1,67 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "cd5bd881-8184-4ab0-b177-c13b1033d18b",
+  "label" : "Payments",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "2d9d1ec2-acfc-4df8-9774-669cefe524ec",
+          "columns" : [ {
+            "UUID" : "c6c57f6f-76bb-4bd4-9d3c-bb8229ba738c",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "2d9d1ec2-acfc-4df8-9774-669cefe524ec",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:nwPayments",
+          "id" : "3bd92534-91c5-41ab-8933-5d036f0d2572",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "c6c57f6f-76bb-4bd4-9d3c-bb8229ba738c",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "bc461632-8661-48bd-945e-60df7ceb1491",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "8349abeb-bba7-4315-98a8-72cd2a67c56b",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "759f50ce-9c9d-4877-9081-e1e6ad9b1abb",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-payments"
+}

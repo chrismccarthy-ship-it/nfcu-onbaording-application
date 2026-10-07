@@ -1,0 +1,172 @@
+@import 'c/uwStyles';
+
+.reason-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--slds-g-spacing-2, 0.5rem);
+}
+
+/* Avatar tones, all from SLDS feedback/accent hooks */
+.tone-a { background: var(--slds-g-color-accent-2, #0176d3); }
+.tone-b { background: var(--slds-g-color-success-1, #2e844a); }
+.tone-c { background: var(--slds-g-color-warning-1, #dd7a01); }
+.tone-d { background: var(--slds-g-color-error-1, #ea001e); }
+.tone-e { background: var(--slds-g-color-palette-blue-30, #014486); }
+.tone-f { background: var(--slds-g-color-on-surface-2, #444444); }
+
+.experts {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #e5e5e5);
+    border-radius: var(--slds-g-radius-border-3, 0.5rem);
+    overflow: hidden;
+}
+.expert, .joined__member {
+    display: flex;
+    align-items: center;
+    gap: var(--slds-g-spacing-3, 0.75rem);
+    padding: var(--slds-g-spacing-2, 0.5rem) var(--slds-g-spacing-3, 0.75rem);
+}
+.expert + .expert {
+    border-top: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-2, #eeeeee);
+}
+.expert:hover {
+    background: var(--slds-g-color-surface-container-2, #f3f3f3);
+}
+.expert__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.preview {
+    align-self: start;
+}
+.slack {
+    display: flex;
+    gap: var(--slds-g-spacing-3, 0.75rem);
+    padding: var(--slds-g-spacing-3, 0.75rem);
+    background: var(--slds-g-color-surface-1, #ffffff);
+    border-radius: var(--slds-g-radius-border-3, 0.5rem);
+    box-shadow: var(--slds-g-shadow-1, 0 1px 2px rgba(0, 0, 0, 0.1));
+}
+.slack__app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    border-radius: var(--slds-g-radius-border-2, 0.25rem);
+    background: linear-gradient(135deg, var(--slds-g-color-accent-2, #0176d3), var(--slds-g-color-accent-3, #1b96ff));
+    color: var(--slds-g-color-on-accent-1, #ffffff);
+    font-weight: var(--slds-g-font-weight-7, 700);
+}
+.slack__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--slds-g-spacing-2, 0.5rem);
+    min-width: 0;
+}
+.slack__name {
+    font-weight: var(--slds-g-font-weight-7, 700);
+}
+.slack__tag {
+    padding: 0 4px;
+    border-radius: var(--slds-g-radius-border-1, 0.125rem);
+    background: var(--slds-g-color-surface-container-2, #f3f3f3);
+    font-size: var(--slds-g-font-size-1, 0.625rem);
+    font-weight: var(--slds-g-font-weight-6, 600);
+    color: var(--slds-g-color-on-surface-2, #444444);
+}
+.slack__title {
+    margin: 0;
+    font-weight: var(--slds-g-font-weight-7, 700);
+}
+.slack__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--slds-g-spacing-2, 0.5rem);
+    padding-left: var(--slds-g-spacing-3, 0.75rem);
+    border-left: 3px solid var(--slds-g-color-accent-2, #0176d3);
+}
+.slack__ask {
+    margin: 0;
+    line-height: var(--slds-g-line-height-4, 1.5);
+}
+.slack__mentions {
+    margin: 0;
+    color: var(--slds-g-color-accent-2, #0176d3);
+    font-weight: var(--slds-g-font-weight-6, 600);
+}
+.slack__btn {
+    padding: 2px var(--slds-g-spacing-3, 0.75rem);
+    border: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-1, #e5e5e5);
+    border-radius: var(--slds-g-radius-border-2, 0.25rem);
+    font-size: var(--slds-g-font-size-2, 0.75rem);
+    font-weight: var(--slds-g-font-weight-6, 600);
+}
+
+.launch-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--slds-g-spacing-3, 0.75rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.launch-step {
+    display: flex;
+    align-items: center;
+    gap: var(--slds-g-spacing-3, 0.75rem);
+    color: var(--slds-g-color-on-surface-3, #706e6b);
+    transition: color 200ms ease;
+}
+.launch-step--active, .launch-step--done {
+    color: var(--slds-g-color-on-surface-1, #181818);
+}
+.launch-step__dot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex-shrink: 0;
+    border-radius: var(--slds-g-radius-circle, 50%);
+    border: 2px solid var(--slds-g-color-border-1, #e5e5e5);
+}
+.launch-step--done .launch-step__dot {
+    border-color: var(--slds-g-color-success-1, #2e844a);
+    background: var(--slds-g-color-success-1, #2e844a);
+    --slds-c-icon-color-foreground-default: var(--slds-g-color-on-accent-1, #ffffff);
+}
+
+.channel-pill {
+    padding: var(--slds-g-spacing-1, 0.25rem) var(--slds-g-spacing-3, 0.75rem);
+    border-radius: var(--slds-g-radius-border-pill, 9999px);
+    background: var(--slds-g-color-palette-blue-95, #eef4ff);
+    color: var(--slds-g-color-palette-blue-30, #014486);
+    font-weight: var(--slds-g-font-weight-6, 600);
+}
+.joined {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--slds-g-spacing-1, 0.25rem);
+}
+.reply {
+    display: flex;
+    gap: var(--slds-g-spacing-3, 0.75rem);
+}
+.reply__text {
+    margin: var(--slds-g-spacing-1, 0.25rem) 0 0;
+}
+
+.channel-name {
+    text-transform: none;
+    letter-spacing: normal;
+}

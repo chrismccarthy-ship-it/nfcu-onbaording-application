@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Navy Federal branded Next Best Action screen flow (v2). Recommends a video account-opening appointment for a member&apos;s fiancé joining as her spouse, with the documents checklist, the bank-switching talking point, and a link to the Experience site scheduling page.</description>
+    <environments>Default</environments>
+    <interviewLabel>Schedule Appointment (NBA) {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Schedule Appointment (Next Best Action)</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Recommend_Scheduling</name>
+        <label>Schedule Account Opening Appointment</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>NFCU_Account_Opening_Recommendation</name>
+            <extensionName>c:nfcuAppointmentRecommendation</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>memberName</name>
+                <value>
+                    <elementReference>memberName</elementReference>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>prospectLabel</name>
+                <value>
+                    <stringValue>Her fiancé (joining as her spouse)</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>schedulerUrl</name>
+                <value>
+                    <elementReference>schedulerUrl</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Recommend_Scheduling</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Optional context record (e.g. the Contact or Voice Call) passed in by Next Best Action.</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Member shown on the recommendation.</description>
+        <name>memberName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>Lauren Bailey</stringValue>
+        </value>
+    </variables>
+    <variables>
+        <description>Full URL of the Experience site page that hosts the scheduler component. Update the default to your site domain.</description>
+        <name>schedulerUrl</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>https://storm-6269dbe2d00053.my.site.com/professional/s/salesforce-scheduler/authenticated-scheduling</stringValue>
+        </value>
+    </variables>
+</Flow>

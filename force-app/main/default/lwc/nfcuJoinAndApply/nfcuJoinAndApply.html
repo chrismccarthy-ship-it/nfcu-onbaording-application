@@ -1,0 +1,242 @@
+<template>
+    <div class="shell">
+        <header class="head">
+            <div class="head__text">
+                <p class="eyebrow">Welcome to Navy Federal</p>
+                <h1 class="title">{heading}</h1>
+                <p class="sub">Become a member and apply for your first product in one application. It takes about 10 minutes.</p>
+            </div>
+            <template lwc:if={showSampleData}>
+                <template lwc:if={isEligibility}>
+                    <button type="button" class="sample" onclick={fillSample}>Fill sample applicant</button>
+                </template>
+            </template>
+        </header>
+
+        <!-- Progress -->
+        <section class="card progress" aria-label="Application progress">
+            <div class="ring" aria-hidden="true">
+                <svg viewBox="0 0 120 120" class="ring__svg">
+                    <circle cx="60" cy="60" r="52" class="ring__track"></circle>
+                    <circle cx="60" cy="60" r="52" class={ringBarClass} stroke-dasharray={ringDash}></circle>
+                </svg>
+                <span class="ring__pct">{percent}%</span>
+                <span class="ring__cap">complete</span>
+            </div>
+            <ol class="steps">
+                <template for:each={steps} for:item="s">
+                    <li key={s.key} class={s.cls} aria-current={s.current}>
+                        <template lwc:if={s.canJump}>
+                            <button type="button" class="step__btn" data-index={s.index} onclick={jumpTo}>
+                                <span class="step__dot" aria-hidden="true"></span>
+                                <span class="step__text"><span class="step__label">{s.label}</span><span class="step__status">{s.status}</span></span>
+                            </button>
+                        </template>
+                        <template lwc:else>
+                            <span class="step__btn">
+                                <span class="step__dot" aria-hidden="true"></span>
+                                <span class="step__text"><span class="step__label">{s.label}</span><span class="step__status">{s.status}</span></span>
+                            </span>
+                        </template>
+                    </li>
+                </template>
+            </ol>
+        </section>
+
+        <!-- Form -->
+        <template lwc:if={isSubmitted}>
+            <section class="card done" aria-live="polite">
+                <div class="done__badge" aria-hidden="true">
+                    <lightning-icon icon-name="utility:success" variant="inverse" size="small"></lightning-icon>
+                </div>
+                <h2 class="done__title" tabindex="-1">Welcome to Navy Federal, {result.firstName}</h2>
+                <p class="done__lead">Your membership application and your {result.productLabel} application are in. Keep these reference numbers for your records.</p>
+                <dl class="refs">
+                    <div class="refs__item"><dt>Case</dt><dd>{result.caseNumber}</dd></div>
+                    <div class="refs__item"><dt>Application</dt><dd>{result.applicationNumber}</dd></div>
+                    <div class="refs__item"><dt>Member onboarding</dt><dd>{result.applicantFormNumber}</dd></div>
+                </dl>
+                <template lwc:if={welcomeUrl}>
+                    <a class="btn btn_primary" href={welcomeUrl}>Open your first 30 days checklist</a>
+                    <p class="hint">Bookmark it. We also email you this private link.</p>
+                </template>
+                <h3 class="next__title">What happens next</h3>
+                <ol class="next">
+                    <li><strong>Identity verification.</strong> A member service representative reviews your ID and proof of eligibility.</li>
+                    <li><strong>Review and approval.</strong> We confirm your membership and review your application. We’ll email you if we need anything else.</li>
+                    <li><strong>Account opening.</strong> Your Membership Savings Account opens with a $5 deposit. Checking accounts may need a first deposit.</li>
+                    <li><strong>Digital banking.</strong> Enroll online or in the mobile app to manage everything in one place.</li>
+                </ol>
+            </section>
+        </template>
+        <template lwc:else>
+            <section class="card panel">
+                <p class="panel__eyebrow">Step {stepNumber} of {stepCount}</p>
+                <h2 class="panel__title" tabindex="-1">{currentStep.label}</h2>
+
+                <!-- Step 1: Eligibility -->
+                <template lwc:if={isEligibility}>
+                    <p class="hint">Membership is open to the armed forces, veterans, Department of Defense civilians, and their families and households.</p>
+                    <div class="tiles" role="group" aria-label="How you’re eligible">
+                        <template for:each={affiliations} for:item="a">
+                            <button key={a.value} type="button" class="tile" data-value={a.value} aria-pressed={a.pressed} onclick={handleAffiliation}>
+                                <span class="tile__label">{a.label}</span>
+                                <span class="tile__desc">{a.desc}</span>
+                            </button>
+                        </template>
+                    </div>
+                    <template lwc:if={isMilitary}>
+                        <lightning-combobox class="field" label="Branch of service" data-field="branch" value={form.branch}
+                            options={branchOptions} onchange={handleField} required></lightning-combobox>
+                    </template>
+                    <template lwc:if={isFamily}>
+                        <div class="grid">
+                            <lightning-input class="field" label="Navy Federal member’s full name" data-field="sponsorName"
+                                value={form.sponsorName} onchange={handleField} required></lightning-input>
+                            <lightning-combobox class="field" label="Your relationship to them" data-field="sponsorRelationship"
+                                value={form.sponsorRelationship} options={relationshipOptions} onchange={handleField} required></lightning-combobox>
+                        </div>
+                    </template>
+                    <template lwc:if={eligibleConfirmed}>
+                        <p class="note note_good">You’re eligible to join. Next, tell us about yourself.</p>
+                    </template>
+                </template>
+
+                <!-- Step 2: About you -->
+                <template lwc:if={isAbout}>
+                    <div class="grid grid_3">
+                        <lightning-input class="field" label="First name" data-field="firstName" value={form.firstName} onchange={handleField} required></lightning-input>
+                        <lightning-input class="field" label="Middle name" data-field="middleName" value={form.middleName} onchange={handleField}></lightning-input>
+                        <lightning-input class="field" label="Last name" data-field="lastName" value={form.lastName} onchange={handleField} required></lightning-input>
+                    </div>
+                    <div class="grid">
+                        <lightning-input class="field" type="email" label="Email" data-field="email" value={form.email} onchange={handleField} required></lightning-input>
+                        <lightning-input class="field" type="tel" label="Mobile phone" data-field="phone" value={form.phone} onchange={handleField} required></lightning-input>
+                        <lightning-input class="field" type="date" label="Date of birth" data-field="birthdate" value={form.birthdate} onchange={handleField} required></lightning-input>
+                        <div class="ssn">
+                            <lightning-input class="field" type={ssnType} label="Social Security number" data-field="ssn" value={form.ssn}
+                                onchange={handleField} required field-level-help="Used to verify your identity. It’s encrypted and never shown in full."></lightning-input>
+                            <button type="button" class="ssn__toggle" onclick={toggleSsn}>{ssnToggleLabel}</button>
+                        </div>
+                    </div>
+                    <lightning-input class="field" label="Home address" data-field="street" value={form.street} onchange={handleField} required></lightning-input>
+                    <lightning-input class="field" label="Apartment, unit or box (optional)" data-field="street2" value={form.street2} onchange={handleField}></lightning-input>
+                    <div class="grid grid_3">
+                        <lightning-input class="field" label="City" data-field="city" value={form.city} onchange={handleField} required></lightning-input>
+                        <lightning-combobox class="field" label="State" data-field="state" value={form.state} options={stateOptions} onchange={handleField} required></lightning-combobox>
+                        <lightning-input class="field" label="ZIP code" data-field="postalCode" value={form.postalCode} onchange={handleField} required pattern="[0-9]{5}(-[0-9]{4})?" message-when-pattern-mismatch="Enter a 5-digit ZIP code."></lightning-input>
+                    </div>
+                    <lightning-combobox class="field" label="Citizenship" data-field="citizenship" value={form.citizenship} options={citizenshipOptions} onchange={handleField} required></lightning-combobox>
+                </template>
+
+                <!-- Step 3: Documents -->
+                <template lwc:if={isDocuments}>
+                    <p class="hint">Take a clear photo or upload a PDF, up to 3 MB each. A representative uses these to verify your identity.</p>
+                    <div class="doc">
+                        <div class="doc__head">
+                            <span class="doc__title">Government-issued photo ID</span>
+                            <span class="pill pill_req">Required</span>
+                        </div>
+                        <p class="doc__desc">Driver’s license, state ID or passport.</p>
+                        <template lwc:if={idFile}>
+                            <div class="file">
+                                <lightning-icon icon-name="doctype:image" size="small" alternative-text=""></lightning-icon>
+                                <span class="file__name">{idFile.name}</span><span class="file__size">{idFile.size}</span>
+                                <button type="button" class="link" data-kind="id" onclick={removeFile}>Remove</button>
+                            </div>
+                        </template>
+                        <template lwc:else>
+                            <lightning-input type="file" label="Upload photo ID" data-kind="id" accept=".png,.jpg,.jpeg,.heic,.webp,.pdf" onchange={handleFile}></lightning-input>
+                        </template>
+                    </div>
+                    <div class="doc">
+                        <div class="doc__head">
+                            <span class="doc__title">Proof of eligibility</span>
+                            <span class="pill">Recommended</span>
+                        </div>
+                        <p class="doc__desc">{eligibilityDocLabel}</p>
+                        <template lwc:if={eligibilityFile}>
+                            <div class="file">
+                                <lightning-icon icon-name="doctype:pdf" size="small" alternative-text=""></lightning-icon>
+                                <span class="file__name">{eligibilityFile.name}</span><span class="file__size">{eligibilityFile.size}</span>
+                                <button type="button" class="link" data-kind="eligibility" onclick={removeFile}>Remove</button>
+                            </div>
+                        </template>
+                        <template lwc:else>
+                            <lightning-input type="file" label="Upload proof of eligibility" data-kind="eligibility" accept=".png,.jpg,.jpeg,.heic,.webp,.pdf" onchange={handleFile}></lightning-input>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- Step 4: Membership and product -->
+                <template lwc:if={isProduct}>
+                    <div class="included">
+                        <lightning-icon icon-name="utility:check" size="x-small" alternative-text=""></lightning-icon>
+                        <div>
+                            <p class="included__title">Membership Savings Account, included</p>
+                            <p class="included__desc">Every member opens one with a $5 deposit. It makes you a member for life.</p>
+                        </div>
+                    </div>
+                    <p class="hint">What else would you like to open today?</p>
+                    <div class="tiles tiles_2" role="group" aria-label="Product">
+                        <template for:each={products} for:item="p">
+                            <button key={p.value} type="button" class="tile" data-value={p.value} aria-pressed={p.pressed} onclick={handleProduct}>
+                                <span class="tile__label">{p.label}</span>
+                                <span class="tile__desc">{p.desc}</span>
+                            </button>
+                        </template>
+                    </div>
+                    <template lwc:if={isCard}>
+                        <div class="grid grid_3">
+                            <lightning-combobox class="field" label="Employment status" data-field="employmentStatus" value={form.employmentStatus} options={employmentOptions} onchange={handleField} required></lightning-combobox>
+                            <lightning-input class="field" type="number" formatter="currency" step="1" label="Gross annual income" data-field="annualIncome" value={form.annualIncome} onchange={handleField} required min="0"></lightning-input>
+                            <lightning-input class="field" type="number" formatter="currency" step="1" label="Monthly housing payment" data-field="housingPayment" value={form.housingPayment} onchange={handleField} required min="0"></lightning-input>
+                        </div>
+                    </template>
+                    <template lwc:if={isChecking}>
+                        <lightning-input class="field narrow" type="number" formatter="currency" step="1" label="Opening deposit" data-field="openingDeposit" value={form.openingDeposit} onchange={handleField} min="0"></lightning-input>
+                    </template>
+                    <lightning-combobox class="field narrow" label="How you’ll fund your account" data-field="fundingMethod" value={form.fundingMethod} options={fundingOptions} onchange={handleField} required></lightning-combobox>
+                </template>
+
+                <!-- Step 5: Review -->
+                <template lwc:if={isReview}>
+                    <dl class="review">
+                        <template for:each={reviewRows} for:item="r">
+                            <div key={r.key} class="review__row">
+                                <dt>{r.label}</dt>
+                                <dd>{r.value}</dd>
+                                <button type="button" class="link" data-step={r.step} onclick={editStep}>Edit</button>
+                            </div>
+                        </template>
+                    </dl>
+                    <div class="consents">
+                        <lightning-input type="checkbox" data-field="certified" checked={form.certified} onchange={handleField}
+                            label="I certify that the information in this application is true and complete."></lightning-input>
+                        <template lwc:if={isCard}>
+                            <lightning-input type="checkbox" data-field="creditConsent" checked={form.creditConsent} onchange={handleField}
+                                label="I authorize Navy Federal to obtain my credit report for this card application."></lightning-input>
+                        </template>
+                    </div>
+                </template>
+
+                <template lwc:if={errorMessage}>
+                    <p class="note note_error" role="alert">{errorMessage}</p>
+                </template>
+
+                <div class="actions">
+                    <template lwc:if={isFirst}>
+                        <span></span>
+                    </template>
+                    <template lwc:else>
+                        <button type="button" class="btn btn_ghost" onclick={goBack} disabled={submitting}>Back</button>
+                    </template>
+                    <button type="button" class="btn btn_primary" onclick={goNext} disabled={submitDisabled}>
+                        <template lwc:if={submitting}>Submitting…</template>
+                        <template lwc:else>{nextLabel}</template>
+                    </button>
+                </div>
+            </section>
+        </template>
+    </div>
+</template>

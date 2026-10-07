@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>NFCU Open Deposit Accounts</masterLabel>
+    <description>Banker step for a new member: confirm products, complete KYC with identity and sanctions checks, open and fund savings and checking on standard Financial Accounts.</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="recordId" type="String" role="inputOnly" label="Case Id"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

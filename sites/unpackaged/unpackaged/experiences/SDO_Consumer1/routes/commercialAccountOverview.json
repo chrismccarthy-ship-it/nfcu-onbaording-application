@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "c12428bf-9f04-4bff-98ec-53e18cf3166d",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "Partner_Hub__c",
+  "id" : "06d618fd-9d57-4551-a5bd-1d0dbfd89dfc",
+  "label" : "Commercial Account Overview",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-partner-hub",
+  "type" : "route",
+  "urlPrefix" : "partner-hub"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>New member: KYC, identity and sanctions checks, then open and fund savings and checking.</description>
+    <flowDefinition>NFCU_Open_Deposit_Accounts</flowDefinition>
+    <label>Open Deposit Accounts</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

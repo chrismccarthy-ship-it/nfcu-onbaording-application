@@ -1,0 +1,173 @@
+<template>
+    <div class="shell">
+        <template lwc:if={loading}>
+            <div class="loading"><lightning-spinner size="small" alternative-text="Loading the application"></lightning-spinner></div>
+        </template>
+        <template lwc:elseif={hasApplication}>
+            <header class="head">
+                <div>
+                    <p class="eyebrow">New member · Case {ctx.caseNumber}</p>
+                    <h2 class="title">Open deposit accounts for {ctx.memberName}</h2>
+                    <p class="sub">{ctx.applicationTitle} · application {ctx.applicationStage}</p>
+                </div>
+                <ol class="stepper" aria-label="Progress">
+                    <template for:each={stepper} for:item="s">
+                        <li key={s.key} class={s.cls}>{s.label}</li>
+                    </template>
+                </ol>
+            </header>
+
+            <p class="steplabel">{stepLabel}</p>
+
+            <!-- Step 1: products -->
+            <template lwc:if={isProducts}>
+                <div class="grid2">
+                    <dl class="facts">
+                        <div><dt>Eligibility</dt><dd>{ctx.eligibility}</dd></div>
+                        <div><dt>Date of birth</dt><dd><lightning-formatted-date-time value={ctx.birthdate} time-zone="UTC"></lightning-formatted-date-time></dd></div>
+                        <div><dt>Contact</dt><dd>{ctx.email} · {ctx.phone}</dd></div>
+                        <div><dt>Home address</dt><dd>{ctx.address}</dd></div>
+                        <div><dt>Funding</dt><dd>{ctx.fundingMethod}</dd></div>
+                    </dl>
+                    <div class="docs">
+                        <p class="label">Documents on the case</p>
+                        <template lwc:if={hasDocuments}>
+                            <ul>
+                                <template for:each={documents} for:item="d"><li key={d}>{d}</li></template>
+                            </ul>
+                        </template>
+                        <template lwc:else><p class="muted">No documents yet. Request them before opening.</p></template>
+                    </div>
+                </div>
+                <p class="label">Products requested</p>
+                <div class="products">
+                    <template for:each={products} for:item="p">
+                        <div key={p.lineId} class="product">
+                            <lightning-input type="checkbox" data-id={p.lineId} checked={p.checked} onchange={toggleProduct}
+                                label={p.name}></lightning-input>
+                            <span class="amount">{p.amount} opening deposit</span>
+                            <template lwc:if={p.debitCard}><span class="pill">Debit card</span></template>
+                        </div>
+                    </template>
+                </div>
+                <template lwc:if={hasChecking}>
+                    <lightning-input type="toggle" checked={overdraft} onchange={toggleOverdraft} label="Add overdraft protection to checking"
+                        message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                </template>
+                <p class="muted">Opening deposits total {openingTotal}.</p>
+            </template>
+
+            <!-- Step 2: KYC -->
+            <template lwc:if={isKyc}>
+                <div class="kyc">
+                    <p class="label">Customer Identification Program</p>
+                    <div class="grid2">
+                        <lightning-input data-field="occupation" label="Occupation" value={kyc.occupation} onchange={handleKyc} required></lightning-input>
+                        <lightning-input data-field="employer" label="Employer" value={kyc.employer} onchange={handleKyc}></lightning-input>
+                        <lightning-combobox data-field="expectedMonthlyDeposits" label="Expected monthly deposits" value={kyc.expectedMonthlyDeposits}
+                            options={depositOptions} onchange={handleKyc} required></lightning-combobox>
+                        <lightning-combobox data-field="accountPurpose" label="Main purpose of the accounts" value={kyc.accountPurpose}
+                            options={purposeOptions} onchange={handleKyc} required></lightning-combobox>
+                    </div>
+                    <lightning-checkbox-group data-field="sourceOfFunds" label="Source of funds" options={fundOptions}
+                        value={kyc.sourceOfFunds} onchange={handleKyc} required></lightning-checkbox-group>
+
+                    <div class="idrow">
+                        <p class="label">Government ID</p>
+                        <button type="button" class="link" onclick={useIdOnFile}>Read from the ID on file</button>
+                    </div>
+                    <div class="grid4">
+                        <lightning-combobox data-field="idType" label="ID type" value={kyc.idType} options={idTypeOptions} onchange={handleKyc} required></lightning-combobox>
+                        <lightning-input data-field="idNumber" label="ID number" value={kyc.idNumber} onchange={handleKyc} required></lightning-input>
+                        <lightning-input data-field="idState" label="Issuing state" value={kyc.idState} onchange={handleKyc} max-length="2" required></lightning-input>
+                        <lightning-input data-field="idExpiration" type="date" label="Expiration" value={kyc.idExpiration} onchange={handleKyc} required></lightning-input>
+                    </div>
+                </div>
+
+                <div class="checks">
+                    <div class="checks__head">
+                        <p class="label">Identity and sanctions checks</p>
+                        <span class="pill pill_sim">Simulated · MuleSoft</span>
+                    </div>
+                    <template lwc:if={checksRun}>
+                        <ul class="checklist">
+                            <template for:each={checkRows} for:item="c">
+                                <li key={c.key}>
+                                    <lightning-icon icon-name="utility:success" size="x-small" variant="success" alternative-text="Passed"></lightning-icon>
+                                    <span class="check__name">{c.name}</span>
+                                    <span class="pill pill_good">{c.result}</span>
+                                    <span class="check__detail">{c.detail}</span>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                    <template lwc:else>
+                        <button type="button" class="btn btn_ghost" onclick={handleScreening} disabled={busy}>Run identity and sanctions checks</button>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Step 3: open and fund -->
+            <template lwc:if={isOpen}>
+                <template lwc:if={accountsOpened}>
+                    <ul class="accounts">
+                        <template for:each={accountRows} for:item="a">
+                            <li key={a.id} class="account">
+                                <div>
+                                    <p class="account__name">{a.name}</p>
+                                    <p class="muted">{a.type} {a.maskedNumber}<template lwc:if={a.extras}> · {a.extras}</template></p>
+                                </div>
+                                <div class="account__right">
+                                    <span class="account__bal">{a.balanceLabel}</span>
+                                    <span class={a.pillCls}>{a.pill}</span>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                    <template lwc:if={allFunded}>
+                        <p class="note note_good">Accounts opened and funded: {fundedTotal} posted from the member’s external account. The debit card is on its way.</p>
+                    </template>
+                    <template lwc:else>
+                        <p class="muted">Next, book the opening deposits from {ctx.fundingMethod}.</p>
+                    </template>
+                </template>
+                <template lwc:else>
+                    <p class="lead">KYC is complete and every check passed. Opening creates the accounts on {ctx.memberName}’s member profile and approves the application.</p>
+                </template>
+            </template>
+
+            <template lwc:if={error}><p class="note note_error" role="alert">{error}</p></template>
+
+            <footer class="actions">
+                <template lwc:if={isProducts}>
+                    <span></span>
+                    <button type="button" class="btn btn_primary" onclick={next}>Continue to KYC</button>
+                </template>
+                <template lwc:if={isKyc}>
+                    <button type="button" class="btn btn_ghost" onclick={back}>Back</button>
+                    <button type="button" class="btn btn_primary" onclick={handleKycNext} disabled={busy}>Continue</button>
+                </template>
+                <template lwc:if={isOpen}>
+                    <template lwc:if={accountsOpened}>
+                        <span></span>
+                        <template lwc:if={allFunded}>
+                            <button type="button" class="btn btn_primary" onclick={handleDone}>Done</button>
+                        </template>
+                        <template lwc:else>
+                            <button type="button" class="btn btn_primary" onclick={handleFund} disabled={busy}>Fund opening deposits</button>
+                        </template>
+                    </template>
+                    <template lwc:else>
+                        <button type="button" class="btn btn_ghost" onclick={back}>Back</button>
+                        <button type="button" class="btn btn_primary" onclick={handleOpen} disabled={busy}>Approve and open accounts</button>
+                    </template>
+                </template>
+            </footer>
+            <template lwc:if={busy}><div class="busy"><lightning-spinner size="small" alternative-text="Working"></lightning-spinner></div></template>
+        </template>
+        <template lwc:else>
+            <p class="note">There’s no deposit application for this case’s member yet. It’s created when a prospect submits Join and Apply.</p>
+            <template lwc:if={error}><p class="note note_error" role="alert">{error}</p></template>
+        </template>
+    </div>
+</template>

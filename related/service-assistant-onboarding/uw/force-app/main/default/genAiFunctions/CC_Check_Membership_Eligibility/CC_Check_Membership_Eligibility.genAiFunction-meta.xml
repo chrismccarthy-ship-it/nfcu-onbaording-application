@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Checks whether the applicant is or can become a member, which a credit card requires. Returns the eligible groups, what establishing membership needs, and which eligibility items are missing for this applicant.</description>
+    <developerName>CC_Check_Membership_Eligibility</developerName>
+    <invocationTarget>CC_Check_Membership_Eligibility</invocationTarget>
+    <invocationTargetType>flow</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>CC_Check_Membership_Eligibility</localDeveloperName>
+    <masterLabel>Check Membership Eligibility</masterLabel>
+    <progressIndicatorMessage>Check Membership Eligibility...</progressIndicatorMessage>
+</GenAiFunction>

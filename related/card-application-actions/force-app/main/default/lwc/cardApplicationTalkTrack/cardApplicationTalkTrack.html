@@ -1,0 +1,19 @@
+<template>
+    <div class="tt-panel">
+        <div class="tt-header">
+            <span class="tt-badge">
+                <lightning-icon icon-name="utility:coaching" size="x-small" variant="inverse"></lightning-icon>
+                Rep talk track
+            </span>
+            <button class="tt-toggle" onclick={handleToggle}>{toggleLabel}</button>
+        </div>
+
+        <template if:true={isOpen}>
+            <div class="tt-body">
+                <p class="tt-title">{track.title}</p>
+                <p class="tt-guidance">{track.guidance}</p>
+                <p class="tt-tip"><span class="tt-tip__k">Tip</span> {track.tip}</p>
+            </div>
+        </template>
+    </div>
+</template>

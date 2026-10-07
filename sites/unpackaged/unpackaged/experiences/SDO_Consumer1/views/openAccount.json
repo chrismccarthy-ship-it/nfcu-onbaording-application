@@ -1,0 +1,279 @@
+{
+  "appPageId": "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName": "siteforce:dynamicLayout",
+  "dataProviders": [],
+  "id": "fa6f1f49-9514-4c70-9291-c3768cbc57a4",
+  "label": "open-account",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "f6db5000-949d-486d-b1b4-0bb8d9b47e7b",
+              "columns": [
+                {
+                  "UUID": "aaca81b9-03fc-4f84-9199-c56cddd2aa1d",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "8",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "d3060d85-9bce-407d-892b-30e0300e3f1a",
+                  "columnKey": "61215",
+                  "columnName": "Column 2",
+                  "columnWidth": "4",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 156
+          },
+          "componentName": "forceCommunity:section",
+          "id": "f6db5000-949d-486d-b1b4-0bb8d9b47e7b",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<!-- Checking cash-offer hero for Experience Cloud (HTML/Rich Content component).\n     Inline styles only — no <style>, classes, pseudo-elements, or scripts.\n     Generic (no brand references). Change href=\"/consumer/s/open-account\". -->\n<div style=\"background:#e9edf7;border-radius:14px;padding:40px 40px;max-width:1200px;margin:0 auto;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#C8BACB;\">\n  <p style=\"font-size:2.1rem;font-weight:400;line-height:1.1;margin:0;color:#1c2430;\">New checking customers</p>\n  <p style=\"font-size:2.3rem;font-weight:800;line-height:1.1;margin:2px 0 22px;color:#12294a;\">choose your cash offer</p>\n  <p style=\"font-size:1.05rem;line-height:1.55;margin:0 0 14px;color:#2a3542;max-width:640px;\">Open a new eligible checking account and get a <strong>$100 cash offer</strong> with qualifying debit or transfer transactions<sup style=\"font-size:.65em;\">1</sup> <strong>OR</strong> an up to <strong>$500 cash offer</strong> with Qualifying Direct Deposits.<sup style=\"font-size:.65em;\">2</sup></p>\n  <p style=\"font-style:italic;font-size:.9rem;color:#5b6672;margin:0 0 24px;\">Only one offer per customer.</p>\n  <p style=\"margin:0;display:flex;flex-wrap:wrap;gap:12px;align-items:center;\"><a href=\"/consumer/s/join\" style=\"display:inline-block;background:#043370;color:#ffffff;text-decoration:none;font-weight:700;font-size:1rem;padding:14px 28px;border-radius:999px;\">Join and open your account</a><span style=\"font-size:.9rem;color:#5b6672;\">New to Navy Federal? Become a member and open checking in one application.</span></p>\n  <p style=\"font-size:.72rem;color:#8693a5;margin:22px 0 0;line-height:1.4;\">\n    <sup>1</sup> Offer requires qualifying transactions within the first 90 days. &nbsp;\n    <sup>2</sup> Direct-deposit amount determines the cash offer tier. Terms apply.\n  </p>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "b5349963-ce41-4cb9-a155-6cbf27530550",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<!-- Generic credit-card lineup for Experience Cloud (HTML/Rich Content component).\n     Fully inline styles — no <style>, <script>, classes, pseudo-elements, or media\n     queries (the Experience Cloud sanitizer rejects those). Responsive via grid\n     auto-fit. Change href=\"/consumer/s/application\" to your card page. -->\n<div style=\"max-width:1120px;margin:0 auto;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1c2430;\">\n\n  <div style=\"margin:0 0 20px;\">\n    <h2 style=\"font-size:1.6rem;font-weight:700;color:#12294a;margin:0 0 6px;\">Find a card that works for you</h2>\n    <p style=\"color:#5b6672;margin:0;font-size:1rem;\">Compare cash back, travel, and low-rate options. No annual fee on select cards.</p>\n  </div>\n\n  <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;\">\n\n    <!-- Cash Rewards -->\n    <div style=\"display:flex;flex-direction:column;border:1px solid #e4e7ec;border-radius:14px;background:#ffffff;overflow:hidden;box-shadow:0 1px 3px rgba(18,41,74,.08);\">\n      <div style=\"height:150px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#ffffff;background:#1f3b63;background:linear-gradient(135deg,#1f3b63,#12294a);\">\n        <div style=\"width:34px;height:24px;border-radius:5px;background:#c8a24a;background:linear-gradient(135deg,#e9cf8a,#c8a24a);\"></div>\n        <div style=\"font-family:monospace;letter-spacing:.14em;font-size:.95rem;opacity:.92;\">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0000</div>\n        <div style=\"font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;opacity:.85;\">Cash Rewards</div>\n      </div>\n      <div style=\"padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;\">\n        <p style=\"font-size:1.12rem;font-weight:700;color:#12294a;margin:0;\">Cash Rewards Card</p>\n        <p style=\"color:#b3123b;font-weight:600;font-size:.95rem;margin:0;\">3% cash back in a category you choose &mdash; plus a $200 bonus offer.</p>\n        <p style=\"color:#5b6672;font-size:.8rem;margin:0;\">No annual fee &middot; Contactless</p>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>2% back at grocery stores &amp; wholesale clubs</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Unlimited 1% back on everything else</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>0% intro APR for 15 billing cycles</span></div>\n        <div style=\"margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:14px;\">\n          <a href=\"/consumer/s/application\" style=\"display:inline-block;background:#12294a;color:#ffffff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:8px;\">Apply Now</a>\n          <a href=\"#\" style=\"color:#12294a;font-weight:600;font-size:.86rem;text-decoration:none;\">Learn more</a>\n        </div>\n      </div>\n    </div>\n\n    <!-- Travel Rewards -->\n    <div style=\"display:flex;flex-direction:column;border:1px solid #e4e7ec;border-radius:14px;background:#ffffff;overflow:hidden;box-shadow:0 1px 3px rgba(18,41,74,.08);\">\n      <div style=\"height:150px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#ffffff;background:#0d6b6f;background:linear-gradient(135deg,#0d6b6f,#0a3d40);\">\n        <div style=\"width:34px;height:24px;border-radius:5px;background:#c8a24a;background:linear-gradient(135deg,#e9cf8a,#c8a24a);\"></div>\n        <div style=\"font-family:monospace;letter-spacing:.14em;font-size:.95rem;opacity:.92;\">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0000</div>\n        <div style=\"font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;opacity:.85;\">Travel Rewards</div>\n      </div>\n      <div style=\"padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;\">\n        <p style=\"font-size:1.12rem;font-weight:700;color:#12294a;margin:0;\">Travel Rewards Card</p>\n        <p style=\"color:#b3123b;font-weight:600;font-size:.95rem;margin:0;\">Unlimited 1.5x points on every purchase &mdash; 25,000 bonus points.</p>\n        <p style=\"color:#5b6672;font-size:.8rem;margin:0;\">No annual fee &middot; No foreign transaction fees</p>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Redeem for travel, statement credit, or gift cards</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Points don&rsquo;t expire</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>0% intro APR for 15 billing cycles</span></div>\n        <div style=\"margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:14px;\">\n          <a href=\"/consumer/s/application\" style=\"display:inline-block;background:#12294a;color:#ffffff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:8px;\">Apply Now</a>\n          <a href=\"#\" style=\"color:#12294a;font-weight:600;font-size:.86rem;text-decoration:none;\">Learn more</a>\n        </div>\n      </div>\n    </div>\n\n    <!-- Premium Rewards -->\n    <div style=\"display:flex;flex-direction:column;border:1px solid #e4e7ec;border-radius:14px;background:#ffffff;overflow:hidden;box-shadow:0 1px 3px rgba(18,41,74,.08);\">\n      <div style=\"height:150px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#ffffff;background:#3a3a3a;background:linear-gradient(135deg,#3a3a3a,#111111);\">\n        <div style=\"width:34px;height:24px;border-radius:5px;background:#c8a24a;background:linear-gradient(135deg,#e9cf8a,#c8a24a);\"></div>\n        <div style=\"font-family:monospace;letter-spacing:.14em;font-size:.95rem;opacity:.92;\">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0000</div>\n        <div style=\"font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;opacity:.85;\">Premium</div>\n      </div>\n      <div style=\"padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;\">\n        <p style=\"font-size:1.12rem;font-weight:700;color:#12294a;margin:0;\">Premium Rewards Card</p>\n        <p style=\"color:#b3123b;font-weight:600;font-size:.95rem;margin:0;\">2x points on travel &amp; dining, 1.5x on everything else.</p>\n        <p style=\"color:#5b6672;font-size:.8rem;margin:0;\">$95 annual fee &middot; Premium travel perks</p>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>$100 annual travel statement credit</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Airport lounge access &amp; trip protection</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>50,000 bonus points welcome offer</span></div>\n        <div style=\"margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:14px;\">\n          <a href=\"/consumer/s/application\" style=\"display:inline-block;background:#12294a;color:#ffffff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:8px;\">Apply Now</a>\n          <a href=\"#\" style=\"color:#12294a;font-weight:600;font-size:.86rem;text-decoration:none;\">Learn more</a>\n        </div>\n      </div>\n    </div>\n\n    <!-- Low Intro APR -->\n    <div style=\"display:flex;flex-direction:column;border:1px solid #e4e7ec;border-radius:14px;background:#ffffff;overflow:hidden;box-shadow:0 1px 3px rgba(18,41,74,.08);\">\n      <div style=\"height:150px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#ffffff;background:#5a3fc0;background:linear-gradient(135deg,#5a3fc0,#2f1f74);\">\n        <div style=\"width:34px;height:24px;border-radius:5px;background:#c8a24a;background:linear-gradient(135deg,#e9cf8a,#c8a24a);\"></div>\n        <div style=\"font-family:monospace;letter-spacing:.14em;font-size:.95rem;opacity:.92;\">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0000</div>\n        <div style=\"font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;opacity:.85;\">Low Rate</div>\n      </div>\n      <div style=\"padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;\">\n        <p style=\"font-size:1.12rem;font-weight:700;color:#12294a;margin:0;\">Low Intro APR Card</p>\n        <p style=\"color:#b3123b;font-weight:600;font-size:.95rem;margin:0;\">0% intro APR for 18 billing cycles on purchases &amp; balance transfers.</p>\n        <p style=\"color:#5b6672;font-size:.8rem;margin:0;\">No annual fee &middot; Contactless</p>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Long intro period to pay down balances</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Free monthly credit score</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>$0 fraud liability</span></div>\n        <div style=\"margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:14px;\">\n          <a href=\"/consumer/s/application\" style=\"display:inline-block;background:#12294a;color:#ffffff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:8px;\">Apply Now</a>\n          <a href=\"#\" style=\"color:#12294a;font-weight:600;font-size:.86rem;text-decoration:none;\">Learn more</a>\n        </div>\n      </div>\n    </div>\n\n  </div>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "36a1aaad-4c65-45ba-a6e3-44ca967d66cd",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "aaca81b9-03fc-4f84-9199-c56cddd2aa1d",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div>\n <br>\n</div>\n<h3><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.scheduleappointment.1}\"></h3>"
+                  },
+                  "componentName": "forceCommunity:richTextInline",
+                  "id": "d630f167-c7f5-4cda-bed2-18ab643c7e90",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "d3060d85-9bce-407d-892b-30e0300e3f1a",
+              "regionLabel": "Column 2",
+              "regionName": "61215",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        },
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "83814fa6-1f41-4e5d-a16d-c83b33498129",
+              "columns": [
+                {
+                  "UUID": "44cf9022-4a38-4ca7-aad7-d54462885570",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "7",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "5b20d668-e1a1-4507-9fd1-f4446d5f26e6",
+                  "columnKey": "8fc3a",
+                  "columnName": "Column 2",
+                  "columnWidth": "5",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 32
+          },
+          "componentName": "forceCommunity:section",
+          "id": "83814fa6-1f41-4e5d-a16d-c83b33498129",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<!-- \"Not sure which account?\" FAQ help prompt for Experience Cloud.\n     Inline styles only — no <style>, classes, pseudo-elements, or scripts.\n     Change href=\"/consumer/s/knowledge\" to your FAQ / topic-catalog page. -->\n<div style=\"background:#F1ECF8;border-radius:14px;padding:44px;max-width:1200px;margin:0 auto;text-align:center;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#4B286D;\">\n  <div style=\"width:56px;height:56px;border-radius:50%;background:#4B286D;background:linear-gradient(135deg,#6C3F9E,#4B286D);color:#ffffff;font-size:1.7rem;font-weight:700;line-height:56px;text-align:center;margin:0 auto 18px;\">?</div>\n  <p style=\"font-size:1.7rem;font-weight:800;line-height:1.2;margin:0 0 10px;color:#4B286D;\">Not sure what account is right for you?</p>\n  <p style=\"font-size:1.05rem;line-height:1.5;color:#3a4451;max-width:520px;margin:0 auto 26px;\">Look at our specially curated FAQs about all of our products.</p>\n  <a href=\"/consumer/s/knowledge\" style=\"display:inline-block;background:#4B286D;color:#ffffff;text-decoration:none;font-weight:700;font-size:1rem;padding:14px 28px;border-radius:9px;\">Explore our FAQs &rarr;</a>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "369c5154-7c8e-4ca5-bf4d-ba93b25cce72",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "hideDocumentUpload": false,
+                    "hideWelcomeStep": false,
+                    "primaryBrandUrl": "truist.com",
+                    "submitButtonLabel": "Open Account"
+                  },
+                  "componentName": "c:bxRetailOnboarding",
+                  "id": "3a56da36-a811-422a-a267-5365f0de22db",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "44cf9022-4a38-4ca7-aad7-d54462885570",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "backgroundColor": "#FFFFFF",
+                    "customHeroTitle": "Credit Health",
+                    "customScore": "810",
+                    "hideGaugeCard": false,
+                    "hideHistory": false,
+                    "hideTopFactors": false,
+                    "primaryBrandUrl": "truist.com"
+                  },
+                  "componentName": "c:bxCreditScore",
+                  "id": "8cef31b7-7827-4867-b10e-afe71d1c993e",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "5b20d668-e1a1-4507-9fd1-f4446d5f26e6",
+              "regionLabel": "Column 2",
+              "regionName": "8fc3a",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        },
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "57696323-1bee-400b-8593-d099992f3dec",
+              "columns": [
+                {
+                  "UUID": "6bd356cc-dbba-4a8a-8116-f2c304f90e76",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "6",
+                  "seedComponents": []
+                },
+                {
+                  "UUID": "7d3c35f6-7533-408d-a908-68d0f0534e3f",
+                  "columnKey": "6d357",
+                  "columnName": "Column 2",
+                  "columnWidth": "6",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 300
+          },
+          "componentName": "forceCommunity:section",
+          "id": "57696323-1bee-400b-8593-d099992f3dec",
+          "regions": [
+            {
+              "id": "6bd356cc-dbba-4a8a-8116-f2c304f90e76",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            },
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-card slds-p-vertical_large\" style=\"text-align:center;border:none;box-shadow:none;color:#C8BACB;\">\n     <a href=\"{!Global.PathPrefix}/learning/blog\"> \n        <button class=\"slds-button slds-button_brand\" style=\"font-size:14px; height:46px; border-radius:5px; width:100%;color:#ffffff;\">\n            Learn More\n        </button>    \n    </a>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "2417f1a4-2418-45c7-964a-4837b1ff1e69",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                },
+                {
+                  "componentAttributes": {
+                    "richTextValue": "<div class=\"slds-card slds-p-vertical_large\" style=\"display:inline-block;background:#12294a;color:#ffffff;text-decoration:none;\">\n    <a href=\"/consumer/s/join\" class=\"slds-button slds-button_brand\" style=\"font-weight:700;font-size:1rem;padding:14px 28px;border-radius:9px;\">\n        <button style=\"font-size:14px; height:46px; border-radius:5px; width:100%;color:#ffffff;\">\n                Open An Account\n            </button>\n    </a>\n</div>"
+                  },
+                  "componentName": "forceCommunity:htmlBlock",
+                  "id": "d7b8b117-1811-432c-8d5d-7768eb40818d",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "7d3c35f6-7533-408d-a908-68d0f0534e3f",
+              "regionLabel": "Column 2",
+              "regionName": "6d357",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "718eaeea-364c-431c-b108-c3882e16d9c9",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "title": "Template"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "b37b263a-7b51-4cb4-866b-11e0787825dc",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "24e6e789-ca11-4a39-9cff-99b06e9a7cc9",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Inner",
+  "type": "view",
+  "viewType": "custom-open-account"
+}

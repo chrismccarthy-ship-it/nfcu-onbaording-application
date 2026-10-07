@@ -1,0 +1,24 @@
+{
+  "required": [
+    "recordId",
+    "requestedItems"
+  ],
+  "unevaluatedProperties": false,
+  "properties": {
+    "recordId": {
+      "title": "recordId",
+      "description": "The Id of the current record in context: the Case, or the Messaging Session the rep is working. Always pass the record ID from context; never ask the rep for it.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    },
+    "requestedItems": {
+      "title": "requestedItems",
+      "description": "Numbered list of the items to request from the member, one per line.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    }
+  },
+  "lightning:type": "lightning__objectType"
+}

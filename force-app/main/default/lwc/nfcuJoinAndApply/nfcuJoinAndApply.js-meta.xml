@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>NFCU Join and Apply</masterLabel>
+    <description>One application for a prospect who is new to Navy Federal: confirm eligibility, become a member and apply for a product. Creates a converted Lead (Person Account), Applicant Form, Application and Case.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightning__AppPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default,lightning__AppPage">
+            <property name="heading" type="String" default="Join Navy Federal and apply in one step" label="Heading"/>
+            <property name="showSampleData" type="Boolean" default="false" label="Show 'Fill sample applicant' (demos only)"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Underwriter Workflow: extract key fields from the loan package and validate them against the approved structure (mock).</description>
+    <flowDefinition>UW_QA_Parse_Loan_Documents</flowDefinition>
+    <label>Parse Loan Documents</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

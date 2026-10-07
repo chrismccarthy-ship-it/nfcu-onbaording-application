@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Upload an identity document and confirm the member's details. Same flow as the Messaging Session Verify Identity action.</description>
+    <flowDefinition>MSR_Identity_Verification</flowDefinition>
+    <label>Verify Identity</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

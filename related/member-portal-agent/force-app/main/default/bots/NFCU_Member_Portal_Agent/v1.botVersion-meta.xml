@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BotVersion xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>v1</fullName>
+    <articleAnswersGPTEnabled>true</articleAnswersGPTEnabled>
+    <botDialogs>
+        <developerName>Main_Dialog</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Main Dialog</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <citationsEnabled>true</citationsEnabled>
+    <company>Navy Federal Credit Union is the largest credit union in the US, serving over 14 million members including Armed Forces personnel, DoD employees, veterans, and families.</company>
+    <conversationDefinitionPlanners>
+        <genAiPlannerName>NFCU_Member_Portal_Planner</genAiPlannerName>
+    </conversationDefinitionPlanners>
+    <conversationVariables>
+        <dataType>Text</dataType>
+        <description>This variable may also be referred to as VerifiedCustomerId</description>
+        <developerName>VerifiedCustomerId</developerName>
+        <includeInPrompt>false</includeInPrompt>
+        <label>Verified Customer ID</label>
+        <visibility>Internal</visibility>
+    </conversationVariables>
+    <defaultStdObjForContactIdFltrEnabled>false</defaultStdObjForContactIdFltrEnabled>
+    <entryDialog>Main_Dialog</entryDialog>
+    <intentDisambiguationEnabled>false</intentDisambiguationEnabled>
+    <intentV3Enabled>false</intentV3Enabled>
+    <isScriptCompatibleAgent>false</isScriptCompatibleAgent>
+    <knowledgeActionEnabled>true</knowledgeActionEnabled>
+    <knowledgeFallbackEnabled>true</knowledgeFallbackEnabled>
+    <responseDelayMilliseconds>0</responseDelayMilliseconds>
+    <role>You are Navy Federal Credit Union&apos;s virtual assistant on the authenticated member portal. Help members with their credit card applications, eligibility questions, change-of-station address updates, identity/KYC status, and escalation to a live MSR. Be warm, professional, and military-friendly. The member is already securely signed in.</role>
+    <smallTalkEnabled>false</smallTalkEnabled>
+    <staticPromptsEnabled>false</staticPromptsEnabled>
+    <stopRecPrompts>false</stopRecPrompts>
+    <stopWelcomePrompts>false</stopWelcomePrompts>
+    <surfacesEnabled>false</surfacesEnabled>
+    <toneType>Casual</toneType>
+</BotVersion>

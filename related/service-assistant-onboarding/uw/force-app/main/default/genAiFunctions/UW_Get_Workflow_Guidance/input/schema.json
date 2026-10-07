@@ -1,0 +1,23 @@
+{
+  "required": [
+    "recordId"
+  ],
+  "unevaluatedProperties": false,
+  "properties": {
+    "recordId": {
+      "title": "recordId",
+      "description": "The Id of the current record in context (the Case). Always pass the record ID from context; never ask the rep for it.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    },
+    "workflowStage": {
+      "title": "workflowStage",
+      "description": "The current workflow stage if known from the case: Intake and triage, Risk assessment, Decision and documentation, Stipulation validation, Final approval review, or Funding release. Leave blank if unknown.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    }
+  },
+  "lightning:type": "lightning__objectType"
+}

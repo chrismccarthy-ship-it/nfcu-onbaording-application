@@ -1,0 +1,117 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "c44f7185-77c6-455f-9657-572f4f6efe7b",
+  "label" : "Credit Score",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "c9bf9312-f04e-415a-84d5-e2b046511464",
+          "columns" : [ {
+            "UUID" : "d97fd792-eaa3-4fd9-898c-e15f3e80b902",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "c9bf9312-f04e-415a-84d5-e2b046511464",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:nwCreditScore",
+          "id" : "a9187fc2-e015-416a-9100-69600fb25f2e",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "customTitle" : "Your Credit Score"
+          },
+          "componentName" : "c:bxCreditGauge",
+          "id" : "a82da54d-935c-4383-a248-3ba033a68866",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "d97fd792-eaa3-4fd9-898c-e15f3e80b902",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "65740975-4e9f-44a1-b83f-9d3933d3e3c4",
+          "columns" : [ {
+            "UUID" : "23c694d5-93af-4a46-915a-1b3316d208c8",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "aa8527ec-ec34-4ad2-a33a-728b79b318aa",
+            "columnKey" : "6d357",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "65740975-4e9f-44a1-b83f-9d3933d3e3c4",
+      "regions" : [ {
+        "id" : "23c694d5-93af-4a46-915a-1b3316d208c8",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "id" : "aa8527ec-ec34-4ad2-a33a-728b79b318aa",
+        "regionLabel" : "Column 2",
+        "regionName" : "6d357",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "09dfe2e7-bf9a-461c-ad46-b9b4758ec36d",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "d6eb03d3-8a44-48ee-806d-4f9e9efb00ff",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "8ad6d5aa-e85b-455e-a508-c8ce36637f17",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-credit-score"
+}

@@ -1,0 +1,111 @@
+.bar {
+    background: var(--slds-g-color-surface-container-1, #ffffff);
+    border-radius: var(--slds-g-radius-border-4, 1.25rem);
+    box-shadow: var(--slds-g-shadow-1, 0 2px 2px rgba(0, 0, 0, 0.1));
+    padding: var(--slds-g-spacing-4, 1rem);
+}
+.bar__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--slds-g-spacing-2, 0.5rem);
+    flex-wrap: wrap;
+    margin: 0 0 var(--slds-g-spacing-3, 0.75rem);
+}
+.bar__title {
+    margin: 0;
+    font-size: var(--slds-g-font-scale-2, 1rem);
+    font-weight: var(--slds-g-font-weight-bold, 700);
+    color: var(--slds-g-color-on-surface-3, #181818);
+}
+.bar__progress {
+    display: flex;
+    align-items: baseline;
+    gap: var(--slds-g-spacing-2, 0.5rem);
+    font-size: var(--slds-g-font-scale-neg-1, 0.75rem);
+    color: var(--slds-g-color-on-surface-2, #444444);
+}
+.bar__reset {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: var(--slds-g-color-accent-2, #0176d3);
+    text-decoration: underline;
+    cursor: pointer;
+}
+.bar__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--slds-g-spacing-2, 0.5rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* One color per step */
+.bar__btn_step1 { --step-color: #043370; --step-tint: #eaf0f8; --step-tint-hover: #dbe5f3; }
+.bar__btn_step2 { --step-color: #b35400; --step-tint: #fdf1e6; --step-tint-hover: #fbe3cc; }
+.bar__btn_step3 { --step-color: #0b7a75; --step-tint: #e6f4f3; --step-tint-hover: #d2ebe9; }
+.bar__btn_step4 { --step-color: #6b3fa0; --step-tint: #f2ecf8; --step-tint-hover: #e6dbf2; }
+
+.bar__btn {
+    display: flex;
+    align-items: center;
+    gap: var(--slds-g-spacing-2, 0.5rem);
+    width: 100%;
+    padding: var(--slds-g-spacing-2, 0.5rem) var(--slds-g-spacing-3, 0.75rem);
+    background: var(--step-tint, #f3f3f3);
+    color: var(--slds-g-color-on-surface-3, #181818);
+    border: 1px solid transparent;
+    border-left: 4px solid var(--step-color, #c9c9c9);
+    border-radius: var(--slds-g-radius-border-2, 0.5rem);
+    font: inherit;
+    font-weight: var(--slds-g-font-weight-6, 600);
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.bar__btn:hover {
+    background: var(--step-tint-hover, #e9e9e9);
+}
+.bar__btn:active {
+    border-color: var(--step-color, #c9c9c9);
+}
+.bar__btn:focus-visible {
+    outline: 2px solid var(--step-color, #0176d3);
+    outline-offset: 2px;
+}
+.bar__num {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--step-color, #444444);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+.bar__icon {
+    flex: none;
+    --slds-c-icon-color-foreground-default: var(--step-color, #444444);
+}
+.bar__label {
+    flex: 1;
+    min-width: 0;
+}
+.bar__check {
+    flex: none;
+    font-size: 1rem;
+    line-height: 1;
+}
+.bar__btn_done .bar__label {
+    color: var(--slds-g-color-on-surface-2, #444444);
+}
+@media (prefers-reduced-motion: reduce) {
+    .bar__btn { transition: none; }
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Direct_Deposit_Status__c</fullName>
+    <label>Direct Deposit Status</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Not started</fullName><default>false</default><label>Not started</label></value>
+            <value><fullName>Form ready</fullName><default>false</default><label>Form ready</label></value>
+            <value><fullName>Sent to employer</fullName><default>false</default><label>Sent to employer</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

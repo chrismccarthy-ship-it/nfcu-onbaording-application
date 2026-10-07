@@ -1,0 +1,36 @@
+<template>
+    <div class="uw-stack">
+        <span class="uw-section-label">Attached to this case</span>
+        <template lwc:if={loading}>
+            <div class="docs-loading"><lightning-spinner size="small" alternative-text="Loading documents"></lightning-spinner></div>
+        </template>
+        <template lwc:else>
+            <div class="docs-grid">
+                <template for:each={tiles} for:item="t">
+                    <div key={t.key} class="doc">
+                        <div class="uw-tile file-tile">
+                            <lightning-icon icon-name={t.icon} size="medium" alternative-text=""></lightning-icon>
+                            <span class="uw-tile__body">
+                                <span class="uw-tile__title">{t.title}</span>
+                                <span class="uw-tile__desc">{t.desc}</span>
+                            </span>
+                            <span class={t.badgeCls}>{t.badge}</span>
+                        </div>
+                        <template lwc:if={t.found}>
+                            <a class="doc__preview" href={t.fileUrl} target="_blank" rel="noopener" title="Open full size in a new tab">
+                                <template lwc:if={t.isImage}>
+                                    <img src={t.thumbUrl} alt={t.kind} class="doc__img" />
+                                </template>
+                                <template lwc:else>
+                                    <span class="doc__pdf">Open PDF</span>
+                                </template>
+                            </a>
+                        </template>
+                    </div>
+                </template>
+            </div>
+            <lightning-file-upload label={uploadLabel} name="identityDocuments" record-id={recordId} multiple
+                accept=".pdf,.png,.jpg,.jpeg,.heic" onuploadfinished={handleUpload}></lightning-file-upload>
+        </template>
+    </div>
+</template>

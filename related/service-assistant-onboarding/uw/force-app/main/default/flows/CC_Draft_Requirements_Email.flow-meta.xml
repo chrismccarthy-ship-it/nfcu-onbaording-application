@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Set_Result</name>
+        <label>Set Result</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>emailDraft</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Result_Text</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Agent action for Credit Card Account Opening. Drafts an email asking the member for the items still required to finish the credit card application. Draft only; the rep sends it from the Email Application Requirements quick action.</description>
+    <environments>Default</environments>
+    <interviewLabel>CC - Draft Requirements Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CC - Draft Requirements Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Result</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Result_Text</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Draft prepared.
+
+Subject: Next steps for your credit card application (APP-2026-004821)
+
+Hi Lauren,
+
+Thank you for applying for a credit card with us. We reviewed your application and need a few more details before we can finish it:
+{!requestedItems}
+
+As part of our standard identity verification, a member service representative may also call to confirm a few details. This is a routine security step, not a denial.
+
+You can reply to this email or upload documents securely in online banking. Your progress is saved, so you won't need to start over.
+
+Thank you,
+Member Services
+
+Send it from the Email Application Requirements quick action. Until identity is verified, send to the email on the member record, not the new address on the application.</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>requestedItems</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>caseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>emailDraft</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

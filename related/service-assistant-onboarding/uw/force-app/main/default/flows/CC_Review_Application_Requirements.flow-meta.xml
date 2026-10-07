@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Set_Result</name>
+        <label>Set Result</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>requirementsResult</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Result_Text</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Agent action for Credit Card Account Opening. Returns what is complete, missing, or needs verification on the attached credit card application, assessed against KB-CARD-002 and KB-MEM-001.</description>
+    <environments>Default</environments>
+    <interviewLabel>CC - Review Application Requirements {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CC - Review Application Requirements</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Result</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Result_Text</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Application review: lauren-bailey-application.pdf, APP-2026-004821, Flagship Premier Visa Signature Card, received 03/02/2026 in-branch, status Pending Review.
+
+COMPLETE (6):
+- Social Security Number (ending 8817)
+- Date of birth 08/30/1990 (matches the member record)
+- Employment and income: employed nurse at Providence Health &amp; Services, 8 years, $96,000 gross annual employment income
+- Monthly housing payment: $1,850
+- Card selection: Flagship Premier Visa Signature, a current travel card (annual fee applies; confirm the member is aware)
+- Signature: Lauren M. Bailey, 03/02/2026
+
+MISSING (4):
+- Membership eligibility basis (no eligibility section on the application)
+- Government-issued ID (required by KB-CARD-002 Step 3 and KB-MEM-001)
+- Second balance transfer: 2 balances requested, only Capital One ending 1204 for $4,300.00 provided
+- Authorized user details: authorized user requested with no name, date of birth or relationship
+
+VERIFY OR CLARIFY (4):
+- Home address: application 2 Market St., Unit 5B, San Francisco, CA 94105; member record 1 Market Street. Confirm which is current.
+- Membership Savings Account ($5 minimum) on file
+- Certification signed 03/02/2026 is over 6 months old; re-confirm the certification and credit report authorization
+- Suffix "Ms." entered; that is a title, not a name suffix
+
+Next steps: Review Card Application quick action for the parsed fields, Complete Card Application to fill the gaps, then Identity and Fraud Screening.</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>caseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>requirementsResult</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

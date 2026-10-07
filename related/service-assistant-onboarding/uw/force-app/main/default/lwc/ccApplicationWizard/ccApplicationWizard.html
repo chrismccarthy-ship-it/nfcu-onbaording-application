@@ -1,0 +1,275 @@
+<template>
+    <div class="uw-shell">
+        <header class="uw-hero">
+            <span class="uw-hero__icon">
+                <lightning-icon icon-name="standard:form" size="small" alternative-text=""></lightning-icon>
+            </span>
+            <div class="uw-hero__text">
+                <span class="uw-hero__eyebrow">Open a credit card · Case {caseNumber}</span>
+                <h2 class="uw-hero__title">Complete card application</h2>
+                <p class="uw-hero__sub">{app.applicationId} for {app.name}. {linkedLabel}.</p>
+            </div>
+        </header>
+
+        <template lwc:if={isEdit}>
+            <ol class="stepper" aria-label="Application steps">
+                <template for:each={stepItems} for:item="s">
+                    <li key={s.id} class={s.cls} aria-current={s.ariaCurrent}>
+                        <span class="stepper__dot">
+                            <template lwc:if={s.done}>
+                                <lightning-icon icon-name="utility:check" size="xx-small" alternative-text="Complete"></lightning-icon>
+                            </template>
+                            <template lwc:else>{s.number}</template>
+                        </span>
+                        <span class="stepper__label">{s.label}</span>
+                    </li>
+                </template>
+            </ol>
+
+            <!-- Step 1: Membership -->
+            <template lwc:if={isMembership}>
+                <div class="uw-stack uw-fade-in">
+                    <div class="uw-alert uw-alert--warning">
+                        <lightning-icon icon-name="utility:warning" variant="warning" size="x-small" alternative-text=""></lightning-icon>
+                        <p class="uw-alert__body">The application does not state how {app.firstName} qualifies for membership. A card requires membership (KB-MEM-001).</p>
+                    </div>
+                    <lightning-combobox class="step-field" label="Eligibility basis" data-field="basis" value={basis}
+                        options={basisOptions} onchange={handleField} required></lightning-combobox>
+                    <template lwc:if={needsQualifier}>
+                        <div class="uw-grid">
+                            <lightning-input class="step-field" label="Qualifying member's name" data-field="qualifierName"
+                                value={qualifierName} onchange={handleField} required></lightning-input>
+                            <lightning-combobox class="step-field" label="Relationship" data-field="qualifierRelationship"
+                                value={qualifierRelationship} options={relationshipOptions} onchange={handleField} required></lightning-combobox>
+                        </div>
+                    </template>
+                    <template lwc:if={isExistingMember}>
+                        <div class="uw-card uw-card--muted">
+                            <lightning-input type="checkbox" data-field="savingsConfirmed" checked={savingsConfirmed} onchange={handleField}
+                                label="Membership Savings Account confirmed on file with at least $5 (application lists Checking and Savings)"></lightning-input>
+                            <span class="uw-caption">Leave unchecked to ask the member to confirm.</span>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <p class="uw-caption">New members open a Membership Savings Account ($5 minimum) in the same application, funded by card or bank account.</p>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Step 2: Identity document -->
+            <template lwc:if={isIdentity}>
+                <div class="uw-stack uw-fade-in">
+                    <div class="uw-card uw-card--muted prefill">
+                        <div><span class="uw-caption">Name</span><span>{app.name}</span></div>
+                        <div><span class="uw-caption">Date of birth</span><span>{app.dobDisplay}</span></div>
+                        <div><span class="uw-caption">Home address</span><span>{app.address}</span></div>
+                        <div><span class="uw-caption">SSN</span><span>•••-••-8817</span></div>
+                    </div>
+                    <lightning-input type="toggle" data-field="idDeferred" checked={idDeferred} onchange={handleField}
+                        label="Member will provide ID later (add to requirements email)" message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                    <template lwc:if={showIdFields}>
+                        <template lwc:if={hasAttachedId}>
+                            <span class="uw-section-label">Attached to this case</span>
+                            <div class="uw-tile file-tile" aria-checked="true">
+                                <lightning-icon icon-name="doctype:image" size="medium" alternative-text=""></lightning-icon>
+                                <span class="uw-tile__body">
+                                    <span class="uw-tile__title">{attachedId.fileName}</span>
+                                    <span class="uw-tile__desc">{attachedIdDesc}</span>
+                                </span>
+                                <span class={idStatusBadge.cls}>{idStatusBadge.label}</span>
+                            </div>
+                        </template>
+                        <div class="id-scan">
+                            <template lwc:if={hasAttachedId}>
+                                <lightning-button variant="brand" label={parseIdLabel} icon-name="utility:sparkles"
+                                    onclick={handleParseId} disabled={idScanning}></lightning-button>
+                            </template>
+                            <lightning-file-upload label={uploadIdLabel} name="idDocument" record-id={recordId}
+                                accept=".png,.jpg,.jpeg,.webp,.heic,.pdf" onuploadfinished={handleIdUpload}></lightning-file-upload>
+                            <template lwc:if={idScanning}>
+                                <div class="id-scan__status">
+                                    <lightning-spinner size="small" alternative-text="Reading ID" class="id-scan__spinner"></lightning-spinner>
+                                    <span class="uw-caption">Agentforce is reading {idScanFile}…</span>
+                                </div>
+                            </template>
+                        </div>
+                        <template lwc:if={idScanned}>
+                            <div class="uw-alert uw-alert--success">
+                                <lightning-icon icon-name="utility:success" size="x-small" variant="success"></lightning-icon>
+                                <div>
+                                    <p class="uw-alert__title">ID read from {idScanFile}</p>
+                                    <p class="uw-alert__body uw-caption">{idDocument.type} {idDocument.number} · {idDocument.state} · expires {idDocument.expirationDisplay}. The file is attached to this record.</p>
+                                </div>
+                            </div>
+                            <template lwc:if={idAddressDiffers}>
+                                <div class="uw-alert uw-alert--warning">
+                                    <lightning-icon icon-name="utility:warning" size="x-small" variant="warning"></lightning-icon>
+                                    <div>
+                                        <p class="uw-alert__title">Address on ID differs from the application</p>
+                                        <p class="uw-alert__body uw-caption">ID: {idDocument.address}. Application: {app.address}. Confirm the current address with the member.</p>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+                        <div class="uw-grid">
+                            <lightning-combobox class="step-field" label="ID type" data-field="idType" value={idType}
+                                options={idOptions} onchange={handleField} required></lightning-combobox>
+                            <lightning-input class="step-field" label="ID number" data-field="idNumber" value={idNumber}
+                                onchange={handleField} required></lightning-input>
+                            <lightning-input class="step-field" label="Issuing state" data-field="idState" value={idState}
+                                onchange={handleField} max-length="2" required></lightning-input>
+                            <lightning-input class="step-field" type="date" label="Expiration date" data-field="idExpiration"
+                                value={idExpiration} onchange={handleField} required></lightning-input>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Step 3: Card & options -->
+            <template lwc:if={isCard}>
+                <div class="uw-stack uw-fade-in">
+                    <div>
+                        <span class="uw-section-label">Card (applied for Flagship Premier Visa Signature®)</span>
+                        <div class="product-grid" role="group" aria-label="Card product">
+                            <template for:each={productTiles} for:item="p">
+                                <button key={p.id} type="button" class={p.cls} data-id={p.id} aria-pressed={p.pressed} onclick={handleProduct}>
+                                    <span class="uw-tile__body">
+                                        <span class="uw-tile__title">{p.label}</span>
+                                        <span class="uw-tile__desc">{p.desc}</span>
+                                    </span>
+                                    <template lwc:if={p.suggested}><span class="uw-badge uw-badge--success">Best fit for you</span></template>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="uw-card">
+                        <div class="uw-between">
+                            <span class="uw-tile__title">Balance transfer 1 of 2</span>
+                            <span class="uw-badge uw-badge--success">From the application</span>
+                        </div>
+                        <div class="uw-grid">
+                            <lightning-input label="Card issuer" value={bt1.institution} read-only></lightning-input>
+                            <lightning-input label="Account number" value={bt1.account} read-only></lightning-input>
+                            <lightning-input type="number" formatter="currency" step="0.01" label="Transfer amount"
+                                value={bt1.amount} read-only></lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="uw-card">
+                        <div class="uw-between">
+                            <span class="uw-tile__title">Balance transfer 2 of 2</span>
+                            <span class="uw-caption">Requested on the application; details not provided</span>
+                        </div>
+                        <lightning-input type="toggle" data-field="btDeferred" checked={btDeferred} onchange={handleField}
+                            label="Collect from member" message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                        <template lwc:if={showBtFields}>
+                            <div class="uw-grid">
+                                <lightning-combobox class="step-field" label="Card issuer" data-field="bt2Institution" value={bt2Institution}
+                                    options={institutionOptions} onchange={handleField} required></lightning-combobox>
+                                <lightning-input class="step-field" label="Account number" data-field="bt2Account" value={bt2Account}
+                                    onchange={handleField} required></lightning-input>
+                                <lightning-input class="step-field" type="number" formatter="currency" step="0.01" label="Transfer amount"
+                                    data-field="bt2Amount" value={bt2Amount} onchange={handleField} required></lightning-input>
+                            </div>
+                        </template>
+                    </div>
+
+                    <div class="uw-card">
+                        <div class="uw-between">
+                            <span class="uw-tile__title">Authorized user</span>
+                            <span class="uw-caption">Her fiancé · need first name, last name, date of birth and relationship</span>
+                        </div>
+                        <lightning-input type="toggle" data-field="auDeferred" checked={auDeferred} onchange={handleField}
+                            label="Collect from member" message-toggle-active="" message-toggle-inactive=""></lightning-input>
+                        <template lwc:if={showAuFields}>
+                            <div class="uw-grid">
+                                <lightning-input class="step-field" label="First name" data-field="auFirst" value={auFirst} onchange={handleField} required></lightning-input>
+                                <lightning-input class="step-field" label="Last name" data-field="auLast" value={auLast} onchange={handleField} required></lightning-input>
+                                <lightning-input class="step-field" type="date" label="Date of birth" data-field="auDob" value={auDob} onchange={handleField} required></lightning-input>
+                                <lightning-combobox class="step-field" label="Relationship" data-field="auRelationship" value={auRelationship}
+                                    options={relationshipOptions} onchange={handleField} required></lightning-combobox>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Step 4: Review -->
+            <template lwc:if={isReview}>
+                <div class="uw-stack uw-fade-in">
+                    <dl class="uw-card summary">
+                        <template for:each={summaryRows} for:item="r">
+                            <div key={r.key} class="summary__row">
+                                <dt class="uw-muted">{r.label}</dt>
+                                <dd>
+                                    {r.value}
+                                    <template lwc:if={r.pending}><span class="uw-badge uw-badge--warning">Pending</span></template>
+                                </dd>
+                            </div>
+                        </template>
+                    </dl>
+                    <template lwc:if={hasPending}>
+                        <div class="uw-alert uw-alert--warning">
+                            <lightning-icon icon-name="utility:email" size="x-small" alternative-text=""></lightning-icon>
+                            <div>
+                                <p class="uw-alert__title">Still needed from the member</p>
+                                <ul class="pending">
+                                    <template for:each={pendingItems} for:item="p">
+                                        <li key={p}>{p}</li>
+                                    </template>
+                                </ul>
+                                <p class="uw-caption">Send these with the Email Application Requirements quick action.</p>
+                            </div>
+                        </div>
+                    </template>
+                    <lightning-input class="step-field" type="checkbox" data-field="certConfirmed" checked={certConfirmed} onchange={handleField} required
+                        label="Member re-confirmed the certification and credit report authorization (original signed 06/25/2026)"></lightning-input>
+                </div>
+            </template>
+        </template>
+
+        <template lwc:if={isSaving}>
+            <div class="uw-success" role="status" aria-live="polite" aria-busy="true">
+                <div class="spin"><lightning-spinner alternative-text="Saving" size="medium" variant="brand"></lightning-spinner></div>
+                <p class="uw-success__title">Saving application…</p>
+            </div>
+        </template>
+
+        <template lwc:if={isDone}>
+            <div class="uw-success uw-fade-in" role="status" aria-live="polite">
+                <div class="uw-success__ring">
+                    <lightning-icon icon-name="utility:success" variant="success" size="medium" alternative-text="Saved"></lightning-icon>
+                </div>
+                <p class="uw-success__title">{applicationName} saved and ready for screening</p>
+                <p class="uw-muted">{app.applicationId} · {doneProduct} · status In Review</p>
+                <div class="uw-card uw-card--muted next">
+                    <span class="uw-section-label">Next steps</span>
+                    <ol>
+                        <li>Run <strong>Verify Identity</strong>: address, date of birth, phone and email differ from the member record.</li>
+                        <template lwc:if={hasDonePending}>
+                            <li>Send <strong>Email Application Requirements</strong> for {donePendingCount} pending item(s): {savedPending}.</li>
+                        </template>
+                        <li>Submit for decision once screening clears.</li>
+                    </ol>
+                </div>
+            </div>
+        </template>
+
+        <footer class="uw-footer">
+            <template lwc:if={isEdit}>
+                <span class="uw-caption uw-footer__note">Step {step.label}</span>
+                <template lwc:if={isFirst}>
+                    <lightning-button label="Cancel" onclick={handleDone}></lightning-button>
+                </template>
+                <template lwc:else>
+                    <lightning-button label="Back" onclick={handleBack}></lightning-button>
+                </template>
+                <lightning-button variant="brand" label={nextLabel} onclick={handleNext}></lightning-button>
+            </template>
+            <template lwc:if={isDone}>
+                <lightning-button variant="brand" label="Done" onclick={handleDone}></lightning-button>
+            </template>
+        </footer>
+    </div>
+</template>

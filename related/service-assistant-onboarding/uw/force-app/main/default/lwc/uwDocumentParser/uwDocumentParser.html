@@ -1,0 +1,166 @@
+<template>
+    <div class="uw-shell">
+        <header class="uw-hero">
+            <span class="uw-hero__icon">
+                <lightning-icon icon-name="standard:document_reference" size="small" alternative-text=""></lightning-icon>
+            </span>
+            <div class="uw-hero__text">
+                <span class="uw-hero__eyebrow">Underwriter workflow · Case {caseNumber}</span>
+                <h2 class="uw-hero__title">Parse loan documents</h2>
+                <p class="uw-hero__sub">Extract key fields from the loan package and validate them against the approved deal structure.</p>
+            </div>
+            <span class="uw-badge uw-badge--info">AI extraction · mock</span>
+        </header>
+
+        <!-- Step 1: choose documents -->
+        <template lwc:if={isSelect}>
+            <div class="uw-stack uw-fade-in">
+                <div class="uw-between">
+                    <span class="uw-section-label">Loan package for {borrower}</span>
+                    <span class="uw-caption">Approved structure: $31,900 · 6.49% APR · 72 mo</span>
+                </div>
+                <div class="doc-list" role="group" aria-label="Documents to extract">
+                    <template for:each={selectableDocs} for:item="doc">
+                        <button key={doc.id} type="button" class="uw-tile" role="checkbox" data-id={doc.id}
+                            aria-checked={doc.checked} onclick={handleToggleDoc}>
+                            <lightning-icon icon-name={doc.icon} size="small" alternative-text=""></lightning-icon>
+                            <span class="uw-tile__body">
+                                <span class="uw-tile__title">{doc.name}</span>
+                                <span class="uw-tile__desc">{doc.type} · {doc.size}</span>
+                            </span>
+                            <span class="check" aria-hidden="true">
+                                <lightning-icon icon-name="utility:check" size="xx-small" alternative-text=""></lightning-icon>
+                            </span>
+                        </button>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- Step 2: extraction in progress -->
+        <template lwc:if={isParsing}>
+            <div class="uw-stack uw-fade-in" role="status" aria-live="polite" aria-busy="true">
+                <div class="uw-between">
+                    <span class="uw-section-label">Reading {borrower}'s loan package</span>
+                    <span class="overall">{overallPct}%</span>
+                </div>
+                <template for:each={parsingDocs} for:item="doc">
+                    <div key={doc.id} class="uw-card parse-row">
+                        <lightning-icon icon-name={doc.icon} size="small" alternative-text=""></lightning-icon>
+                        <div class="parse-row__body">
+                            <div class="uw-between">
+                                <span class="uw-tile__title">{doc.name}</span>
+                                <template lwc:if={doc.done}>
+                                    <span class="uw-badge uw-badge--success">
+                                        <lightning-icon icon-name="utility:check" size="xx-small" alternative-text=""></lightning-icon>
+                                        Done
+                                    </span>
+                                </template>
+                                <template lwc:else>
+                                    <span class="uw-caption">{doc.status}</span>
+                                </template>
+                            </div>
+                            <div class="uw-progress">
+                                <div class={doc.barClass} style={doc.barStyle}></div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Step 3: results -->
+        <template lwc:if={isResults}>
+            <div class="uw-stack uw-fade-in">
+                <div class="metrics">
+                    <template for:each={metrics} for:item="m">
+                        <div key={m.key} class={m.cls}>
+                            <span class="metric__value">{m.value}</span>
+                            <span class="uw-caption">{m.label}</span>
+                        </div>
+                    </template>
+                </div>
+
+                <template lwc:if={hasContractMismatch}>
+                    <div class="uw-alert uw-alert--error" role="alert">
+                        <lightning-icon icon-name="utility:error" variant="error" size="small" alternative-text="Error"></lightning-icon>
+                        <div>
+                            <p class="uw-alert__title">Final control: contract differs from the approved structure</p>
+                            <p class="uw-alert__body">Amount financed on the signed contract is $32,450.00 against an approved $31,900.00 (+$550). Suspend funding and return the file for underwriting review.</p>
+                        </div>
+                    </div>
+                </template>
+                <template lwc:if={hasInsuranceGap}>
+                    <div class="uw-alert uw-alert--warning" role="alert">
+                        <lightning-icon icon-name="utility:warning" variant="warning" size="small" alternative-text="Warning"></lightning-icon>
+                        <div>
+                            <p class="uw-alert__title">Insurance stipulation not cleared</p>
+                            <p class="uw-alert__body">The binder does not name us as lienholder or loss payee. Use Email Customer to request a corrected binder.</p>
+                        </div>
+                    </div>
+                </template>
+                <template lwc:if={noExceptions}>
+                    <div class="uw-alert uw-alert--success" role="status">
+                        <lightning-icon icon-name="utility:success" variant="success" size="small" alternative-text="Success"></lightning-icon>
+                        <div>
+                            <p class="uw-alert__title">All extracted fields match the application</p>
+                            <p class="uw-alert__body">No conflicting documentation found in the selected files.</p>
+                        </div>
+                    </div>
+                </template>
+
+                <template for:each={resultDocs} for:item="doc">
+                    <section key={doc.id} class="uw-card doc">
+                        <button type="button" class="doc__head" data-id={doc.id} aria-expanded={doc.ariaExpanded} onclick={handleExpand}>
+                            <lightning-icon icon-name={doc.chevron} size="xx-small" alternative-text=""></lightning-icon>
+                            <lightning-icon icon-name={doc.icon} size="small" alternative-text=""></lightning-icon>
+                            <span class="uw-tile__body">
+                                <span class="uw-tile__title">{doc.type}</span>
+                                <span class="uw-tile__desc">{doc.name}</span>
+                            </span>
+                            <span class="uw-badge">{doc.confidenceLabel}</span>
+                            <span class={doc.statusClass}>{doc.statusLabel}</span>
+                        </button>
+                        <template lwc:if={doc.open}>
+                            <table class="fields uw-fade-in">
+                                <thead>
+                                    <tr><th scope="col">Field</th><th scope="col">Extracted value</th><th scope="col">Check</th></tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={doc.fields} for:item="f">
+                                        <tr key={f.key}>
+                                            <td class="uw-muted">{f.label}</td>
+                                            <td>
+                                                <span class="value">{f.value}</span>
+                                                <template lwc:if={f.note}><span class="uw-caption note">{f.note}</span></template>
+                                            </td>
+                                            <td>
+                                                <span class={f.badge.cls}>
+                                                    <lightning-icon icon-name={f.badge.icon} size="xx-small" alternative-text=""></lightning-icon>
+                                                    {f.badge.label}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                    </section>
+                </template>
+            </div>
+        </template>
+
+        <footer class="uw-footer">
+            <template lwc:if={isSelect}>
+                <span class="uw-caption uw-footer__note">Demo mode: results are simulated.</span>
+                <lightning-button label="Cancel" onclick={handleDone}></lightning-button>
+                <lightning-button variant="brand" label={extractLabel} icon-name="utility:sparkles"
+                    disabled={extractDisabled} onclick={handleExtract}></lightning-button>
+            </template>
+            <template lwc:if={isResults}>
+                <lightning-button label="Run again" icon-name="utility:refresh" onclick={handleRestart}></lightning-button>
+                <lightning-button variant="brand" label="Done" onclick={handleDone}></lightning-button>
+            </template>
+        </footer>
+    </div>
+</template>

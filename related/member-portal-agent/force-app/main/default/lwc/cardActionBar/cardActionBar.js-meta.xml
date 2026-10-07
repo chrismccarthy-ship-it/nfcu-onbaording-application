@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Card Application Action Bar</masterLabel>
+    <description>Buttons for the four card-application actions (Review, Complete, Verify Identity, Email Requirements). Each opens the same flow as its quick action.</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Case</object>
+            </objects>
+            <property name="title" type="String" default="Card Application" label="Title"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

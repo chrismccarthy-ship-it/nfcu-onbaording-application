@@ -1,0 +1,28 @@
+{
+  "required" : [ "contactId", "escalationReason" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "contactId" : {
+      "title" : "contactId",
+      "description" : "The Salesforce Contact ID of the member being escalated",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "escalationReason" : {
+      "title" : "escalationReason",
+      "description" : "The reason for escalation such as fraud flag triggered or step-up authentication required or member requested live agent",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "conversationSummary" : {
+      "title" : "conversationSummary",
+      "description" : "A summary of the conversation so far to provide context to the live agent",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

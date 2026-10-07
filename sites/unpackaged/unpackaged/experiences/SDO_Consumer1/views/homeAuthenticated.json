@@ -1,0 +1,190 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "8b5b553a-fccb-4abf-86db-4712b6e8b26a",
+  "label" : "Home (Authenticated)",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 95,
+        "sectionConfig" : {
+          "UUID" : "54d3736f-b9b8-4956-87b7-c1d4f862c309",
+          "columns" : [ {
+            "UUID" : "0467cdc1-9f64-42b2-a0e8-0bc762f0bb8a",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "54d3736f-b9b8-4956-87b7-c1d4f862c309",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<p><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.nfcu_xc_site.1}\"></p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "67dca4d7-4a0c-4e0f-954f-2384508a61ba",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "applicationUrl" : "https://storm-6269dbe2d00053.my.site.com/consumer/s/application"
+          },
+          "componentName" : "c:memberEligibilityChecker",
+          "id" : "cfe3549d-80cd-41c8-b6d6-d4ae5fddf512",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<p><img class=\"sfdcCbImage\" alt=\"\" src=\"{!contentAsset.nfcu_credit_cards.1}\"></p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "fee1575d-b05a-4c0a-9c90-068c308caa84",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<div style=\"background-color: #F8F4EC; padding: 60px 40px; max-width: 800px; margin: 0 auto; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #02214F; line-height: 1.6;\">\n \n  <h1 style=\"font-size: 2.4rem; font-weight: 700; margin-bottom: 24px; color: #02214F;\">\n    Moving? No Problem. Update Your Address in Minutes\n  </h1>\n \n  <p style=\"font-size: 1.15rem; margin-bottom: 32px; color: #333;\">\n    Life happens — new job, new home, new adventure. Keeping your address up to date with Truist ensures your statements, checks, and important notifications land in the right mailbox (the digital or physical one).\n  </p>\n \n  <div style=\"background-color: #FFFFFF; padding: 32px; border-radius: 8px; box-shadow: 0 4px 12px rgba(2, 33, 79, 0.08); margin-bottom: 40px;\">\n    <h2 style=\"font-size: 1.5rem; margin-bottom: 20px; color: #02214F; border-bottom: 2px solid #006DBA; padding-bottom: 12px;\">\n      The Quick & Easy Way (Recommended)\n    </h2>\n    <ol style=\"font-size: 1.1rem; padding-left: 20px; margin-bottom: 0;\">\n      <li style=\"margin-bottom: 16px;\">Log in to <strong>Digital Banking</strong></li>\n      <li style=\"margin-bottom: 16px;\">Go to <strong>Profile & Preferences</strong> → <strong>Profile and Contact Info</strong></li>\n      <li style=\"margin-bottom: 16px;\">Update your address and save</li>\n      <li>Done! Changes typically take effect right away for online services.</li>\n    </ol>\n  </div>\n \n  <p style=\"font-size: 1.1rem; margin-bottom: 24px;\">\n    Prefer a human touch? Call our friendly Customer Care team at <strong>888-FC DIRECT (888-323-4732)</strong>, visit a branch, or mail a written request. We’ve got you covered either way.\n  </p>\n \n  <div style=\"text-align: center; margin-top: 40px;\">\n    <a href=\"https://storm-6269dbe2d00053.my.site.com/consumer/s/address-updates\" \n       style=\"background-color: #006DBA; color: #FFFFFF; padding: 16px 40px; font-size: 1.2rem; font-weight: 600; text-decoration: none; border-radius: 6px; display: inline-block; box-shadow: 0 4px 12px rgba(0, 109, 186, 0.3);\">\n      Update My Address Now →\n    </a>\n  </div>\n \n  <p style=\"font-size: 0.95rem; color: #555; margin-top: 40px; text-align: center;\">\n    Questions? Our team is here to help. \n  </p>\n</div>"
+          },
+          "componentName" : "forceCommunity:htmlBlock",
+          "id" : "e79d18d1-f1ba-479f-8ccc-cf426b4b93f1",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "0467cdc1-9f64-42b2-a0e8-0bc762f0bb8a",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "947a9b4b-6b63-4ccd-a97c-85f380716455",
+          "columns" : [ {
+            "UUID" : "b33e5dd1-72ed-4441-b7e2-c03171b116d3",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "947a9b4b-6b63-4ccd-a97c-85f380716455",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "askCommunityLabel" : "Ask a Question",
+            "buttonBgColor" : "rgb(46, 26, 71)",
+            "buttonBgHoverColor" : "",
+            "buttonBorderColor" : "",
+            "buttonRadius" : 50,
+            "buttonTextColor" : "",
+            "buttonTextHoverColor" : "",
+            "buttonTwoBgColor" : "rgb(46, 26, 71)",
+            "buttonTwoBgHoverColor" : "",
+            "buttonTwoBorderColor" : "",
+            "buttonTwoRadius" : 50,
+            "buttonTwoTextColor" : "",
+            "buttonTwoTextHoverColor" : "",
+            "confirmationMessage" : "Got it!",
+            "contactSupportLabel" : "File a Support Ticket",
+            "followUpPromptLabel" : "Can we close your question?",
+            "headerLabel" : "Don't see what you're looking for?",
+            "isAskFollowPromptEnabled" : true,
+            "isIncludeArticlesEnabled" : true,
+            "isIncludeDiscussionsEnabled" : true,
+            "isInitialSatisfactionPromptEnabled" : true,
+            "isPublisherDeflectionEnabled" : true,
+            "maxSuggestions" : 5,
+            "satisfactionPromptLabel" : "Did we help to answer your question?",
+            "showDetails" : false,
+            "showTopics" : true
+          },
+          "componentName" : "siteforce:napiliFooter",
+          "id" : "8e6ae9c0-e54b-40a5-bc21-20484420f647",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<p><img class=\"sfdcCbImage\" src=\"{!contentAsset.xcbottom.1}\" alt=\"\">Replace this text with content of your own.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "a48bc180-50b9-4cb7-b844-28e5715e2375",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "b33e5dd1-72ed-4441-b7e2-c03171b116d3",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "5af5ba15-bf78-437c-8267-510c84fc7511",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "<meta name=\"keywords\" content=\"Energy, sustainability, wind, electricity, power generation\" />\n<meta name=\"generator\" content=\"Salesforce Community Cloud (http://salesforce.com)\" />",
+        "description" : "Welcome! Get help with our products, find experts, ask questions, and learn!",
+        "title" : "Home"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "1a32c5b1-e4d5-40f1-ae27-e4dd7ed4b2db",
+      "renditionMap" : {
+        "de" : "e1d5c8fd-b1ba-4ddf-b1d6-124cecd5020d",
+        "fr" : "46be78ca-3b8e-4233-8403-e431aea08d49"
+      },
+      "renditions" : [ {
+        "id" : "e1d5c8fd-b1ba-4ddf-b1d6-124cecd5020d",
+        "renditionValue" : {
+          "componentAttributes" : {
+            "title" : "Home"
+          }
+        },
+        "type" : "renditionComponent"
+      }, {
+        "id" : "46be78ca-3b8e-4233-8403-e431aea08d49",
+        "renditionValue" : {
+          "componentAttributes" : {
+            "title" : "Home"
+          }
+        },
+        "type" : "renditionComponent"
+      } ],
+      "type" : "component"
+    } ],
+    "id" : "280630ea-5da0-4e60-9cd7-5f6baccf860d",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Home",
+  "type" : "view",
+  "viewType" : "home"
+}

@@ -1,0 +1,113 @@
+<template>
+    <div class="uw-shell">
+        <header class="uw-hero">
+            <span class="uw-hero__icon">
+                <lightning-icon icon-name="standard:email" size="small" alternative-text=""></lightning-icon>
+            </span>
+            <div class="uw-hero__text">
+                <span class="uw-hero__eyebrow">Underwriter workflow · Case {ctx.caseNumber}</span>
+                <h2 class="uw-hero__title">Email customer</h2>
+                <p class="uw-hero__sub">Pick a template, choose the stipulations to request, then review and send.</p>
+            </div>
+            <span class="uw-badge uw-badge--info">Mock send</span>
+        </header>
+
+        <template lwc:if={isCompose}>
+            <div class="uw-grid uw-fade-in">
+                <!-- Composer -->
+                <div class="uw-stack">
+                    <div>
+                        <span class="uw-section-label">Template</span>
+                        <div class="tpl-grid" role="group" aria-label="Email template">
+                            <template for:each={templateTiles} for:item="tile">
+                                <button key={tile.id} type="button" class="uw-tile" data-id={tile.id}
+                                    aria-pressed={tile.pressed} onclick={handleTemplate}>
+                                    <lightning-icon icon-name={tile.icon} size="x-small" alternative-text=""></lightning-icon>
+                                    <span class="uw-tile__body">
+                                        <span class="uw-tile__title">{tile.label}</span>
+                                        <span class="uw-tile__desc">{tile.desc}</span>
+                                    </span>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <template lwc:if={showStips}>
+                        <div>
+                            <span class="uw-section-label">Stipulations to request</span>
+                            <div class="uw-cluster" role="group" aria-label="Stipulations to request">
+                                <template for:each={stipChips} for:item="chip">
+                                    <button key={chip.id} type="button" class="uw-chip" data-id={chip.id}
+                                        aria-pressed={chip.pressed} onclick={handleStip}>
+                                        <lightning-icon icon-name={chip.icon} size="xx-small" alternative-text=""></lightning-icon>
+                                        {chip.label}
+                                    </button>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+
+                    <lightning-input label="Subject" value={subject} onchange={handleSubject} required></lightning-input>
+                    <lightning-textarea class="body-input" label="Message" value={body} onchange={handleBody} required></lightning-textarea>
+                    <div class="uw-between">
+                        <span class="uw-caption">Edits to the message are kept until you change the template.</span>
+                        <lightning-button variant="base" label="Regenerate" icon-name="utility:refresh" onclick={handleReset}></lightning-button>
+                    </div>
+                </div>
+
+                <!-- Live preview -->
+                <div class="uw-card uw-card--muted preview">
+                    <span class="uw-section-label">Preview</span>
+                    <div class="mail">
+                        <div class="mail__head">
+                            <span class="uw-avatar">{initials}</span>
+                            <div class="mail__meta">
+                                <span class="mail__to">To: {recipientLabel}</span>
+                                <span class="uw-caption">From: Underwriting Team &lt;underwriting@bank.example&gt;</span>
+                            </div>
+                        </div>
+                        <p class="mail__subject">{subject}</p>
+                        <p class="mail__body">{body}</p>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template lwc:if={isSending}>
+            <div class="uw-success" role="status" aria-live="polite" aria-busy="true">
+                <div class="sending">
+                    <lightning-spinner alternative-text="Sending email" size="medium" variant="brand"></lightning-spinner>
+                </div>
+                <p class="uw-success__title">Sending to {ctx.name}…</p>
+                <p class="uw-muted">Logging the email to the case activity timeline.</p>
+            </div>
+        </template>
+
+        <template lwc:if={isSent}>
+            <div class="uw-success uw-fade-in" role="status" aria-live="polite">
+                <div class="uw-success__ring">
+                    <lightning-icon icon-name="utility:success" variant="success" size="medium" alternative-text="Sent"></lightning-icon>
+                </div>
+                <p class="uw-success__title">Email sent to {ctx.name}</p>
+                <p class="uw-muted">{subject}</p>
+                <div class="uw-card uw-card--muted receipt">
+                    <div class="uw-between"><span class="uw-caption">Recipient</span><span>{ctx.email}</span></div>
+                    <div class="uw-between"><span class="uw-caption">Logged to</span><span>Case {ctx.caseNumber} activity</span></div>
+                    <div class="uw-between"><span class="uw-caption">Message ID</span><span class="uw-mono">{messageId}</span></div>
+                </div>
+            </div>
+        </template>
+
+        <footer class="uw-footer">
+            <template lwc:if={isCompose}>
+                <span class="uw-caption uw-footer__note">Demo mode: no email leaves Salesforce.</span>
+                <lightning-button label="Cancel" onclick={handleDone}></lightning-button>
+                <lightning-button variant="brand" label="Send email" icon-name="utility:send"
+                    disabled={sendDisabled} onclick={handleSend}></lightning-button>
+            </template>
+            <template lwc:if={isSent}>
+                <lightning-button variant="brand" label="Done" onclick={handleDone}></lightning-button>
+            </template>
+        </footer>
+    </div>
+</template>

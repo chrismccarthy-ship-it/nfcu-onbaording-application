@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "3552f216-f4a1-4062-87c0-11d311218c1a",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "banking__c",
+  "id" : "7e3629e1-5a9d-4186-9847-0c423f507d32",
+  "label" : "Banking",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-banking",
+  "type" : "route",
+  "urlPrefix" : "banking"
+}

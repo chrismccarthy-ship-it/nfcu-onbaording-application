@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "c44f7185-77c6-455f-9657-572f4f6efe7b",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "Credit_Score__c",
+  "id" : "ec0359f4-9076-4f24-acfa-104acb57869d",
+  "label" : "Credit Score",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-credit-score",
+  "type" : "route",
+  "urlPrefix" : "credit-score"
+}

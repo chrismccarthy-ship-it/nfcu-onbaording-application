@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Message</name>
+        <label>Set Message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>I also took care of the identity check that was previously flagged on your Flagship Premier Visa Signature Card application. It was automatically re-run against your verified member profile and has now cleared — no documents or uploads needed. For your security, I only ever display the last 4 digits of any sensitive details (for example, an SSN appears as ***-**-1234).</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>DEMO MOCK: returns a verbatim identity re-verification result for the NFCU member-portal Agentforce demo. Performs NO data write. Reflects the &quot;flagged application check auto-re-run against the verified profile and cleared&quot; beat.</description>
+    <environments>Default</environments>
+    <interviewLabel>Mock - Re-run Identity Verification {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Mock - Re-run Identity Verification</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Message</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>The verification result message to relay to the member verbatim.</description>
+        <name>message</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Free-text describing what the member is asking for. Optional; ignored — output is fixed for demo determinism.</description>
+        <name>request</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

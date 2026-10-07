@@ -1,0 +1,139 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "3c4cae6f-fa9c-4daa-af34-2b3e9a10a7b4",
+  "label" : "Open a Checking Account",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "52bb6e89-3af1-44d9-b4b0-5d75d1f910f8",
+          "columns" : [ {
+            "UUID" : "55fd0c08-9ff4-4a34-ad5d-160fd18867fb",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "52bb6e89-3af1-44d9-b4b0-5d75d1f910f8",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<h1><img class=\"sfdcCbImage\" src=\"{!contentAsset.checking.1}\" alt=\"\">Welcome to the Template Page</h1>\n<p>Welcome to your new custom page. Use this space to introduce the purpose of the page and provide any necessary context or instructions for your audience. Below, you can add and organize different sections and components to meet your specific needs. Whether you're showcasing data, providing resources, or facilitating interactions, this template is designed to help you create a functional and engaging page.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "f7486abc-65fe-4e2e-abac-4aba5b96721e",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "55fd0c08-9ff4-4a34-ad5d-160fd18867fb",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "be95faf2-52e5-44ed-a0c2-4f032a464002",
+          "columns" : [ {
+            "UUID" : "04c6cc96-c259-42e1-a889-06dac8b4aa75",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "39e85a16-c6ba-47d2-b9de-570f3dab5005",
+            "columnKey" : "6d357",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "be95faf2-52e5-44ed-a0c2-4f032a464002",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<h2>Main Content</h2><p>This is where your main content will go. Add text, images, charts, or any other components that best convey your message. You can use this space to provide detailed information, tell a story, or present key data points. Consider using headings and subheadings to organize your content and make it easy to navigate.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "a95af3d5-e42c-4d6e-94f2-cf5c5f7ddd7d",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "04c6cc96-c259-42e1-a889-06dac8b4aa75",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<h3>Additional Information</h3><p>Use this section to provide supplementary information, related resources, or any other relevant content. This could include links to external websites, downloadable files, or additional reading material.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "272a55c3-cf90-4227-85e2-cf2fbd0cc082",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<div class=\"slds-card slds-p-vertical_large\" style=\"text-align:center;border:none;box-shadow:none;\">\n     <a href=\"{!Global.PathPrefix}/learning/blog\"> \n        <button class=\"slds-button slds-button_brand\" style=\"font-size:14px; height:46px; border-radius:5px; width:100%;\">\n            Learn More\n        </button>\n    </a>\n</div>"
+          },
+          "componentName" : "forceCommunity:htmlBlock",
+          "id" : "61682594-ee1c-4b2f-857a-10ad854deb09",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "39e85a16-c6ba-47d2-b9de-570f3dab5005",
+        "regionLabel" : "Column 2",
+        "regionName" : "6d357",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "8b7d770d-507d-4185-b3b0-7b09e2752ffa",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "ab543a38-d56c-40c2-afdb-2690c6e707c7",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "73f2dd83-454d-4be0-b36b-078fa90dbbd2",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-open-a-checking-account"
+}

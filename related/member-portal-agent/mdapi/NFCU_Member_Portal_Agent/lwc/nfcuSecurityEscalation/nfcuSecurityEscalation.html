@@ -1,0 +1,56 @@
+<template>
+    <article class="card">
+        <header class="brand">
+            <img class="logo" src={logoUrl} alt="Navy Federal Credit Union" />
+            <span class="chip">Recommended next step</span>
+        </header>
+
+        <div class="title-band">
+            <p class="eyebrow">Fraud review required</p>
+            <h2 class="title">Escalate to the Security Team for a fraud check</h2>
+        </div>
+
+        <div class="body">
+            <dl class="facts">
+                <div class="fact">
+                    <dt>Member</dt>
+                    <dd>{memberName}</dd>
+                </div>
+                <div class="fact">
+                    <dt>Application</dt>
+                    <dd>{applicationLabel} · {productName}</dd>
+                </div>
+                <div class="fact">
+                    <dt>Flag</dt>
+                    <dd class="alert">{reasonLabel}</dd>
+                </div>
+            </dl>
+
+            <section class="section">
+                <h3 class="section-title">Why this needs the Security Team</h3>
+                <p>{firstName} changed her mailing address to an overseas APO address while her credit card application was open. The external identity and fraud check flagged the change, so the Security Team must complete a fraud check before the application can be approved.</p>
+            </section>
+
+            <section class="section">
+                <h3 class="section-title">Verification results via MuleSoft</h3>
+                <table class="results">
+                    <caption class="assistive">Verification results with personal data masked</caption>
+                    <thead>
+                        <tr><th scope="col">Check</th><th scope="col">Result</th><th scope="col">Detail shown to the MSR</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Identity verification</td><td><span class="pill warn">{identityLabel}</span></td><td>SSN ***-**-1234 · identity token only</td></tr>
+                        <tr><td>KYC compliance</td><td><span class="pill warn">{kycLabel}</span></td><td>Awaiting review</td></tr>
+                        <tr><td>Fraud risk</td><td><span class="pill bad">Review</span></td><td>Overseas address change on an open application</td></tr>
+                    </tbody>
+                </table>
+                <p class="note">Personal data is masked and tokenized by MuleSoft before it reaches Salesforce or Agentforce.</p>
+            </section>
+
+            <section class="section objection">
+                <h3 class="section-title">What to tell {firstName}</h3>
+                <p>Because her address changed to an overseas location while the application was open, the Security Team needs to complete a fraud check before approval. Everything from this conversation goes with the case, so she won't need to repeat anything.</p>
+            </section>
+        </div>
+    </article>
+</template>

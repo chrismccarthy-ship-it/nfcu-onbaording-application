@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConvIntelligenceSignalRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionType>LaunchNBA</actionType>
+    <active>true</active>
+    <channelAddressIdentifier>5286bed6-d4c9-4c77-8488-dd2b6723a65c</channelAddressIdentifier>
+    <channelType>EmbeddedMessaging</channelType>
+    <criteria>1 OR 2 OR 3</criteria>
+    <developerName>Escalate_to_Security_Team_Messaging</developerName>
+    <participantRole>AgentOrCustomer</participantRole>
+    <ruleName>Escalate to Security Team Messaging</ruleName>
+    <service>KeywordMatch</service>
+    <subrule>
+        <operandValue>fraud</operandValue>
+        <operator>Equals</operator>
+        <order>0</order>
+        <type>Keyword</type>
+    </subrule>
+    <subrule>
+        <operandValue>flagged</operandValue>
+        <operator>Equals</operator>
+        <order>1</order>
+        <type>Keyword</type>
+    </subrule>
+    <subrule>
+        <operandValue>security</operandValue>
+        <operator>Equals</operator>
+        <order>2</order>
+        <type>Keyword</type>
+    </subrule>
+</ConvIntelligenceSignalRule>

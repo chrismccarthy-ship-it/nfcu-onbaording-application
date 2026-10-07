@@ -1,0 +1,83 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "3d4a130f-bbc3-4bd6-84f2-b5c17b925d70",
+  "label" : "Appointment",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "ca81a407-9249-4992-af81-582da056e1b0",
+          "columns" : [ {
+            "UUID" : "7205d5d4-840f-48b4-8136-59ae851a656c",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "ca81a407-9249-4992-af81-582da056e1b0",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "flowArguments" : "[]",
+            "flowName" : "runtime_appointmentbooking__In_New"
+          },
+          "componentName" : "forceCommunity:flowCommunity",
+          "id" : "4af15f96-7691-4e5d-86e4-ba03b55fec50",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "accentColor" : "#FFFFFF",
+            "headline" : "Open your first checking account",
+            "primaryColor" : "#007a3d",
+            "subheadline" : "Book a 30-minute appointment with a banker to set up a new checking account."
+          },
+          "componentName" : "c:citizensScheduler",
+          "id" : "825038c7-0cfe-4f7d-aa3a-52ae1478b568",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "7205d5d4-840f-48b4-8136-59ae851a656c",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "0c104f2a-ee5c-43cc-92e8-544925d29b65",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Appointment"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "2ef21d2a-90d2-4cbd-9c79-fe539ae35626",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "0f120538-0e8a-4d93-9a9e-88703c375017",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-appointment"
+}

@@ -1,0 +1,12 @@
+{
+  "activeViewId": "4789f87b-c1b4-419d-a7a3-586e63df3844",
+  "appPageId": "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags": [],
+  "devName": "Welcome_First_30_Days__c",
+  "id": "32679bc8-de77-401c-b798-1d79873cf4ff",
+  "label": "Your First 30 Days",
+  "pageAccess": "UseParent",
+  "routeType": "custom-welcome",
+  "type": "route",
+  "urlPrefix": "welcome"
+}

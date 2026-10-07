@@ -1,0 +1,20 @@
+{
+  "properties" : {
+    "confirmationMessage" : {
+      "title" : "confirmationMessage",
+      "description" : "Confirmation message about the escalation",
+      "lightning:type" : "lightning__textType"
+    },
+    "caseNumber" : {
+      "title" : "caseNumber",
+      "description" : "The Case number created or updated for this escalation",
+      "lightning:type" : "lightning__textType"
+    },
+    "isSuccess" : {
+      "title" : "isSuccess",
+      "description" : "Whether the escalation was successful",
+      "lightning:type" : "lightning__textType"
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

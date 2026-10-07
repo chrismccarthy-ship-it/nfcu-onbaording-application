@@ -1,0 +1,193 @@
+<template>
+    <div class="uw-shell">
+        <header class="uw-hero">
+            <span class="uw-hero__icon">
+                <lightning-icon icon-name="standard:document_reference" size="small" alternative-text=""></lightning-icon>
+            </span>
+            <div class="uw-hero__text">
+                <span class="uw-hero__eyebrow">Open a credit card · Case {caseNumber}</span>
+                <h2 class="uw-hero__title">Review card application</h2>
+                <p class="uw-hero__sub">{heroSub}</p>
+            </div>
+            <span class="uw-badge uw-badge--info">AI extraction</span>
+        </header>
+
+        <!-- Step 1: the attached file -->
+        <template lwc:if={isSelect}>
+            <div class="uw-stack uw-fade-in">
+                <span class="uw-section-label">Attached to this case</span>
+                <div class="uw-tile file-tile" aria-checked="true">
+                    <lightning-icon icon-name="doctype:pdf" size="medium" alternative-text=""></lightning-icon>
+                    <span class="uw-tile__body">
+                        <span class="uw-tile__title">{documentName}</span>
+                        <span class="uw-tile__desc">Flagship Premier Visa Signature® application · APP-2026-004821 · received 06/25/2026 · In-Branch (Assisted)</span>
+                    </span>
+                    <span class="uw-badge uw-badge--warning">Pending review</span>
+                </div>
+                <template lwc:if={hasAttachedId}>
+                    <div class="uw-tile file-tile" aria-checked="true">
+                        <lightning-icon icon-name="doctype:image" size="medium" alternative-text=""></lightning-icon>
+                        <span class="uw-tile__body">
+                            <span class="uw-tile__title">{attachedId.fileName}</span>
+                            <span class="uw-tile__desc">{attachedIdDesc}</span>
+                        </span>
+                        <span class="uw-badge uw-badge--warning">Pending review</span>
+                    </div>
+                </template>
+                <template lwc:if={hasLinkedApplication}>
+                    <div class="uw-alert">
+                        <lightning-icon icon-name="utility:link" size="x-small" alternative-text=""></lightning-icon>
+                        <div>
+                            <p class="uw-alert__title">Matching application found in Salesforce: {applicationName}</p>
+                            <p class="uw-alert__body uw-caption">Same product, name, date of birth and address as the PDF. Results are compared against the member record on this case.</p>
+                        </div>
+                    </div>
+                </template>
+                <ul class="checks">
+                    <li><lightning-icon icon-name="utility:people" size="x-small" alternative-text=""></lightning-icon> Membership eligibility (KB-MEM-001)</li>
+                    <li><lightning-icon icon-name="utility:checklist" size="x-small" alternative-text=""></lightning-icon> Application requirements (KB-CARD-002)</li>
+                    <li><lightning-icon icon-name="utility:shield" size="x-small" alternative-text=""></lightning-icon> Identity match against the member record</li>
+                </ul>
+            </div>
+        </template>
+
+        <!-- Step 2: parsing -->
+        <template lwc:if={isParsing}>
+            <div class="uw-stack uw-fade-in" role="status" aria-live="polite" aria-busy="true">
+                <div class="uw-between">
+                    <span class="uw-section-label">Reading {documentName}</span>
+                    <span class="overall">{overallPct}%</span>
+                </div>
+                <template for:each={parsingSections} for:item="s">
+                    <div key={s.id} class="uw-card parse-row">
+                        <div class="uw-between">
+                            <span class="uw-tile__title">{s.title}</span>
+                            <template lwc:if={s.done}>
+                                <span class="uw-badge uw-badge--success">Done</span>
+                            </template>
+                            <template lwc:else>
+                                <span class="uw-caption">{s.status}</span>
+                            </template>
+                        </div>
+                        <div class="uw-progress">
+                            <div class={s.barClass} style={s.barStyle}></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Step 3: results -->
+        <template lwc:if={isResults}>
+            <div class="uw-stack uw-fade-in">
+                <div class="metrics">
+                    <template for:each={metrics} for:item="m">
+                        <div key={m.key} class={m.cls}>
+                            <span class="metric__value">{m.value}</span>
+                            <span class="uw-caption">{m.label}</span>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="uw-seg" role="group" aria-label="Result view">
+                    <template for:each={viewOptions} for:item="v">
+                        <button key={v.id} type="button" data-id={v.id} aria-pressed={v.pressed} onclick={handleView}>{v.label}</button>
+                    </template>
+                </div>
+
+                <!-- Requirements -->
+                <template lwc:if={showRequirements}>
+                    <template for:each={requirementGroups} for:item="g">
+                        <section key={g.id} class="uw-card group">
+                            <div class="uw-between group__head">
+                                <span class="uw-tile__title">{g.title}</span>
+                                <span class="uw-caption">{g.source}</span>
+                            </div>
+                            <ul class="req-list">
+                                <template for:each={g.items} for:item="item">
+                                    <li key={item.id} class="req">
+                                        <span class={item.badge.cls}>
+                                            <lightning-icon icon-name={item.badge.icon} size="xx-small" alternative-text=""></lightning-icon>
+                                            {item.badge.label}
+                                        </span>
+                                        <span class="req__body">
+                                            <span class="req__label">{item.label}</span>
+                                            <span class="uw-caption">{item.detail}</span>
+                                        </span>
+                                    </li>
+                                </template>
+                            </ul>
+                        </section>
+                    </template>
+                </template>
+
+                <!-- Extracted data -->
+                <template lwc:if={showExtracted}>
+                    <template for:each={extractedSections} for:item="s">
+                        <section key={s.id} class="uw-card group">
+                            <span class="uw-tile__title group__head">{s.title}</span>
+                            <table class="fields">
+                                <tbody>
+                                    <template for:each={s.fields} for:item="f">
+                                        <tr key={f.key}>
+                                            <td class="uw-muted field-label">{f.label}</td>
+                                            <td>
+                                                <span class="value">{f.value}</span>
+                                                <template lwc:if={f.note}><span class="uw-caption note">{f.note}</span></template>
+                                            </td>
+                                            <td class="field-flag">
+                                                <template lwc:if={f.badge}>
+                                                    <span class={f.badge.cls}>{f.badge.label}</span>
+                                                </template>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </section>
+                    </template>
+                </template>
+
+                <!-- Identity -->
+                <template lwc:if={showIdentity}>
+                    <template lwc:if={identityFlagged}>
+                        <div class="uw-alert uw-alert--warning" role="alert">
+                            <lightning-icon icon-name="utility:warning" variant="warning" size="small" alternative-text="Warning"></lightning-icon>
+                            <div>
+                                <p class="uw-alert__title">Flagged for additional review, not a denial</p>
+                                <p class="uw-alert__body">The application differs from the member record. Run <strong>Verify Identity</strong> to confirm details with the member before a decision. An address change after a PCS move is a common cause.</p>
+                            </div>
+                        </div>
+                    </template>
+                    <table class="fields uw-card compare">
+                        <thead>
+                            <tr><th scope="col">Field</th><th scope="col">Application</th><th scope="col">Member record</th><th scope="col">Result</th></tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={identityRows} for:item="r">
+                                <tr key={r.key} class={r.rowClass}>
+                                    <td class="uw-muted">{r.label}</td>
+                                    <td>{r.application}</td>
+                                    <td>{r.onRecord}</td>
+                                    <td><span class={r.badge.cls}>{r.badge.label}</span></td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+            </div>
+        </template>
+
+        <footer class="uw-footer">
+            <template lwc:if={isSelect}>
+                <lightning-button label="Cancel" onclick={handleDone}></lightning-button>
+                <lightning-button variant="brand" label="Parse application" icon-name="utility:sparkles" onclick={handleParse}></lightning-button>
+            </template>
+            <template lwc:if={isResults}>
+                <span class="uw-caption uw-footer__note">Next: Complete Card Application, then Verify Identity.</span>
+                <lightning-button label="Parse again" icon-name="utility:refresh" onclick={handleRestart}></lightning-button>
+                <lightning-button variant="brand" label="Done" onclick={handleDone}></lightning-button>
+            </template>
+        </footer>
+    </div>
+</template>

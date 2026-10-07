@@ -1,0 +1,168 @@
+<template>
+    <div class="uw-shell">
+        <header class="uw-hero">
+            <span class="uw-hero__icon">
+                <lightning-icon icon-name="standard:team_member" size="small" alternative-text=""></lightning-icon>
+            </span>
+            <div class="uw-hero__text">
+                <span class="uw-hero__eyebrow">Underwriter workflow · Case {caseNumber}</span>
+                <h2 class="uw-hero__title">Initiate Slack swarm</h2>
+                <p class="uw-hero__sub">Pull the right experts into a dedicated channel with the full case context.</p>
+            </div>
+            <span class="uw-badge uw-badge--info">Mock launch</span>
+        </header>
+
+        <!-- Configure -->
+        <template lwc:if={isConfigure}>
+            <div class="uw-stack uw-fade-in">
+                <div>
+                    <span class="uw-section-label">Why are you swarming?</span>
+                    <div class="reason-grid" role="group" aria-label="Swarm reason">
+                        <template for:each={reasonTiles} for:item="r">
+                            <button key={r.id} type="button" class="uw-tile" data-id={r.id}
+                                aria-pressed={r.pressed} onclick={handleReason}>
+                                <lightning-icon icon-name={r.icon} size="x-small" alternative-text=""></lightning-icon>
+                                <span class="uw-tile__body">
+                                    <span class="uw-tile__title">{r.label}</span>
+                                    <span class="uw-tile__desc">{r.desc}</span>
+                                </span>
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="uw-grid">
+                    <div class="uw-stack">
+                        <div class="uw-between">
+                            <span class="uw-section-label">Experts to invite</span>
+                            <div class="uw-seg" role="group" aria-label="Urgency">
+                                <template for:each={urgencyOptions} for:item="u">
+                                    <button key={u.id} type="button" data-id={u.id} aria-pressed={u.pressed} onclick={handleUrgency}>{u.id}</button>
+                                </template>
+                            </div>
+                        </div>
+                        <ul class="experts">
+                            <template for:each={expertRows} for:item="e">
+                                <li key={e.id} class="expert">
+                                    <span class={e.avatarClass} aria-hidden="true">{e.initials}</span>
+                                    <span class="expert__body">
+                                        <span class="uw-tile__title">{e.name}</span>
+                                        <span class="uw-tile__desc">{e.role}</span>
+                                    </span>
+                                    <template lwc:if={e.suggested}>
+                                        <span class="uw-badge uw-badge--info">Suggested</span>
+                                    </template>
+                                    <lightning-input type="toggle" label={e.name} variant="label-hidden" data-id={e.id}
+                                        checked={e.checked} message-toggle-active="" message-toggle-inactive=""
+                                        onchange={handleExpert}></lightning-input>
+                                </li>
+                            </template>
+                        </ul>
+                        <lightning-textarea label="What do you need from the swarm?" value={ask} onchange={handleAsk} required></lightning-textarea>
+                    </div>
+
+                    <!-- Slack message preview -->
+                    <div class="uw-card uw-card--muted preview">
+                        <span class="uw-section-label">Message preview · <span class="channel-name">{channelName}</span></span>
+                        <div class="slack">
+                            <span class="slack__app" aria-hidden="true">Af</span>
+                            <div class="slack__content">
+                                <div class="uw-cluster">
+                                    <span class="slack__name">Agentforce</span>
+                                    <span class="slack__tag">APP</span>
+                                    <span class="uw-caption">just now</span>
+                                </div>
+                                <p class="slack__title">Underwriting swarm: {reason.label}</p>
+                                <div class="slack__fields">
+                                    <span><span class="uw-caption">Borrower</span><br/>{borrower}</span>
+                                    <span><span class="uw-caption">Case</span><br/>{caseNumber}</span>
+                                    <span><span class="uw-caption">Stage</span><br/>Final approval review</span>
+                                    <span><span class="uw-caption">Urgency</span><br/><span class={urgencyBadge}>{urgency}</span></span>
+                                </div>
+                                <p class="slack__ask">{ask}</p>
+                                <p class="slack__mentions">{mentionText}</p>
+                                <div class="uw-cluster">
+                                    <span class="slack__btn">View case</span>
+                                    <span class="slack__btn">Loan documents</span>
+                                    <span class="slack__btn">Decision rationale</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Launching -->
+        <template lwc:if={isLaunching}>
+            <div class="uw-card uw-fade-in launch" role="status" aria-live="polite" aria-busy="true">
+                <span class="uw-section-label">Launching swarm</span>
+                <ol class="launch-list">
+                    <template for:each={launchSteps} for:item="s">
+                        <li key={s.key} class={s.cls}>
+                            <span class="launch-step__dot">
+                                <template lwc:if={s.done}>
+                                    <lightning-icon icon-name="utility:check" size="xx-small" alternative-text="Done"></lightning-icon>
+                                </template>
+                                <template lwc:elseif={s.active}>
+                                    <lightning-spinner size="x-small" alternative-text="In progress"></lightning-spinner>
+                                </template>
+                            </span>
+                            <span>{s.label}</span>
+                        </li>
+                    </template>
+                </ol>
+            </div>
+        </template>
+
+        <!-- Live -->
+        <template lwc:if={isLive}>
+            <div class="uw-stack uw-fade-in" role="status" aria-live="polite">
+                <div class="uw-success">
+                    <div class="uw-success__ring">
+                        <lightning-icon icon-name="utility:success" variant="success" size="medium" alternative-text="Live"></lightning-icon>
+                    </div>
+                    <p class="uw-success__title">Swarm is live</p>
+                    <span class="channel-pill uw-mono">{channelName}</span>
+                </div>
+                <div class="uw-card">
+                    <span class="uw-section-label">In the channel</span>
+                    <div class="joined">
+                        <template for:each={invitees} for:item="e">
+                            <div key={e.id} class="joined__member">
+                                <span class={e.avatarClass} aria-hidden="true">{e.initials}</span>
+                                <span class="expert__body">
+                                    <span class="uw-tile__title">{e.name}</span>
+                                    <span class="uw-tile__desc">{e.role}</span>
+                                </span>
+                                <span class="uw-badge uw-badge--success">Joined</span>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <template lwc:if={firstResponder}>
+                    <div class="uw-card uw-card--muted reply">
+                        <span class={firstResponder.avatarClass} aria-hidden="true">{firstResponder.initials}</span>
+                        <div>
+                            <span class="slack__name">{firstResponder.name}</span>
+                            <span class="uw-caption"> · 1 min</span>
+                            <p class="reply__text">On it. Pulling the signed contract and the decision notes now. Holding funding until we align.</p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <footer class="uw-footer">
+            <template lwc:if={isConfigure}>
+                <span class="uw-caption uw-footer__note">Demo mode: no Slack channel is created.</span>
+                <lightning-button label="Cancel" onclick={handleDone}></lightning-button>
+                <lightning-button variant="brand" label="Launch swarm" icon-name="utility:groups"
+                    disabled={launchDisabled} onclick={handleLaunch}></lightning-button>
+            </template>
+            <template lwc:if={isLive}>
+                <lightning-button variant="brand" label="Done" onclick={handleDone}></lightning-button>
+            </template>
+        </footer>
+    </div>
+</template>

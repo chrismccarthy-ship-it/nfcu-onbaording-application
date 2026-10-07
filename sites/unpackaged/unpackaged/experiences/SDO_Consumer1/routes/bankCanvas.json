@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "b7b24aec-a9b7-403f-a618-d813244bb89b",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "Bank_Canvas__c",
+  "id" : "fc763246-985f-47a4-9cdb-2228e7dd7506",
+  "label" : "Bank Canvas",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-bank-canvas",
+  "type" : "route",
+  "urlPrefix" : "bank-canvas"
+}

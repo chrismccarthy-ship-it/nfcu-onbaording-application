@@ -1,0 +1,12 @@
+{
+  "activeViewId": "74e14dc7-80ff-4817-8d0a-7f8c41c3c8fd",
+  "appPageId": "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags": [],
+  "devName": "Join_Navy_Federal__c",
+  "id": "c34534f5-3bec-462b-9d44-d9967b22a686",
+  "label": "Join Navy Federal",
+  "pageAccess": "UseParent",
+  "routeType": "custom-join",
+  "type": "route",
+  "urlPrefix": "join"
+}

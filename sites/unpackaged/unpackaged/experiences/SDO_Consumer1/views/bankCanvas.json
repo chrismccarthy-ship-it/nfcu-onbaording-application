@@ -1,0 +1,198 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "b7b24aec-a9b7-403f-a618-d813244bb89b",
+  "label" : "Bank Canvas",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "656b0650-f330-4440-806f-c688a50cbbbc",
+          "columns" : [ {
+            "UUID" : "b016a3fe-7d96-49ca-9f47-913bc6c889e6",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "9a6f1104-423e-439e-ad76-c3ccbab17c42",
+            "columnKey" : "6d357",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "656b0650-f330-4440-806f-c688a50cbbbc",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "cashCardPageUrl" : "/s/application",
+            "customBrandPrimary" : "#032d60",
+            "defaultBrand" : "bofa",
+            "fallbackCreditScore" : 720,
+            "logoHeight" : 32,
+            "logoStaticResource" : "",
+            "premiumCardPageUrl" : "/s/application",
+            "showChecking" : false,
+            "showCreditCards" : false,
+            "showCreditScore" : false,
+            "showGetStarted" : false,
+            "showInvestments" : false,
+            "showLoans" : false,
+            "showMortgage" : false,
+            "showSavings" : false
+          },
+          "componentName" : "c:bankingHub",
+          "id" : "a836a73e-b9dd-4795-b2ca-bb8dc575b7e7",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<!-- Generic credit-card lineup for Experience Cloud (HTML/Rich Content component).\n     Fully inline styles — no <style>, <script>, classes, pseudo-elements, or media\n     queries (the Experience Cloud sanitizer rejects those). Responsive via grid\n     auto-fit. Change href=\"/consumer/s/application\" to your card page. -->\n<div style=\"max-width:1120px;margin:0 auto;font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1c2430;\">\n\n  <div style=\"margin:0 0 20px;\">\n    <h2 style=\"font-size:1.6rem;font-weight:700;color:#12294a;margin:0 0 6px;\">Find a card that works for you</h2>\n    <p style=\"color:#5b6672;margin:0;font-size:1rem;\">Compare cash back, travel, and low-rate options. No annual fee on select cards.</p>\n  </div>\n\n  <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;\">\n\n    <!-- Cash Rewards -->\n    <div style=\"display:flex;flex-direction:column;border:1px solid #e4e7ec;border-radius:14px;background:#ffffff;overflow:hidden;box-shadow:0 1px 3px rgba(18,41,74,.08);\">\n      <div style=\"height:150px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#ffffff;background:#1f3b63;background:linear-gradient(135deg,#1f3b63,#12294a);\">\n        <div style=\"width:34px;height:24px;border-radius:5px;background:#c8a24a;background:linear-gradient(135deg,#e9cf8a,#c8a24a);\"></div>\n        <div style=\"font-family:monospace;letter-spacing:.14em;font-size:.95rem;opacity:.92;\">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0000</div>\n        <div style=\"font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;opacity:.85;\">Cash Rewards</div>\n      </div>\n      <div style=\"padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;\">\n        <p style=\"font-size:1.12rem;font-weight:700;color:#12294a;margin:0;\">Cash Rewards Card</p>\n        <p style=\"color:#b3123b;font-weight:600;font-size:.95rem;margin:0;\">3% cash back in a category you choose &mdash; plus a $200 bonus offer.</p>\n        <p style=\"color:#5b6672;font-size:.8rem;margin:0;\">No annual fee &middot; Contactless</p>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>2% back at grocery stores &amp; wholesale clubs</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Unlimited 1% back on everything else</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>0% intro APR for 15 billing cycles</span></div>\n        <div style=\"margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:14px;\">\n          <a href=\"/consumer/s/application\" style=\"display:inline-block;background:#012169;color:#ffffff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:8px;\">Apply Now</a>\n          <a href=\"#\" style=\"color:#12294a;font-weight:600;font-size:.86rem;text-decoration:none;\">Learn more</a>\n        </div>\n      </div>\n    </div>\n\n    <!-- Travel Rewards -->\n    <div style=\"display:flex;flex-direction:column;border:1px solid #e4e7ec;border-radius:14px;background:#ffffff;overflow:hidden;box-shadow:0 1px 3px rgba(18,41,74,.08);\">\n      <div style=\"height:150px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#ffffff;background:#0d6b6f;background:linear-gradient(135deg,#0d6b6f,#0a3d40);\">\n        <div style=\"width:34px;height:24px;border-radius:5px;background:#c8a24a;background:linear-gradient(135deg,#e9cf8a,#c8a24a);\"></div>\n        <div style=\"font-family:monospace;letter-spacing:.14em;font-size:.95rem;opacity:.92;\">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0000</div>\n        <div style=\"font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;opacity:.85;\">Travel Rewards</div>\n      </div>\n      <div style=\"padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;\">\n        <p style=\"font-size:1.12rem;font-weight:700;color:#12294a;margin:0;\">Travel Rewards Card</p>\n        <p style=\"color:#b3123b;font-weight:600;font-size:.95rem;margin:0;\">Unlimited 1.5x points on every purchase &mdash; 25,000 bonus points.</p>\n        <p style=\"color:#5b6672;font-size:.8rem;margin:0;\">No annual fee &middot; No foreign transaction fees</p>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Redeem for travel, statement credit, or gift cards</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Points don&rsquo;t expire</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>0% intro APR for 15 billing cycles</span></div>\n        <div style=\"margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:14px;\">\n          <a href=\"/consumer/s/application\" style=\"display:inline-block;background:#012169;color:#ffffff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:8px;\">Apply Now</a>\n          <a href=\"#\" style=\"color:#12294a;font-weight:600;font-size:.86rem;text-decoration:none;\">Learn more</a>\n        </div>\n      </div>\n    </div>\n\n    <!-- Premium Rewards -->\n    <div style=\"display:flex;flex-direction:column;border:1px solid #e4e7ec;border-radius:14px;background:#ffffff;overflow:hidden;box-shadow:0 1px 3px rgba(18,41,74,.08);\">\n      <div style=\"height:150px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#ffffff;background:#3a3a3a;background:linear-gradient(135deg,#3a3a3a,#111111);\">\n        <div style=\"width:34px;height:24px;border-radius:5px;background:#c8a24a;background:linear-gradient(135deg,#e9cf8a,#c8a24a);\"></div>\n        <div style=\"font-family:monospace;letter-spacing:.14em;font-size:.95rem;opacity:.92;\">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0000</div>\n        <div style=\"font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;opacity:.85;\">Premium</div>\n      </div>\n      <div style=\"padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;\">\n        <p style=\"font-size:1.12rem;font-weight:700;color:#12294a;margin:0;\">Premium Rewards Card</p>\n        <p style=\"color:#b3123b;font-weight:600;font-size:.95rem;margin:0;\">2x points on travel &amp; dining, 1.5x on everything else.</p>\n        <p style=\"color:#5b6672;font-size:.8rem;margin:0;\">$95 annual fee &middot; Premium travel perks</p>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>$100 annual travel statement credit</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Airport lounge access &amp; trip protection</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>50,000 bonus points welcome offer</span></div>\n        <div style=\"margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:14px;\">\n          <a href=\"/consumer/s/application\" style=\"display:inline-block;background:#012169;color:#ffffff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:8px;\">Apply Now</a>\n          <a href=\"#\" style=\"color:#12294a;font-weight:600;font-size:.86rem;text-decoration:none;\">Learn more</a>\n        </div>\n      </div>\n    </div>\n\n    <!-- Low Intro APR -->\n    <div style=\"display:flex;flex-direction:column;border:1px solid #e4e7ec;border-radius:14px;background:#ffffff;overflow:hidden;box-shadow:0 1px 3px rgba(18,41,74,.08);\">\n      <div style=\"height:150px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;color:#ffffff;background:#5a3fc0;background:linear-gradient(135deg,#5a3fc0,#2f1f74);\">\n        <div style=\"width:34px;height:24px;border-radius:5px;background:#c8a24a;background:linear-gradient(135deg,#e9cf8a,#c8a24a);\"></div>\n        <div style=\"font-family:monospace;letter-spacing:.14em;font-size:.95rem;opacity:.92;\">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; 0000</div>\n        <div style=\"font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;opacity:.85;\">Low Rate</div>\n      </div>\n      <div style=\"padding:18px;display:flex;flex-direction:column;gap:10px;flex:1;\">\n        <p style=\"font-size:1.12rem;font-weight:700;color:#12294a;margin:0;\">Low Intro APR Card</p>\n        <p style=\"color:#b3123b;font-weight:600;font-size:.95rem;margin:0;\">0% intro APR for 18 billing cycles on purchases &amp; balance transfers.</p>\n        <p style=\"color:#5b6672;font-size:.8rem;margin:0;\">No annual fee &middot; Contactless</p>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Long intro period to pay down balances</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>Free monthly credit score</span></div>\n        <div style=\"display:flex;gap:8px;font-size:.86rem;color:#3a4451;\"><span style=\"color:#15803d;font-weight:700;\">&check;</span><span>$0 fraud liability</span></div>\n        <div style=\"margin-top:auto;padding-top:12px;display:flex;align-items:center;gap:14px;\">\n          <a href=\"/consumer/s/application\" style=\"display:inline-block;background:#012169;color:#ffffff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:8px;\">Apply Now</a>\n          <a href=\"#\" style=\"color:#12294a;font-weight:600;font-size:.86rem;text-decoration:none;\">Learn more</a>\n        </div>\n      </div>\n    </div>\n\n  </div>\n\n  <a href=\"/consumer/s/application\" style=\"display:block;margin-top:20px;background:#E31837;background:linear-gradient(135deg,#FDE8EB,##E31837);color:#ffffff;text-decoration:none;text-align:center;font-weight:700;font-size:1.05rem;padding:18px 20px;border-radius:12px;box-shadow:0 1px 3px rgba(18,41,74,.10);\">Don&rsquo;t know where to start? Let us help you! &rarr;</a>\n</div>"
+          },
+          "componentName" : "forceCommunity:htmlBlock",
+          "id" : "cdeb819a-7334-4a5f-affe-0e5664d17b7d",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "b016a3fe-7d96-49ca-9f47-913bc6c889e6",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "audienceMode" : "both",
+            "backgroundColor" : "#ffffff",
+            "brandName" : "Banking Experience",
+            "brandPalette" : "",
+            "defaultSide" : "retail",
+            "hideNav" : false,
+            "labelChecking" : "Checking",
+            "labelCommercialCard" : "Business Card",
+            "labelCommercialCreditScore" : "Business Credit",
+            "labelCommercialOnboarding" : "Business Onboarding",
+            "labelConsumerCard" : "Apply for a Card",
+            "labelLending" : "Lending",
+            "labelLoans" : "Loans",
+            "labelPayments" : "Payments & Wires",
+            "labelRetailCreditScore" : "Credit Score",
+            "labelRetailOnboarding" : "Open an Account",
+            "labelSavings" : "Savings",
+            "labelTreasury" : "Treasury",
+            "logoHeight" : 36,
+            "logoResourceName" : "",
+            "logoUrl" : "https://storm-6269dbe2d00053--c.vf.force.com/resource/1785924335000/BOA?",
+            "primaryBrandUrl" : "bankofamerica.com",
+            "primaryHex" : "#012169",
+            "secondaryHex" : "#E31837",
+            "showChecking" : true,
+            "showCommercialCard" : true,
+            "showCommercialCreditScore" : true,
+            "showCommercialOnboarding" : true,
+            "showConsumerCard" : true,
+            "showLending" : true,
+            "showLoans" : true,
+            "showPayments" : true,
+            "showRetailCreditScore" : true,
+            "showRetailOnboarding" : true,
+            "showSavings" : true,
+            "showTreasury" : true,
+            "urlChecking" : "/s/open-a-checking-account",
+            "urlCommercialCard" : "/s/banking",
+            "urlCommercialCreditScore" : "/s/credit-score",
+            "urlCommercialOnboarding" : "/s/banking",
+            "urlConsumerCard" : "/s/application",
+            "urlLending" : "/s/lending",
+            "urlLoans" : "/s/lending",
+            "urlPayments" : "/s/payments",
+            "urlRetailCreditScore" : "/s/credit-score",
+            "urlRetailOnboarding" : "/s/join",
+            "urlSavings" : "/s/savings",
+            "urlTreasury" : "/s/treasury"
+          },
+          "componentName" : "c:bxShell",
+          "id" : "29fd2428-bf85-40f7-ade4-2db9491e1bf0",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "contactId" : "003Kh00001upF3hIAE",
+            "customTitle" : "Your Credit Score",
+            "fallbackScore" : 720,
+            "gaugeMode" : "consumer",
+            "primaryBrandUrl" : "boa.com",
+            "scoreMax" : 850,
+            "scoreMin" : 300
+          },
+          "componentName" : "c:bxCreditGauge",
+          "id" : "59529019-2752-4983-9aea-76ffd6ab93fb",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "hideAccountGrid" : false,
+            "hideDetailPanel" : false,
+            "primaryBrandUrl" : "bankofamerica.com"
+          },
+          "componentName" : "c:bxAccounts",
+          "id" : "032d28b4-aa71-41bb-9476-f76efd671271",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "cardProductName" : "",
+            "primaryBrandUrl" : "bankofamerica.com",
+            "recordTypeName" : ""
+          },
+          "componentName" : "c:bxCardApplication",
+          "id" : "972e3a59-b21c-482e-9de9-82e1eb18c548",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "9a6f1104-423e-439e-ad76-c3ccbab17c42",
+        "regionLabel" : "Column 2",
+        "regionName" : "6d357",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "421c7430-7c00-49b7-9b4c-cd432d43c912",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "c370582a-d4ce-4467-9c8e-8bfc4da90786",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "16fd885f-948d-4424-a498-f87a3693350c",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-bank-canvas"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Guided application for a new member or new card: Agentforce document intake, creates the Application record and emails the member a confirmation.</description>
+    <flowDefinition>Card_Application_Wizard</flowDefinition>
+    <label>Card Application Wizard</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

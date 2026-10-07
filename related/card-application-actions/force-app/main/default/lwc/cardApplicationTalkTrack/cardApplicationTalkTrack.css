@@ -1,0 +1,60 @@
+.tt-panel {
+    border: var(--slds-g-sizing-border-1, 1px) solid var(--slds-g-color-border-accent-1, #0176d3);
+    border-radius: var(--slds-g-radius-border-3, 0.5rem);
+    background: var(--slds-g-color-surface-1, #ffffff);
+    box-shadow: var(--slds-g-shadow-2);
+    overflow: hidden;
+}
+.tt-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--slds-g-spacing-2, 0.5rem) var(--slds-g-spacing-4, 1rem);
+    background: linear-gradient(90deg, #032d60, #0176d3);
+}
+.tt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--slds-g-spacing-2, 0.5rem);
+    color: #fff;
+    font-size: var(--slds-g-font-size-2, 0.75rem);
+    font-weight: var(--slds-g-font-weight-6, 600);
+    letter-spacing: 0.02em;
+}
+.tt-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--slds-g-radius-border-pill, 999px);
+    padding: 2px 12px;
+    font-size: var(--slds-g-font-size-2, 0.75rem);
+    cursor: pointer;
+}
+.tt-toggle:hover { background: rgba(255, 255, 255, 0.28); }
+.tt-body { padding: var(--slds-g-spacing-4, 1rem); }
+.tt-title {
+    font-size: var(--slds-g-font-size-4, 0.875rem);
+    font-weight: var(--slds-g-font-weight-7, 700);
+    color: var(--slds-g-color-on-surface-1, #181818);
+    margin: 0 0 var(--slds-g-spacing-2, 0.5rem);
+}
+.tt-guidance {
+    font-size: var(--slds-g-font-size-4, 0.875rem);
+    line-height: var(--slds-g-line-height-4, 1.5);
+    color: var(--slds-g-color-on-surface-1, #181818);
+    margin: 0 0 var(--slds-g-spacing-2, 0.5rem);
+}
+.tt-tip {
+    font-size: var(--slds-g-font-size-3, 0.8125rem);
+    color: var(--slds-g-color-on-surface-2, #444);
+    margin: 0;
+}
+.tt-tip__k {
+    display: inline-block;
+    font-size: var(--slds-g-font-size-1, 0.6875rem);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: var(--slds-g-font-weight-7, 700);
+    color: var(--slds-g-color-accent-1, #0176d3);
+    margin-right: var(--slds-g-spacing-1, 0.25rem);
+}

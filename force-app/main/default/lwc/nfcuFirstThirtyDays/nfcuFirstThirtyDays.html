@@ -1,0 +1,190 @@
+<template>
+    <div class="shell">
+        <template lwc:if={loading}>
+            <div class="card loading"><lightning-spinner alternative-text="Loading your checklist" size="small"></lightning-spinner></div>
+        </template>
+        <template lwc:elseif={error}>
+            <section class="card">
+                <p class="eyebrow">Navy Federal Credit Union</p>
+                <h1 class="title">We couldn’t open your checklist</h1>
+                <p class="note note_error" role="alert">{error}</p>
+            </section>
+        </template>
+        <template lwc:else>
+            <header class="head">
+                <div class="head__text">
+                    <p class="eyebrow">Welcome to Navy Federal</p>
+                    <h1 class="title">Your first 30 days, {firstName}</h1>
+                    <p class="sub">{sinceLabel} Finish these steps to start using your new accounts.</p>
+                </div>
+                <button type="button" class="sample" onclick={handleRefresh}>Refresh</button>
+            </header>
+
+            <!-- Progress -->
+            <section class="card progress" aria-label="Onboarding progress">
+                <div class="ring" aria-hidden="true">
+                    <svg viewBox="0 0 120 120" class="ring__svg">
+                        <circle cx="60" cy="60" r="52" class="ring__track"></circle>
+                        <circle cx="60" cy="60" r="52" class={ringBarClass} stroke-dasharray={ringDash}></circle>
+                    </svg>
+                    <span class="ring__pct">{percent}%</span>
+                    <span class="ring__cap">complete</span>
+                </div>
+                <ol class="steps">
+                    <template for:each={tasks} for:item="t">
+                        <li key={t.key} class={t.cls}>
+                            <span class="step__dot" aria-hidden="true"></span>
+                            <span class="step__text">
+                                <span class="step__label">{t.label}</span>
+                                <span class="step__status">{t.status}</span>
+                            </span>
+                        </li>
+                    </template>
+                </ol>
+            </section>
+
+            <template lwc:if={allDone}>
+                <p class="note note_good" role="status">You’re all set. Your accounts are open, funded and ready to use.</p>
+            </template>
+            <template lwc:if={fieldError}>
+                <p class="note note_error" role="alert">{fieldError}</p>
+            </template>
+
+            <!-- Accounts -->
+            <section class="card">
+                <h2 class="section__title">Your accounts</h2>
+                <template lwc:if={hasAccounts}>
+                    <ul class="accounts">
+                        <template for:each={accounts} for:item="a">
+                            <li key={a.key} class="account">
+                                <div>
+                                    <p class="account__name">{a.name}</p>
+                                    <p class="muted">{a.type} {a.masked}</p>
+                                </div>
+                                <p class="account__bal">{a.balanceLabel}</p>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+                <template lwc:else>
+                    <p class="muted">A member service representative is verifying your identity. Your Membership Savings Account and any checking account you chose open as soon as that’s done.</p>
+                </template>
+            </section>
+
+            <div class="grid">
+                <!-- Debit card -->
+                <section class="card task">
+                    <div class="task__head">
+                        <h2 class="section__title">Activate your debit card</h2>
+                        <span class={cardPillClass}>{cardPill}</span>
+                    </div>
+                    <template lwc:if={cardActive}>
+                        <p class="lead">Your Visa debit card ending in <strong>{cardLast4}</strong> is active. Add it to your mobile wallet to start using it now.</p>
+                    </template>
+                    <template lwc:elseif={cardOrdered}>
+                        <p class="muted">Your card ending in {cardLast4} is in the mail. When it arrives, enter the last 4 digits from the front of the card.</p>
+                        <div class="cardform form">
+                            <lightning-input label="Last 4 digits on your card" data-field="last4" value={card.last4} required
+                                max-length="4" min-length="4" pattern="[0-9]{4}" message-when-pattern-mismatch="Enter 4 digits."
+                                onchange={handleCard}></lightning-input>
+                            <lightning-input type="date" label="Date of birth" data-field="birthDate" value={card.birthDate} required
+                                date-style="medium" onchange={handleCard}></lightning-input>
+                        </div>
+                        <div class="task__actions">
+                            <template lwc:if={showSampleData}>
+                                <button type="button" class="link" onclick={fillCard}>Use the card in the mail</button>
+                            </template>
+                            <button type="button" class="btn btn_primary" onclick={handleActivate} disabled={busy}>Activate card</button>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <p class="muted">Your debit card ships when your checking account opens.</p>
+                    </template>
+                    <p class="sim">Demo: card activation is simulated.</p>
+                </section>
+
+                <!-- Digital banking -->
+                <section class="card task">
+                    <div class="task__head">
+                        <h2 class="section__title">Enroll in digital banking</h2>
+                        <span class={digitalPillClass}>{digitalPill}</span>
+                    </div>
+                    <template lwc:if={digitalDone}>
+                        <p class="lead">You’re enrolled. Download the Navy Federal mobile app and sign in to see balances, deposit checks and move money.</p>
+                    </template>
+                    <template lwc:elseif={digitalLocked}>
+                        <p class="muted">You can enroll as soon as your accounts open.</p>
+                    </template>
+                    <template lwc:else>
+                        <p class="muted">See your balances, deposit checks, pay bills and get alerts in the Navy Federal app and online banking.</p>
+                        <div class="task__actions">
+                            <span></span>
+                            <button type="button" class="btn btn_primary" onclick={handleEnroll} disabled={busy}>Enroll now</button>
+                        </div>
+                    </template>
+                    <p class="sim">Demo: enrollment is simulated. No password is collected here.</p>
+                </section>
+            </div>
+
+            <!-- Direct deposit -->
+            <section class="card task">
+                <div class="task__head">
+                    <h2 class="section__title">Set up direct deposit</h2>
+                    <span class={depositPillClass}>{depositPill}</span>
+                </div>
+                <template lwc:if={depositLocked}>
+                    <p class="muted">Direct deposit goes into your checking account. You can set it up once checking opens.</p>
+                </template>
+                <template lwc:elseif={depositEditing}>
+                    <p class="muted">Get paid up to two days early. We’ll fill in a direct deposit form for your employer with your Navy Federal details.</p>
+                    <div class="depositform form">
+                        <lightning-input label="Employer or paying agency" data-field="employer" value={deposit.employer} required
+                            onchange={handleDeposit}></lightning-input>
+                        <lightning-radio-group label="Where should your pay go?" data-field="split" options={splitOptions}
+                            value={deposit.split} onchange={handleDeposit}></lightning-radio-group>
+                        <template lwc:if={isSplit}>
+                            <lightning-input type="number" formatter="currency" step="0.01" min="1" label="Amount to savings each paycheck"
+                                data-field="savingsAmount" value={deposit.savingsAmount} required onchange={handleDeposit}></lightning-input>
+                        </template>
+                    </div>
+                    <div class="task__actions">
+                        <span></span>
+                        <button type="button" class="btn btn_primary" onclick={handlePrepare} disabled={busy}>Prepare my form</button>
+                    </div>
+                </template>
+                <template lwc:else>
+                    <div class="ddform" aria-label="Direct deposit form">
+                        <div class="ddform__head">
+                            <p class="ddform__title">Direct deposit authorization</p>
+                            <button type="button" class="link" onclick={toggleNumbers}>{numbersToggleLabel}</button>
+                        </div>
+                        <dl class="ddform__grid">
+                            <div><dt>Employee</dt><dd>{memberName}</dd></div>
+                            <div><dt>Employer</dt><dd>{data.employer}</dd></div>
+                            <div><dt>Financial institution</dt><dd>Navy Federal Credit Union</dd></div>
+                            <div><dt>Routing number</dt><dd class="mono">{data.routingNumber}</dd></div>
+                            <div><dt>Checking account</dt><dd class="mono">{formAccountNumber}</dd></div>
+                            <template lwc:if={isSplit}>
+                                <div><dt>Savings account</dt><dd class="mono">{formSavingsNumber} ({savingsAmountLabel} per paycheck)</dd></div>
+                            </template>
+                        </dl>
+                    </div>
+                    <template lwc:if={depositSent}>
+                        <p class="lead">Sent to {data.employer}. Your first direct deposit usually arrives within one or two pay cycles.</p>
+                    </template>
+                    <template lwc:else>
+                        <div class="task__actions">
+                            <span class="muted">Check the details, then send the form to your payroll office.</span>
+                            <button type="button" class="btn btn_primary" onclick={handleSend} disabled={busy}>Send to my employer</button>
+                        </div>
+                    </template>
+                </template>
+                <p class="sim">Demo: the payroll hand-off is simulated.</p>
+            </section>
+
+            <template lwc:if={busy}>
+                <lightning-spinner alternative-text="Saving" size="small"></lightning-spinner>
+            </template>
+        </template>
+    </div>
+</template>

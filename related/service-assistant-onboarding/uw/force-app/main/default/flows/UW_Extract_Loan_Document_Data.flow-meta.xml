@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Set_Result</name>
+        <label>Set Result</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>extractionSummary</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Result_Text</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Agent action for the Underwriter Workflow topic. Returns mock fields extracted from the loan package and the validation exceptions against the approved deal structure.</description>
+    <environments>Default</environments>
+    <interviewLabel>UW - Extract Loan Document Data {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UW - Extract Loan Document Data</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value><stringValue>AUTO_LAYOUT_CANVAS</stringValue></value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Result</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Result_Text</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Loan package extraction (demo data). 5 documents, 26 fields, average confidence 96%.
+Approved structure: amount financed $31,900.00, 6.49% APR, 72 months, 2023 Ford F-150 XLT, VIN 1FTFW1E85PFA12345, dealer Lakeside Ford.
+
+Exceptions:
+- MISMATCH, retail installment contract: amount financed $32,450.00 vs approved $31,900.00 (+$550). Final control applies: suspend funding and return the file for underwriting review.
+- MISSING, insurance binder (Northwind Mutual, policy NWM-4471-2026): lienholder / loss payee not listed. Insurance stipulation is not cleared.
+
+Verified:
+- Identity: driver's license name and address match the application; expires 03/14/2029.
+- Income: pay stub supports $8,250/month vs $8,300 stated (0.6% variance, within tolerance).
+- Vehicle: VIN consistent across contract and insurance binder.
+- APR and term on the contract match the decision.
+
+Recommended next steps: send a Document correction email for the insurance binder, and start a Slack swarm (reason: Contract mismatch) before any funding release. Open the Parse Loan Documents quick action to review field-level results.</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>caseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>extractionSummary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

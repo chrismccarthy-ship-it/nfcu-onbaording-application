@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Open a credit card: email the member what is still required for the application and set the case to Waiting on Customer.</description>
+    <flowDefinition>CC_QA_Email_Requirements</flowDefinition>
+    <label>Email Application Requirements</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

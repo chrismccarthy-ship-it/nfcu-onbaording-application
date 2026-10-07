@@ -1,0 +1,31 @@
+{
+  "required": [
+    "recordId",
+    "emailPurpose"
+  ],
+  "unevaluatedProperties": false,
+  "properties": {
+    "recordId": {
+      "title": "recordId",
+      "description": "The Id of the current record in context (the Case). Always pass the record ID from context; never ask the rep for it.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    },
+    "emailPurpose": {
+      "title": "emailPurpose",
+      "description": "Why the borrower is being emailed: stip_request, correction, conditional, or funded.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    },
+    "stipulations": {
+      "title": "stipulations",
+      "description": "Comma-separated list of the documents or conditions to request, for example proof of income, insurance binder naming lienholder.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    }
+  },
+  "lightning:type": "lightning__objectType"
+}

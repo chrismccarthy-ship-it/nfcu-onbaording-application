@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Card Application Wizard</masterLabel>
+    <description>Multi-step card application with Agentforce document intake and optional brand theming. Runs in Salesforce (with a rep talk track) and Experience Cloud.</description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+        <target>lightning__RecordPage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage,lightning__HomePage,lightning__RecordPage">
+            <property name="cardProductName" type="String" label="Card / Product Name"
+                description="Pre-fills the card the application is for (leave blank to let the user enter it)."/>
+            <property name="forceTalkTrack" type="Boolean" default="false" label="Always show rep talk track"
+                description="Force the internal rep talk track on even outside Experience Cloud detection."/>
+            <property name="brand" type="String" default="default" label="Brand Theme"
+                description="default | truist | citizens | citi | ally | bankofamerica | cumulus"/>
+        </targetConfig>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="cardProductName" type="String" label="Card / Product Name"
+                description="Pre-fills the card the application is for (leave blank to let the user enter it)."/>
+            <property name="brand" type="String" default="default" label="Brand Theme"
+                description="default | truist | citizens | citi | ally | bankofamerica | cumulus"/>
+        </targetConfig>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="contactId" type="String" role="inputOnly" label="Contact Id"
+                description="Pre-links the Contact who receives the confirmation email."/>
+            <property name="cardProductName" type="String" role="inputOnly" label="Card / Product Name"/>
+            <property name="sourceRecordId" type="String" role="inputOnly" label="Source Record Id"
+                description="Case or Messaging Session; its most recent attached PDF is pre-loaded for parsing."/>
+            <property name="forceTalkTrack" type="Boolean" role="inputOnly" label="Always show rep talk track"/>
+            <property name="applicationId" type="String" role="outputOnly" label="Application Id"
+                description="Id of the Application__c created on submit."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

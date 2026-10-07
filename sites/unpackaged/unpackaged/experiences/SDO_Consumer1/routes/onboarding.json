@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "c7ae6c94-825d-4e50-a6ea-e30e83e4a35b",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "Onboarding__c",
+  "id" : "6d94cb37-8753-4821-908a-9f4a79e04ee9",
+  "label" : "Onboarding",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-onboarding",
+  "type" : "route",
+  "urlPrefix" : "onboarding"
+}

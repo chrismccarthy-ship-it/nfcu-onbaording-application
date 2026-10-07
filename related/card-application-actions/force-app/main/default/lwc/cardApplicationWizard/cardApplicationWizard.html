@@ -1,0 +1,283 @@
+<template>
+    <div class={rootClass}>
+        <div class="wiz-accent"></div>
+
+        <!-- SUCCESS STATE -->
+        <template if:true={showSuccess}>
+            <div class="wiz-success">
+                <lightning-icon icon-name="utility:success" variant="success" size="large"></lightning-icon>
+                <h2 class="wiz-success__title">Application submitted</h2>
+                <p class="wiz-success__text">
+                    Thanks! Your application has been received and a confirmation email has been
+                    sent to the contact. Our team will follow up with next steps.
+                </p>
+                <template if:true={isInternal}>
+                    <lightning-button variant="brand" label="View the record"
+                        onclick={handleViewRecord} class="wiz-success__btn"></lightning-button>
+                </template>
+                <template if:true={canFinishFlow}>
+                    <lightning-button label="Done" onclick={handleFinish} class="wiz-success__btn"></lightning-button>
+                </template>
+            </div>
+        </template>
+
+        <!-- WIZARD -->
+        <template if:false={showSuccess}>
+            <!-- Header -->
+            <div class="wiz-head">
+                <p class="wiz-eyebrow">Card Application</p>
+                <h1 class="wiz-title">Apply in a few quick steps</h1>
+            </div>
+
+            <!-- Progress -->
+            <div class="wiz-progress">
+                <template for:each={progressSteps} for:item="s">
+                    <div key={s.key} class="step">
+                        <div class={s.css}>{s.index}</div>
+                        <span class="step-label">{s.label}</span>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Talk track (internal only) -->
+            <template if:true={isInternal}>
+                <div class="wiz-talktrack">
+                    <c-card-application-talk-track step={currentStep}></c-card-application-talk-track>
+                </div>
+            </template>
+
+            <!-- Instruction banner -->
+            <div class="wiz-instruction">
+                <lightning-icon icon-name="utility:info" size="x-small"></lightning-icon>
+                <span>{stepInstruction}</span>
+            </div>
+
+            <div class="wiz-body">
+                <!-- STEP 0: PERSONAL -->
+                <template if:true={isStep0}>
+                    <div class="ai-card">
+                        <div class="ai-card__head">
+                            <lightning-icon icon-name="utility:einstein" size="small"></lightning-icon>
+                            <div>
+                                <p class="ai-card__title">Skip the typing</p>
+                                <p class="ai-card__sub">Upload a PDF or text document and Agentforce will read it and fill in your details across every step.</p>
+                            </div>
+                        </div>
+                        <div class="ai-card__body">
+                            <lightning-input type="file" label="Upload document"
+                                accept=".pdf,.txt,.md,.csv,.json,.text" onchange={handleFile}
+                                variant="label-hidden"></lightning-input>
+                            <template if:true={aiFileName}>
+                                <p class="ai-card__file">{aiFileLabel} {aiFileName}</p>
+                            </template>
+                            <div class="ai-card__actions">
+                                <lightning-button label="Parse with Agentforce" variant="brand"
+                                    onclick={handleParse} disabled={aiBusy}
+                                    icon-name="utility:sparkles"></lightning-button>
+                                <template if:true={aiBusy}>
+                                    <lightning-spinner alternative-text="Parsing" size="small"></lightning-spinner>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <lightning-input data-field="Card_Product_Name__c" label="Card / Product Name"
+                        value={record.Card_Product_Name__c} onchange={handleField}
+                        placeholder="e.g. Everyday Rewards Card"></lightning-input>
+
+                    <div class="grid-3">
+                        <lightning-input data-field="First_Name__c" label="First name" required
+                            value={record.First_Name__c} onchange={handleField}></lightning-input>
+                        <lightning-input data-field="Middle_Name__c" label="Middle name"
+                            value={record.Middle_Name__c} onchange={handleField}></lightning-input>
+                        <lightning-input data-field="Last_Name__c" label="Last name" required
+                            value={record.Last_Name__c} onchange={handleField}></lightning-input>
+                    </div>
+
+                    <lightning-combobox data-field="Suffix__c" label="Suffix" options={suffixOptions}
+                        value={record.Suffix__c} onchange={handleField} placeholder="Select"></lightning-combobox>
+
+                    <lightning-input data-field="Address_Line_1__c" label="Address Line 1"
+                        value={record.Address_Line_1__c} onchange={handleField}></lightning-input>
+                    <lightning-input data-field="Address_Line_2__c" label="Address Line 2"
+                        value={record.Address_Line_2__c} onchange={handleField}></lightning-input>
+
+                    <div class="grid-3">
+                        <lightning-input data-field="City__c" label="City"
+                            value={record.City__c} onchange={handleField}></lightning-input>
+                        <lightning-combobox data-field="State__c" label="State" options={stateOptions}
+                            value={record.State__c} onchange={handleField} placeholder="Select"></lightning-combobox>
+                        <lightning-input data-field="Zip_Code__c" label="ZIP code"
+                            value={record.Zip_Code__c} onchange={handleField}></lightning-input>
+                    </div>
+
+                    <lightning-combobox data-field="Country_of_Residence__c" label="Country of primary residence"
+                        options={countryOptions} value={record.Country_of_Residence__c}
+                        onchange={handleField} placeholder="Select"></lightning-combobox>
+
+                    <lightning-input type="checkbox" data-field="Different_Statement_Address__c"
+                        label="Send statements to a different address"
+                        checked={record.Different_Statement_Address__c} onchange={handleField}></lightning-input>
+
+                    <div class="grid-2">
+                        <lightning-input type="tel" data-field="Primary_Contact_Number__c"
+                            label="Primary contact number" value={record.Primary_Contact_Number__c}
+                            onchange={handleField} placeholder="XXX-XXX-XXXX"></lightning-input>
+                        <lightning-combobox data-field="Primary_Phone_Type__c" label="Phone type"
+                            options={phoneTypeOptions} value={record.Primary_Phone_Type__c}
+                            onchange={handleField} placeholder="Select"></lightning-combobox>
+                    </div>
+
+                    <lightning-input type="email" data-field="Email__c" label="Email address" required
+                        value={record.Email__c} onchange={handleField}></lightning-input>
+
+                    <div class="grid-2">
+                        <lightning-input data-field="SSN__c" label="Social Security Number"
+                            value={record.SSN__c} onchange={handleField}
+                            placeholder="###-##-####" maxlength="11"></lightning-input>
+                        <lightning-input type="date" data-field="Date_of_Birth__c" label="Date of birth"
+                            value={record.Date_of_Birth__c} onchange={handleField}></lightning-input>
+                    </div>
+
+                    <lightning-input data-field="Mothers_Maiden_Name__c" label="Mother's maiden name"
+                        value={record.Mothers_Maiden_Name__c} onchange={handleField}></lightning-input>
+
+                    <div class="grid-2">
+                        <lightning-input type="checkbox" data-field="US_Citizen__c" label="I am a US citizen"
+                            checked={record.US_Citizen__c} onchange={handleField}></lightning-input>
+                        <lightning-input type="checkbox" data-field="Dual_Citizenship__c"
+                            label="I have dual citizenship"
+                            checked={record.Dual_Citizenship__c} onchange={handleField}></lightning-input>
+                    </div>
+
+                    <div class="grid-3">
+                        <lightning-combobox data-field="Country_of_Citizenship__c" label="Country of citizenship"
+                            options={countryOptions} value={record.Country_of_Citizenship__c}
+                            onchange={handleField} placeholder="Select"></lightning-combobox>
+                        <lightning-combobox data-field="Citizenship_Status__c" label="Citizenship status"
+                            options={citizenshipOptions} value={record.Citizenship_Status__c}
+                            onchange={handleField} placeholder="Select"></lightning-combobox>
+                        <template if:true={record.Dual_Citizenship__c}>
+                            <lightning-combobox data-field="Country_of_Dual_Citizenship__c"
+                                label="Country of dual citizenship" options={countryOptions}
+                                value={record.Country_of_Dual_Citizenship__c} onchange={handleField}
+                                placeholder="Select"></lightning-combobox>
+                        </template>
+                    </div>
+
+                    <lightning-checkbox-group label="Existing accounts" options={accountOptions}
+                        value={accountValue} onchange={handleAccounts}></lightning-checkbox-group>
+
+                    <div class="lookup-wrap">
+                        <label class="lookup-label">Link to a Contact (confirmation email recipient)</label>
+                        <lightning-record-picker label="Contact" placeholder="Search Contacts..."
+                            object-api-name="Contact" value={contactId} onchange={handleContact}
+                            variant="label-hidden"></lightning-record-picker>
+                    </div>
+                </template>
+
+                <!-- STEP 1: WORK & FINANCIALS -->
+                <template if:true={isStep1}>
+                    <lightning-combobox data-field="Employment_Status__c" label="Employment status" required
+                        options={employmentOptions} value={record.Employment_Status__c}
+                        onchange={handleField} placeholder="Select"></lightning-combobox>
+
+                    <div class="grid-2">
+                        <lightning-combobox data-field="Occupation__c" label="Occupation"
+                            options={occupationOptions} value={record.Occupation__c}
+                            onchange={handleField} placeholder="Select"></lightning-combobox>
+                        <lightning-input data-field="Employer__c" label="Company name or employer"
+                            value={record.Employer__c} onchange={handleField}></lightning-input>
+                    </div>
+
+                    <div class="grid-2">
+                        <lightning-input type="number" data-field="Years_in_Occupation__c"
+                            label="Years in occupation" value={record.Years_in_Occupation__c}
+                            onchange={handleField} min="0" max="99"></lightning-input>
+                        <lightning-input type="tel" data-field="Work_Phone__c" label="Work phone number"
+                            value={record.Work_Phone__c} onchange={handleField}
+                            placeholder="XXX-XXX-XXXX"></lightning-input>
+                    </div>
+
+                    <p class="section-note">About your income</p>
+                    <div class="grid-2">
+                        <lightning-input type="number" formatter="currency" data-field="Gross_Annual_Income__c"
+                            label="Total gross annual income" value={record.Gross_Annual_Income__c}
+                            onchange={handleField}></lightning-input>
+                        <lightning-input type="number" formatter="currency" data-field="Monthly_Housing_Payment__c"
+                            label="Monthly housing payment" value={record.Monthly_Housing_Payment__c}
+                            onchange={handleField}></lightning-input>
+                    </div>
+                    <lightning-combobox data-field="Source_of_Income__c" label="Source of income"
+                        options={sourceOptions} value={record.Source_of_Income__c}
+                        onchange={handleField} placeholder="Select"></lightning-combobox>
+                </template>
+
+                <!-- STEP 2: CARD FEATURES -->
+                <template if:true={isStep2}>
+                    <lightning-input type="checkbox" data-field="Balance_Transfer_Requested__c"
+                        label="Request a balance transfer"
+                        checked={record.Balance_Transfer_Requested__c} onchange={handleField}></lightning-input>
+
+                    <template if:true={record.Balance_Transfer_Requested__c}>
+                        <div class="bt-panel">
+                            <lightning-combobox data-field="Number_of_Balances__c"
+                                label="How many balances to transfer?" options={balanceOptions}
+                                value={record.Number_of_Balances__c} onchange={handleField}
+                                placeholder="Select"></lightning-combobox>
+                            <div class="grid-2">
+                                <lightning-combobox data-field="Transfer_Institution__c"
+                                    label="Credit card institution" options={institutionOptions}
+                                    value={record.Transfer_Institution__c} onchange={handleField}
+                                    placeholder="Select"></lightning-combobox>
+                                <lightning-input data-field="Transfer_Account_Number__c"
+                                    label="Account number" value={record.Transfer_Account_Number__c}
+                                    onchange={handleField}></lightning-input>
+                            </div>
+                            <lightning-input type="number" formatter="currency"
+                                data-field="Transfer_Requested_Amount__c" label="Requested amount"
+                                value={record.Transfer_Requested_Amount__c} onchange={handleField}></lightning-input>
+                        </div>
+                    </template>
+
+                    <lightning-input type="checkbox" data-field="Add_Authorized_User__c"
+                        label="Add an additional cardholder as an Authorized User"
+                        checked={record.Add_Authorized_User__c} onchange={handleField}></lightning-input>
+                </template>
+
+                <!-- STEP 3: REVIEW -->
+                <template if:true={isStep3}>
+                    <template for:each={reviewSections} for:item="sec">
+                        <div key={sec.key} class="review-sec">
+                            <p class="review-sec__title">{sec.title}</p>
+                            <template for:each={sec.items} for:item="it">
+                                <div key={it.key} class="review-row">
+                                    <span class="review-row__label">{it.label}</span>
+                                    <span class="review-row__value">{it.value}</span>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+            </div>
+
+            <!-- Footer nav -->
+            <div class="wiz-foot">
+                <template if:true={currentStep}>
+                    <lightning-button label="Back" onclick={goBack} variant="neutral"></lightning-button>
+                </template>
+                <div class="wiz-foot__spacer"></div>
+                <template if:false={isLastStep}>
+                    <lightning-button label="Continue" variant="brand" onclick={goNext}></lightning-button>
+                </template>
+                <template if:true={isLastStep}>
+                    <lightning-button label="Submit application" variant="brand"
+                        onclick={handleSubmit} disabled={isSubmitting}></lightning-button>
+                    <template if:true={isSubmitting}>
+                        <lightning-spinner alternative-text="Submitting" size="small"></lightning-spinner>
+                    </template>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

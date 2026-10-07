@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>NFCU Security Team Escalation</masterLabel>
+    <description>Navy Federal branded Next Best Action screen recommending a Security Team fraud check for a flagged application.</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="memberName" type="String" label="Member name" default="Lauren Bailey"/>
+            <property name="productName" type="String" label="Product" default="Flagship Premier Visa Signature Card"/>
+            <property name="applicationNumber" type="String" label="Application number"/>
+            <property name="identityStatus" type="String" label="Identity verification status"/>
+            <property name="kycStatus" type="String" label="KYC status"/>
+            <property name="fraudReason" type="String" label="Fraud flag reason"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

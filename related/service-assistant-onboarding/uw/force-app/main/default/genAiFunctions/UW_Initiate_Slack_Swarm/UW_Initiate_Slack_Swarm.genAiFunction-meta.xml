@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Starts a Slack swarm channel for the case and invites the right experts (credit risk, funding QC, dealer relations, fraud operations, compliance, title) with the case context. Use it for fraud or identity concerns, contracts that differ from the approved structure, title or payoff issues, dealer-performance holds, compliance questions, or decisions above the underwriter's authority.</description>
+    <developerName>UW_Initiate_Slack_Swarm</developerName>
+    <invocationTarget>UW_Initiate_Slack_Swarm</invocationTarget>
+    <invocationTargetType>flow</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+    <localDeveloperName>UW_Initiate_Slack_Swarm</localDeveloperName>
+    <masterLabel>Initiate Slack Swarm</masterLabel>
+    <progressIndicatorMessage>Initiate Slack Swarm...</progressIndicatorMessage>
+</GenAiFunction>

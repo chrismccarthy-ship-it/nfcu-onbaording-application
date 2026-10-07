@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "3c4cae6f-fa9c-4daa-af34-2b3e9a10a7b4",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "Open_a_Checking_Account__c",
+  "id" : "8b205685-89ae-49f5-af2e-023d64bea465",
+  "label" : "Open a Checking Account",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-open-a-checking-account",
+  "type" : "route",
+  "urlPrefix" : "open-a-checking-account"
+}

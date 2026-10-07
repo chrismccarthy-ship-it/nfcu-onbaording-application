@@ -1,0 +1,83 @@
+{
+  "appPageId": "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName": "siteforce:dynamicLayout",
+  "dataProviders": [],
+  "id": "4789f87b-c1b4-419d-a7a3-586e63df3844",
+  "label": "Your First 30 Days",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "4d9e7515-8508-4504-9d20-1bc1036e70fe",
+              "columns": [
+                {
+                  "UUID": "e4a5925e-bead-446c-94c2-5f42a8c0b5b4",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 32
+          },
+          "componentName": "forceCommunity:section",
+          "id": "4d9e7515-8508-4504-9d20-1bc1036e70fe",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "showSampleData": true,
+                    "sampleBirthDate": "1991-11-04"
+                  },
+                  "componentName": "c:nfcuFirstThirtyDays",
+                  "id": "7f5b62da-63db-4c87-b1ac-3f1224f19874",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "e4a5925e-bead-446c-94c2-5f42a8c0b5b4",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "b25166a0-953a-4ad2-b773-edd0a7d3a6f0",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "<meta name=\"robots\" content=\"noindex, nofollow\">",
+            "title": "Your First 30 Days"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "c16c213e-eb91-4bef-ac4e-b442e2058246",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "72c1b515-3b28-4848-8d73-ca8ba2abb721",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Inner",
+  "type": "view",
+  "viewType": "custom-welcome"
+}

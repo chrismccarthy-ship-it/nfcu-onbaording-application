@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Set_Result</name>
+        <label>Set Result</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>eligibilityResult</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Result_Text</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Agent action for Credit Card Account Opening. Returns the membership eligibility rules from KB-MEM-001 and what is missing to confirm this applicant's membership.</description>
+    <environments>Default</environments>
+    <interviewLabel>CC - Check Membership Eligibility {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CC - Check Membership Eligibility</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Result</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Result_Text</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Membership eligibility (KB-MEM-001). A credit card requires membership; new applicants can join and apply in the same guided application (KB-CARD-002 Step 1).
+
+Eligible groups: active duty, Reserve, Guard, DEP, officer candidates and ROTC; veterans, retirees and annuitants regardless of length of service; DoD civilians, contractors on U.S. Government installations and DoD civilian retirees; family members (spouse, parents, grandparents, siblings, children incl. adopted and step, grandchildren) and household members of anyone eligible; family of a deceased servicemember (a DD-214 may be requested). A PCS move does not affect eligibility.
+
+To establish membership: a Membership Savings Account with a $5 minimum balance, SSN, government-issued ID, current home address, and a funding source (card or bank account and routing number).
+
+This applicant (application APP-2026-004821, Lauren Bailey):
+- MISSING: eligibility basis. The application has no eligibility section; record how she qualifies (service member, DoD, family or household).
+- VERIFY: Membership Savings Account. Checking and Savings are checked as existing accounts; confirm the savings account is the Membership Savings Account with at least $5. If she is not yet a member, open it in the same application.
+- MISSING: government-issued ID.
+- COMPLETE: SSN.
+- VERIFY: home address. The application shows 2 Market St., Unit 5B; the member record shows 1 Market Street. Confirm which is current.
+
+Next step: use the Complete Card Application quick action (Membership step) to record the eligibility basis.</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>caseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>eligibilityResult</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

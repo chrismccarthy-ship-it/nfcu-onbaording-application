@@ -1,0 +1,106 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "3552f216-f4a1-4062-87c0-11d311218c1a",
+  "label" : "Banking",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "6331c907-1f19-42bd-be32-aedc492be6bd",
+          "columns" : [ {
+            "UUID" : "8227bb98-3ef0-433c-ba46-35e5049569ca",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "d84b1304-8e85-4a27-930b-a57fe17e692c",
+            "columnKey" : "d1985",
+            "columnName" : "Column 2",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "6331c907-1f19-42bd-be32-aedc492be6bd",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "brand" : "bankofamerica",
+            "cardProductName" : ""
+          },
+          "componentName" : "c:cardApplicationWizard",
+          "id" : "5842d770-441a-42a1-a699-eb65f050021e",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "8227bb98-3ef0-433c-ba46-35e5049569ca",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "customBrandLabel" : "",
+            "customBrandPrimary" : "#000000",
+            "defaultBrand" : "bofa",
+            "fallbackCreditScore" : 810
+          },
+          "componentName" : "c:bankingHub",
+          "id" : "c88e2a98-edbb-4e0f-9303-13519e10c48a",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "sectionSubtitle" : "A centralized view of your active Capital One commercial banking products, accounts, and entitlements.",
+            "sectionTitle" : "My Products & Accounts"
+          },
+          "componentName" : "c:umairLwcCap1ProductPortfolio",
+          "id" : "7a559558-52d4-4a79-960a-b56f3a5da585",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "d84b1304-8e85-4a27-930b-a57fe17e692c",
+        "regionLabel" : "Column 2",
+        "regionName" : "d1985",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "598698ee-ae65-4bdc-8645-4e6c8670db37",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "title" : "Banking"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "c278aff4-457e-428d-a937-60be3f0ca012",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "80478a89-42a1-4b3b-bf05-3b6aa5e9e9dc",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-banking"
+}

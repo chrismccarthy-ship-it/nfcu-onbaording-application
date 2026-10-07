@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "a52cd12b-2aac-440f-9874-c0d96204a832",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "Treasury__c",
+  "id" : "df0c4d7f-25fd-4da4-a503-8d6ea499ba76",
+  "label" : "Treasury",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-treasury",
+  "type" : "route",
+  "urlPrefix" : "treasury"
+}

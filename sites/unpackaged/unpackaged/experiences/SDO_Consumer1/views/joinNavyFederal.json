@@ -1,0 +1,83 @@
+{
+  "appPageId": "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName": "siteforce:dynamicLayout",
+  "dataProviders": [],
+  "id": "74e14dc7-80ff-4817-8d0a-7f8c41c3c8fd",
+  "label": "Join Navy Federal",
+  "regions": [
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "background": "background: rgba(0,0,0,0)",
+            "backgroundOverlay": "rgba(0,0,0,0.5)",
+            "contentAreaWidth": 100,
+            "sectionConfig": {
+              "UUID": "1ad9e79d-0c80-41a8-b590-295d55ef83c4",
+              "columns": [
+                {
+                  "UUID": "0baa49dc-0807-4fac-94cc-e99b67c460b1",
+                  "columnKey": "1",
+                  "columnName": "Column 1",
+                  "columnWidth": "12",
+                  "seedComponents": []
+                }
+              ]
+            },
+            "sectionHeight": 32
+          },
+          "componentName": "forceCommunity:section",
+          "id": "1ad9e79d-0c80-41a8-b590-295d55ef83c4",
+          "regions": [
+            {
+              "components": [
+                {
+                  "componentAttributes": {
+                    "heading": "Join Navy Federal and apply in one step",
+                    "showSampleData": true
+                  },
+                  "componentName": "c:nfcuJoinAndApply",
+                  "id": "a874af25-3373-4433-986c-3a27bc8a379d",
+                  "renderPriority": "NEUTRAL",
+                  "renditionMap": {},
+                  "type": "component"
+                }
+              ],
+              "id": "0baa49dc-0807-4fac-94cc-e99b67c460b1",
+              "regionLabel": "Column 1",
+              "regionName": "1",
+              "renditionMap": {},
+              "type": "region"
+            }
+          ],
+          "renderPriority": "NEUTRAL",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "ddc85a6e-ec5f-4034-8669-974d84ef2730",
+      "regionName": "content",
+      "type": "region"
+    },
+    {
+      "components": [
+        {
+          "componentAttributes": {
+            "customHeadTags": "",
+            "title": "Join Navy Federal"
+          },
+          "componentName": "forceCommunity:seoAssistant",
+          "id": "ca137a45-3843-4806-a91b-bb41181d585d",
+          "renditionMap": {},
+          "type": "component"
+        }
+      ],
+      "id": "75d1cd24-0db3-43fc-b4f5-b963bdd96335",
+      "regionName": "sfdcHiddenRegion",
+      "type": "region"
+    }
+  ],
+  "themeLayoutType": "Inner",
+  "type": "view",
+  "viewType": "custom-join"
+}

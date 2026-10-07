@@ -1,0 +1,10 @@
+# Salesforce CLI and tooling
+.sfdx/
+.sf/
+node_modules/
+.vscode/
+*.log
+# Local org login links and deploy reports
+open_url.txt
+deployreport.json
+.DS_Store

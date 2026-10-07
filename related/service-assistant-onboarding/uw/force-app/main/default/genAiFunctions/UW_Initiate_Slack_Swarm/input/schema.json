@@ -1,0 +1,24 @@
+{
+  "required": [
+    "recordId",
+    "swarmReason"
+  ],
+  "unevaluatedProperties": false,
+  "properties": {
+    "recordId": {
+      "title": "recordId",
+      "description": "The Id of the current record in context (the Case). Always pass the record ID from context; never ask the rep for it.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    },
+    "swarmReason": {
+      "title": "swarmReason",
+      "description": "Why the swarm is needed: fraud, mismatch, title, dealer, exception, or compliance.",
+      "lightning:type": "lightning__textType",
+      "lightning:isPII": false,
+      "copilotAction:isUserInput": false
+    }
+  },
+  "lightning:type": "lightning__objectType"
+}

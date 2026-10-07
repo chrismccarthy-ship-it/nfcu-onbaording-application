@@ -1,0 +1,27 @@
+<template>
+    <article class="bar">
+        <header class="bar__header">
+            <h2 class="bar__title">{title}</h2>
+            <template lwc:if={hasCompleted}>
+                <div class="bar__progress">
+                    <span>{progressLabel}</span>
+                    <button type="button" class="bar__reset" onclick={handleReset}>Reset</button>
+                </div>
+            </template>
+        </header>
+        <ol class="bar__buttons">
+            <template for:each={actions} for:item="a">
+                <li key={a.name}>
+                    <button type="button" class={a.buttonClass} data-name={a.name} aria-label={a.ariaLabel} onclick={handleClick}>
+                        <span class="bar__num" aria-hidden="true">{a.number}</span>
+                        <lightning-icon icon-name={a.icon} size="x-small" class="bar__icon"></lightning-icon>
+                        <span class="bar__label">{a.label}</span>
+                        <template lwc:if={a.done}>
+                            <span class="bar__check" aria-hidden="true">✅</span>
+                        </template>
+                    </button>
+                </li>
+            </template>
+        </ol>
+    </article>
+</template>

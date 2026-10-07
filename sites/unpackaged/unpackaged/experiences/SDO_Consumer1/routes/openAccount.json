@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "fa6f1f49-9514-4c70-9291-c3768cbc57a4",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "open_account__c",
+  "id" : "b801abd2-8c68-473a-9a09-e85ddf77da40",
+  "label" : "open-account",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-open-account",
+  "type" : "route",
+  "urlPrefix" : "open-account"
+}

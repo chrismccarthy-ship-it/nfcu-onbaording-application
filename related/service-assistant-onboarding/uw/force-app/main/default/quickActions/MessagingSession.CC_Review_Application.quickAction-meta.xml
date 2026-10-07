@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Open a credit card: parse the attached application and check membership, requirements and identity.</description>
+    <flowDefinition>CC_QA_Review_Application</flowDefinition>
+    <label>Review Card Application</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

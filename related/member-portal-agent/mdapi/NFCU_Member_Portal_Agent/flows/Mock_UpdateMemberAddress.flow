@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Message</name>
+        <label>Set Message</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>message</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Thanks, Lauren. I&apos;ve submitted your new mailing address:
+
+Unit 5170, Box 30
+APO, AP 96368 (Armed Forces Pacific)
+
+Because this is an overseas change of address on an open credit card application, it went through our identity and fraud verification, and it has been flagged for a quick review by a Member Service Representative before your Flagship Premier Visa Signature Card application can move forward. I can connect you with a representative now.</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>DEMO MOCK: returns a verbatim address-update message that ends in a simulated identity/fraud verification flag (stands in for the MuleSoft KYC/IDV/fraud check), so the member is routed to an MSR. Performs NO data write.</description>
+    <environments>Default</environments>
+    <interviewLabel>Mock - Update Member Address {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Mock - Update Member Address</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Message</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>The confirmation message to relay to the member verbatim.</description>
+        <name>message</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Free-text describing what the member is asking for. Optional; ignored — output is fixed for demo determinism.</description>
+        <name>request</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,109 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "ff097603-dbeb-461c-a628-630c99ad4794",
+  "label" : "Address Updates",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "499ca15a-f965-4de8-8531-4ba10da4eba8",
+          "columns" : [ {
+            "UUID" : "63eb31fd-bb64-42a5-980e-576f104eb0e0",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "499ca15a-f965-4de8-8531-4ba10da4eba8",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<div style=\"background-color: #F8F4EC; padding: 60px 40px; max-width: 800px; margin: 0 auto; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #02214F; line-height: 1.6;\">\n \n  <h1 style=\"font-size: 2.35rem; font-weight: 700; margin-bottom: 24px; color: #02214F;\">\n    Update Your Address – Right Here, Right Now\n  </h1>\n \n  <p style=\"font-size: 1.18rem; margin-bottom: 32px; color: #333;\">\n    Moving to a new home? Just need to correct your mailing address? You’re in the right place.\n    Use the secure form below to update your address with First Citizens Bank quickly and easily.\n  </p>\n \n  <div style=\"background-color: #FFFFFF; padding: 36px; border-radius: 12px; box-shadow: 0 4px 20px rgba(2, 33, 79, 0.08); margin-bottom: 40px;\">\n    <h2 style=\"font-size: 1.55rem; margin-bottom: 20px; color: #02214F;\">\n      What You’ll Need\n    </h2>\n    <ul style=\"font-size: 1.1rem; line-height: 1.75; padding-left: 20px; margin: 0;\">\n      <li>Verify your current mailing and physical address (if different)</li>\n      <li>New address details</li>\n      <li>Effective date (when you want the change to start)</li>\n    </ul>\n  </div>\n \n  <p style=\"font-size: 1.1rem; margin-bottom: 8px; color: #444;\">\n    ✅ Most updates are processed immediately for online services.\n    No paperwork is required for standard personal accounts.\n  </p>\n \n  <p style=\"font-size: 1.05rem; text-align: center; margin-top: 40px; color: #555;\">\n    Scroll down and fill out the form below to get started.\n  </p>\n \n</div>"
+          },
+          "componentName" : "forceCommunity:htmlBlock",
+          "id" : "5bc470c6-eb8e-4c66-b01b-b1d88f569947",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "63eb31fd-bb64-42a5-980e-576f104eb0e0",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "fe8e2749-79ed-4af3-9741-71220dceb4bb",
+          "columns" : [ {
+            "UUID" : "53188ead-c246-4e56-9228-977c37aaa926",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "fe8e2749-79ed-4af3-9741-71220dceb4bb",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "flowArguments" : "",
+            "flowName" : "APS_Web_Address_Change"
+          },
+          "componentName" : "forceCommunity:flowCommunity",
+          "id" : "b1979870-5c24-4ef2-99a1-b2e0cffc408d",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "53188ead-c246-4e56-9228-977c37aaa926",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "7c12c4ce-8a04-45a0-a62e-bcde2e64272e",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "0121efcf-4408-405d-9328-534eb29db23e",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "e21e5013-df69-4ab5-a6bd-702206280a26",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-address-updates"
+}

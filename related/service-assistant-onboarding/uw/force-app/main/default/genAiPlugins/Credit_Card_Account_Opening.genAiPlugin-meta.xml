@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <canEscalate>false</canEscalate>
+    <description>Walks a service rep through opening a credit card for a member or prospective member: confirming membership eligibility, finding an existing application, reviewing and completing the application, identity verification and fraud screening, and emailing the member what is still required. Select this topic when a case involves a new credit card, a card application (including an attached application form), membership eligibility for a card, missing application information, an application flagged for identity review, or choosing a card product. Do not select it for existing card disputes, payments, rewards redemptions, auto loans, or loan funding.</description>
+    <developerName>Credit_Card_Account_Opening</developerName>
+    <genAiFunctions>
+        <functionName>CC_Check_Membership_Eligibility</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>CC_Find_Card_Applications</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>CC_Review_Application_Requirements</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>CC_Identity_Fraud_Screening</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>CC_Draft_Requirements_Email</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>Every action takes recordId. Use the ID of the record in context (the Case or the Messaging Session). Never ask the rep for a Case ID.</description>
+        <developerName>instruction_record_context</developerName>
+        <language>en_US</language>
+        <masterLabel>Use the record in context</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>A credit card requires membership. Run Check Membership Eligibility first and state plainly whether the eligibility basis or Membership Savings Account still needs to be confirmed.</description>
+        <developerName>instruction_membership_first</developerName>
+        <language>en_US</language>
+        <masterLabel>Confirm membership first</masterLabel>
+        <sortOrder>1</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Run Find Card Applications before starting anything new. If an application matches, tell the rep to resume it; progress is saved.</description>
+        <developerName>instruction_find_application</developerName>
+        <language>en_US</language>
+        <masterLabel>Resume, don't restart</masterLabel>
+        <sortOrder>2</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Run Review Application Requirements and report the complete, missing, and verify items exactly as returned. Recommend Review Card Application to see parsed fields and Complete Card Application to fill the gaps.</description>
+        <developerName>instruction_requirements</developerName>
+        <language>en_US</language>
+        <masterLabel>Report requirements faithfully</masterLabel>
+        <sortOrder>3</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>Run Identity and Fraud Screening before any decision. If it is flagged, recommend the Verify Identity quick action and describe it as additional review, not a denial. Never repeat a full SSN, account number, or mother's maiden name.</description>
+        <developerName>instruction_screening</developerName>
+        <language>en_US</language>
+        <masterLabel>Screen before any decision</masterLabel>
+        <sortOrder>4</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>When items are still missing, run Draft Requirements Email and recommend the Email Application Requirements quick action, sent to the email on the member record until identity is verified. Never say the card is approved or declined.</description>
+        <developerName>instruction_email</developerName>
+        <language>en_US</language>
+        <masterLabel>Request what is missing</masterLabel>
+        <sortOrder>5</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <localDeveloperName>Credit_Card_Account_Opening</localDeveloperName>
+    <masterLabel>Credit Card Account Opening</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is only to guide the rep through opening a credit card: confirm membership eligibility, locate and complete the application, run identity and fraud screening, and request missing items from the member using the Review Card Application, Complete Card Application, Verify Identity, and Email Application Requirements quick actions. You do not approve or decline applications, set credit lines, or override identity verification results.</scope>
+</GenAiPlugin>

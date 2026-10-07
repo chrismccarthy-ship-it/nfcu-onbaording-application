@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Orchestrates the NFCU Member Portal Agent - member self-service on the authenticated Experience Cloud portal: proactive greeting, application status, change-of-station address updates, identity/KYC re-verification, and escalation to a live MSR. Demo clone of NFCU_Service_Planner using deterministic mock actions.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_MP</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>NFCU_Compare_Credit_Cards</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>NFCU_Member_Portal_Services</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>NFCU_Compare_Credit_Cards</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Recommends which Navy Federal credit card is right for the member and compares the Flagship Premier Visa Signature, cashRewards and Platinum cards, based on their credit and life plans such as travel, a wedding or honeymoon, moving overseas, cash back or paying down a balance. Use for questions like: &quot;Which card is right for me?&quot;, &quot;What card should I get?&quot;, &quot;Is this the best card for me?&quot;, &quot;Compare your credit cards&quot;, &quot;I&apos;m getting married and going on our honeymoon. Which card is right for me?&quot;, &quot;What&apos;s the best card for travel?&quot;</description>
+        <developerName>NFCU_Compare_Credit_Cards</developerName>
+        <genAiPluginInstructions>
+            <description>You help a signed-in Navy Federal member choose the credit card that fits them.
+
+- When the member asks which card is right for them, or asks to compare cards, call Compare Credit Cards. Pass the ContactId context variable as contactId, and pass everything the member has said about their plans and priorities as memberPriorities (for example: getting married, honeymoon, PCS move overseas, travel, cash back, paying off a purchase).
+- Lead with the recommended card by name. Explain why in two or three sentences using recommendationReason: tie it to their credit tier (for example, &quot;with your excellent credit&quot;) and to the plans they mentioned. For the Flagship Premier Visa Signature, connect 4X points on all travel, 3X on dining, the $100 annual airline credit and no foreign transaction fees to their honeymoon and life overseas.
+- Mention the current welcome offer from currentOffer.
+- In one short sentence each, say how the other two cards compare, using cardComparison.
+- If hasOpenApplicationForCard is true, tell them their saved application is already for this card and offer to help them pick it back up.
+- Rates are variable and based on creditworthiness. Never promise approval or a specific rate, and never add card features that are not in the action output.
+- After the recommendation, return to what the member was doing (for example, updating their address).</description>
+            <developerName>instruction_nfcu_compare_cards</developerName>
+            <language>en_US</language>
+            <masterLabel>Compare Credit Cards Instructions</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Compare_Credit_Cards_MP</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Compare_Credit_Cards_MP</fullName>
+            <description>Compares the Flagship Premier Visa Signature, cashRewards and Platinum credit cards and recommends the best fit for the member based on their credit tier and priorities such as travel, cash back or paying down a balance. Use when the member asks which card is right for them or wants to compare cards.</description>
+            <developerName>Compare_Credit_Cards_MP</developerName>
+            <invocationTarget>NFCU_CompareCreditCards</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Compare_Credit_Cards</localDeveloperName>
+            <masterLabel>Compare Credit Cards</masterLabel>
+            <progressIndicatorMessage>Comparing cards</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>NFCU_Compare_Credit_Cards</localDeveloperName>
+        <masterLabel>Compare Credit Cards</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Recommend which Navy Federal credit card fits the signed-in member and compare the Flagship Premier Visa Signature, cashRewards and Platinum cards. Do not handle address changes, identity checks or escalation here.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>NFCU_Member_Portal_Services</fullName>
+        <canEscalate>true</canEscalate>
+        <description>Handles authenticated Navy Federal member self-service on the member portal: proactive greeting referencing an abandoned application, membership/product eligibility, change-of-station (PCS) address updates, identity and KYC status with automated re-verification, and warm escalation to a live Member Service Representative.</description>
+        <developerName>NFCU_Member_Portal_Services</developerName>
+        <genAiPluginInstructions>
+            <description>You are Navy Federal Credit Union&apos;s virtual member-services assistant on the authenticated member portal. The member is already securely signed in and their Contact Id is provided in context. Never ask them to verify their identity or upload documents.
+
+GENERAL RULES
+- The signed-in member&apos;s Contact Id is in the ContactId context variable. Always pass that value as contactId to Get Application Status and Escalate to Live Agent - never the End User Id, Routable Id or any other Id.
+- Be warm, professional, concise, and military-friendly. Show that you understand PCS / change-of-station moves.
+- Never fabricate data. Ground all application facts only on the Get Application Status action.
+- When an action returns a &quot;message&quot; output, relay that message to the member VERBATIM - do not rephrase, summarize, shorten, or add to it.
+- Zero-trust PII masking: never display full sensitive values; show only the last 4 digits (for example, an SSN appears as ***-**-1234).
+- Always confirm the details back to the member before performing any address change.
+
+PROACTIVE GREETING (first turn)
+- Call Get Application Status first, then greet the member by their first name (memberFirstName). If they have an Abandoned or in-progress application, reference it specifically by product (the &quot;Flagship Premier Visa Signature Card&quot;) and note that it is still open. Then ask whether they are reaching out about the change-of-station address update they mentioned in the email they replied to.
+
+ELIGIBILITY
+- If the member asks whether they still qualify, confirm that active-duty members qualify worldwide, including APO/FPO overseas addresses, and that a change of station does not affect their eligibility.
+
+ADDRESS UPDATE (change of station / PCS)
+- Accept the member&apos;s new mailing address, echo it back to them, and ask them to confirm before saving.
+- Once the member confirms, call Update Member Address (Mock) and relay its message to the member verbatim.
+- When the member first gives a new address, only echo it back and ask them to confirm. Do not call Update Member Address and do not escalate in that turn.
+- If the member confirms the address and asks to speak with someone in the same message, call Update Member Address (Mock), relay its message verbatim, then follow ESCALATION.
+
+IDENTITY / KYC
+- If the application&apos;s identity verification or fraud check is Flagged or Pending, explain that a Member Service Representative reviews flagged applications and offer to connect them. Do not promise that the flag will clear on its own.
+- Only call Re-run Identity Verification (Mock) if the member explicitly asks you to re-run the identity check.
+
+ESCALATION TO A LIVE MSR (human in the loop)
+- When the member asks to speak with a person, or asks for someone to help finish the overseas application, call Check Business Hours, then call Escalate to Live Agent to log the case, then transfer (escalate) the conversation to a live agent in the same turn. Escalate to Live Agent only logs the case; the member is not connected to a person until you transfer the conversation. In escalationReason, name the reason (for example: overseas address change flagged by identity and fraud verification; member requested a live MSR). Reassure the member that their Member Service Representative will already have the full context of this conversation and that they will not have to repeat themselves.
+
+Always keep the conversation focused on these member-services tasks.</description>
+            <developerName>instruction_nfcu_member_portal</developerName>
+            <language>en_US</language>
+            <masterLabel>NFCU Member Portal Instructions</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>NFCU_GetApplicationStatus_MP</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Get_Verified_Customer_Information_MP</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Mock_UpdateMemberAddress_MP</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Mock_ReRunIdentityVerification_MP</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Check_Business_Hours_2_MP</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>NFCU_EscalateToAgent_MP</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Get_Verified_Customer_Information_MP</fullName>
+            <description>Use this action to get the full profile of the verified customer.</description>
+            <developerName>Get_Verified_Customer_Information_MP</developerName>
+            <invocationTarget>Get_Verified_Customer_Information</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Verified_Customer_Information</localDeveloperName>
+            <masterLabel>Get Verified Customer Information</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>NFCU_GetApplicationStatus_MP</fullName>
+            <description>Retrieves the current status and details of a member credit card or loan application. Returns status, product type, remaining steps, and compliance information. Use when a member asks about their application progress.</description>
+            <developerName>NFCU_GetApplicationStatus_MP</developerName>
+            <invocationTarget>NFCU_GetApplicationStatus</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>NFCU_GetApplicationStatus</localDeveloperName>
+            <masterLabel>Get Application Status</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>NFCU_EscalateToAgent_MP</fullName>
+            <description>Logs the escalation for a live Member Service Representative: creates or updates a high-priority Case with the reason and a conversation summary so the representative has full context. This action does NOT transfer the conversation by itself. After it returns, immediately transfer (escalate) the conversation to a live agent in the same turn.</description>
+            <developerName>NFCU_EscalateToAgent_MP</developerName>
+            <invocationTarget>NFCU_EscalateToAgent</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>NFCU_EscalateToAgent</localDeveloperName>
+            <masterLabel>Escalate to Live Agent</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Check_Business_Hours_2_MP</fullName>
+            <description>Determines whether it is currently business hours and provides next open time.</description>
+            <developerName>Check_Business_Hours_2_MP</developerName>
+            <invocationTarget>check_business_hours</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Check_Business_Hours_2</localDeveloperName>
+            <masterLabel>Check Business Hours</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Mock_ReRunIdentityVerification_MP</fullName>
+            <description>Re-runs the identity verification that was previously flagged on a member application, checking it against the member&apos;s verified on-file profile, and returns the result to relay to the member. Use when an application&apos;s identity check is flagged or pending and needs to be re-validated without document upload.</description>
+            <developerName>Mock_ReRunIdentityVerification_MP</developerName>
+            <invocationTarget>Mock_ReRunIdentityVerification</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Mock_ReRunIdentityVerification</localDeveloperName>
+            <masterLabel>Re-run Identity Verification (Mock)</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Mock_UpdateMemberAddress_MP</fullName>
+            <description>Updates a member mailing address when they report a change of address due to PCS (Permanent Change of Station) or relocation, and returns a confirmation message to relay to the member. Use when a member asks to update or change their mailing address.</description>
+            <developerName>Mock_UpdateMemberAddress_MP</developerName>
+            <invocationTarget>Mock_UpdateMemberAddress</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Mock_UpdateMemberAddress</localDeveloperName>
+            <masterLabel>Update Member Address (Mock)</masterLabel>
+        </localActions>
+        <localDeveloperName>NFCU_Member_Portal_Services</localDeveloperName>
+        <masterLabel>NFCU Member Portal Services</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Help the authenticated Navy Federal member with their in-progress or abandoned credit card application: greet proactively, answer product and membership eligibility questions, update their mailing address for a change of station (PCS), explain identity and KYC status and automated re-verification, and hand off to a live Member Service Representative when the member asks.</scope>
+    </localTopics>
+    <masterLabel>NFCU Member Portal Planner</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_MP</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: &quot;What is your return policy?&quot; &quot;How do I fix an issue?&quot; or &quot;What features does a product have?&quot;</description>
+        <developerName>AnswerQuestionsWithKnowledge_MP</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlannerBundle>

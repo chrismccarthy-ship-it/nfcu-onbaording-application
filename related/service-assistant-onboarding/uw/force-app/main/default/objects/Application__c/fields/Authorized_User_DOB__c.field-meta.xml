@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Authorized_User_DOB__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Authorized user's date of birth.</inlineHelpText>
+    <label>Authorized User DOB</label>
+    
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

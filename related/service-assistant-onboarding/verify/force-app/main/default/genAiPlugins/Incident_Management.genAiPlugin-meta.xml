@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <canEscalate>false</canEscalate>
+    <description>Handles actions for incident management including summarizing incidents, finding similar incidents, checking attributes, proposing resolutions, and generating root cause and resolution summaries.</description>
+    <developerName>Incident_Management</developerName>
+    <genAiFunctions>
+        <functionName>SummarizeIncident_179Kh000000kGfX</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>SummarizeMultipleIncidents_179Kh000000kGfX</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>ProposeResolutionSummaryForIncident_179Kh000000kGfX</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>CheckIncidentAttributes_179Kh000000kGfX</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>AssociateRelatedRecordsForIncident_179Kh000000kGfX</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>CreateIncidentResolutionSummary_179Kh000000kGfX</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>CreateIncidentPostResolutionSummary_179Kh000000kGfX</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>CreateIncidentRootCauseSummary_179Kh000000kGfX</functionName>
+    </genAiFunctions>
+    <genAiPluginInstructions>
+        <description>When proposing resolutions, always reference similar past incidents that were successfully resolved. Include the resolution steps and any relevant knowledge articles.</description>
+        <developerName>instruction_resolution_context</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_resolution_context</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <genAiPluginInstructions>
+        <description>You are an IT Service Management assistant. Help incident fulfillers by summarizing incidents, identifying similar past incidents, proposing resolutions based on historical data, and checking if incident attributes are correctly assigned. When asked about root causes, analyze related records and knowledge articles to provide comprehensive root cause analysis.</description>
+        <developerName>instruction_itsm_overview</developerName>
+        <language xsi:nil="true"/>
+        <masterLabel>instruction_itsm_overview</masterLabel>
+        <sortOrder>0</sortOrder>
+    </genAiPluginInstructions>
+    <language>en_US</language>
+    <localDeveloperName>Incident_Management</localDeveloperName>
+    <masterLabel>Incident Management</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>Your job is to assist IT service desk agents with incident management tasks including summarizing incidents, identifying related and similar incidents, checking incident attributes, proposing resolutions, and generating root cause and resolution summaries.</scope>
+</GenAiPlugin>

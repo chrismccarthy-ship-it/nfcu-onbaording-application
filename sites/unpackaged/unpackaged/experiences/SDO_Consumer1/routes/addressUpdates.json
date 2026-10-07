@@ -1,0 +1,12 @@
+{
+  "activeViewId" : "ff097603-dbeb-461c-a628-630c99ad4794",
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "configurationTags" : [ ],
+  "devName" : "Address_Updates__c",
+  "id" : "14acbe11-7c3b-4b68-b291-abefedbd968c",
+  "label" : "Address Updates",
+  "pageAccess" : "UseParent",
+  "routeType" : "custom-address-updates",
+  "type" : "route",
+  "urlPrefix" : "address-updates"
+}

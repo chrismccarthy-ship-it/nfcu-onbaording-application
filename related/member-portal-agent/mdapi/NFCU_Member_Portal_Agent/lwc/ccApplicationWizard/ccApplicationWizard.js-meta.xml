@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Card Opening - Complete Application</masterLabel>
+    <description>4-step wizard that completes the missing parts of a credit card application.</description>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="recordId" type="String" label="Case Id" role="inputOnly"/>
+            <property name="applicationName" type="String" label="Matching application name" role="inputOnly"/>
+            <property name="outcome" type="String" label="Outcome" role="outputOnly"/>
+            <property name="mode" type="String" label="Mode (edit or done)" role="inputOnly"/>
+            <property name="savedProduct" type="String" label="Saved product" role="inputOnly"/>
+            <property name="savedPending" type="String" label="Saved pending items" role="inputOnly"/>
+            <property name="outBasis" type="String" label="Eligibility basis" role="outputOnly"/>
+            <property name="outQualifier" type="String" label="Qualifying member" role="outputOnly"/>
+            <property name="outSavingsConfirmed" type="Boolean" label="Membership savings confirmed" role="outputOnly"/>
+            <property name="outIdType" type="String" label="ID type" role="outputOnly"/>
+            <property name="outIdLast4" type="String" label="ID last 4" role="outputOnly"/>
+            <property name="outIdState" type="String" label="ID state" role="outputOnly"/>
+            <property name="outIdExpiration" type="Date" label="ID expiration" role="outputOnly"/>
+            <property name="outProduct" type="String" label="Selected card" role="outputOnly"/>
+            <property name="outBt2Institution" type="String" label="Transfer 2 institution" role="outputOnly"/>
+            <property name="outBt2Last4" type="String" label="Transfer 2 account last 4" role="outputOnly"/>
+            <property name="outBt2Amount" type="String" label="Transfer 2 amount" role="outputOnly"/>
+            <property name="outAuName" type="String" label="Authorized user name" role="outputOnly"/>
+            <property name="outAuDob" type="Date" label="Authorized user DOB" role="outputOnly"/>
+            <property name="outAuRelationship" type="String" label="Authorized user relationship" role="outputOnly"/>
+            <property name="outCertConfirmed" type="Boolean" label="Certification reconfirmed" role="outputOnly"/>
+            <property name="outPending" type="String" label="Pending items" role="outputOnly"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

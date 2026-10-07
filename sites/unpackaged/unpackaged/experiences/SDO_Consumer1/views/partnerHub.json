@@ -1,0 +1,280 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "c12428bf-9f04-4bff-98ec-53e18cf3166d",
+  "label" : "Partner Hub",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "dde6e49c-0358-4427-99ca-dbfb5f449674",
+          "columns" : [ {
+            "UUID" : "73fdee67-c78c-405f-b347-03f8ac9a8049",
+            "columnKey" : "6d357",
+            "columnName" : "Column 1",
+            "columnWidth" : "7",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "4b0688e7-9b21-4828-a9a0-a293ce45df97",
+            "columnKey" : "c9648",
+            "columnName" : "Column 2",
+            "columnWidth" : "5",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "dde6e49c-0358-4427-99ca-dbfb5f449674",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "customCashLabel" : "",
+            "hideAccountsTile" : false,
+            "hideAlerts" : false,
+            "hideCreditHealthTile" : false,
+            "hideHeroButtons" : false,
+            "hideRecentActivityTile" : false,
+            "hideSupportingMetrics" : false,
+            "hideUpcomingPaymentsTile" : false,
+            "primaryBrandUrl" : "bankofamerica.com",
+            "secondaryBrandUrl" : ""
+          },
+          "componentName" : "c:nwDashboard",
+          "id" : "fe1ab6ca-3eb2-41d3-85e3-4bf0fe395c44",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "customHeroTitle" : "Payments Made Easy",
+            "customPayeesTitle" : "Authorized Payees",
+            "hideNewPaymentButton" : false,
+            "hidePayeesSection" : false,
+            "primaryBrandUrl" : "bankofamerica.com"
+          },
+          "componentName" : "c:nwPayments",
+          "id" : "b35857dc-4a2e-48a1-a5df-31015ed7d904",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "hideFacilitiesGrid" : false,
+            "hideKpiRow" : false,
+            "primaryBrandUrl" : "bankofamerica.com"
+          },
+          "componentName" : "c:nwLending",
+          "id" : "f9cd5561-e714-43fa-87c9-614cd8ff437b",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "sectionSubtitle" : "Monitor Capital One commercial banking portal and API usage against plan limits. Stay ahead of capacity thresholds.",
+            "sectionTitle" : "Platform Usage"
+          },
+          "componentName" : "c:umairLwcCap1Usage",
+          "id" : "0a297717-e386-47c3-8def-6039b080052c",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "sectionSubtitle" : "",
+            "sectionTitle" : "Your Account Team"
+          },
+          "componentName" : "c:umairLwcCap1AccountTeam",
+          "id" : "4fc7b4fe-61c8-483e-a2a9-c1a87efd44ac",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "cardTitle" : "Agent 360 — Case Console"
+          },
+          "componentName" : "c:umairLwcCap1AgentCase360",
+          "id" : "a210bc2b-8ebf-49c2-815e-a38a1d7e5612",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "cardSubtitle" : "A dedicated, secure workspace per engagement. Switch partners to see isolation enforced in real time.",
+            "cardTitle" : "Partner Deal Rooms"
+          },
+          "componentName" : "c:umairLwcCap1PartnerDealRoom",
+          "id" : "2c67a596-3e6d-4460-9c03-b2ca2b04c2fb",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "73fdee67-c78c-405f-b347-03f8ac9a8049",
+        "regionLabel" : "Column 1",
+        "regionName" : "6d357",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "alertSubtitle" : "Client document uploads to the KYC onboarding portal are failing due to a permissions misconfiguration. Affected clients include those mid-way through their KYC onboarding.",
+            "alertTitle" : "KYC Portal — Document Upload Access Disrupted",
+            "incidentBody" : "Carter Strategic (Account #CAP-00847) reported inability to upload identity verification documents at 9:14 AM. Our AI triage system detected the issue at 9:16 AM and opened Case #4892. A commercial banking specialist has been assigned and is actively resolving the permissions issue. Estimated resolution: within 2 hours.",
+            "incidentHeadline" : "KYC Portal — Document Upload Access Disrupted",
+            "systemFooterLabel" : "Permissions Fix In Progress",
+            "viewAllAlertsUrl" : "#",
+            "viewCaseUrl" : "#"
+          },
+          "componentName" : "c:umairLwcCap1ServiceAlerts",
+          "id" : "3f72718b-9614-4e6a-8cd3-fe741a753af5",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "customHeroTitle" : "Account Overview",
+            "hideAccountGrid" : false,
+            "hideDetailPanel" : false,
+            "primaryBrandUrl" : "bankofamerica.com"
+          },
+          "componentName" : "c:nwAccounts",
+          "id" : "b94b9528-3785-461e-9632-c53e6f769350",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "customHeroTitle" : "Business Credit Journey",
+            "customHistoryTitle" : "Credit History (Current FY)",
+            "customScore" : "810",
+            "customTopFactorsTitle" : "Top Factors Impacting Your Business Credit",
+            "hideGaugeCard" : false,
+            "hideHistory" : true,
+            "hideTopFactors" : false,
+            "primaryBrandUrl" : "bankofamerica.com"
+          },
+          "componentName" : "c:nwCreditScore",
+          "id" : "1f9d23ea-c18c-4e0e-ba3a-a8a4442eae9a",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "hideCashAccountsTable" : false,
+            "hideKpiRow" : false,
+            "hideSweepsTable" : false,
+            "primaryBrandUrl" : "bankofamerica.com"
+          },
+          "componentName" : "c:nwTreasury",
+          "id" : "8d329896-512d-4da8-a87e-a784df395307",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "4b0688e7-9b21-4828-a9a0-a293ce45df97",
+        "regionLabel" : "Column 2",
+        "regionName" : "c9648",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "02c5679f-16cc-47f8-89a2-e7af2b9a19af",
+          "columns" : [ {
+            "UUID" : "656ec6ed-adcc-40f4-818c-80f2ee352af7",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "02c5679f-16cc-47f8-89a2-e7af2b9a19af",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<div class=\"slds-card slds-p-vertical_large\" style=\"text-align:center;border:none;box-shadow:none;\">\n     <a href=\"{!Global.PathPrefix}/learning/blog\"> \n        <button class=\"slds-button slds-button_brand\" style=\"font-size:14px; height:46px; border-radius:5px; width:100%;\">\n            Learn More\n        </button>\n    </a>\n</div>"
+          },
+          "componentName" : "forceCommunity:htmlBlock",
+          "id" : "d639f4b6-67fd-4a17-805a-3a8e34994082",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<h2>Main Content</h2><p>This is where your main content will go. Add text, images, charts, or any other components that best convey your message. You can use this space to provide detailed information, tell a story, or present key data points. Consider using headings and subheadings to organize your content and make it easy to navigate.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "e9a0a237-e7b7-4b3c-821f-ae01ea6523b1",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<h3>Additional Information</h3><p>Use this section to provide supplementary information, related resources, or any other relevant content. This could include links to external websites, downloadable files, or additional reading material.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "64a85f7e-8d69-4785-bf90-0d705b2760d5",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "completedColor" : "#16a085",
+            "dueColor" : "#e74c3c",
+            "format" : "tile",
+            "inprogressColor" : "#e67e22",
+            "overdueColor" : "#c0392b",
+            "stepsLabel" : "Step"
+          },
+          "componentName" : "Ptnr_Onbd_Fmwk:tasks",
+          "id" : "2aa05e1c-36e4-4a76-8898-59df5b5991df",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "656ec6ed-adcc-40f4-818c-80f2ee352af7",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a875ba90-68b5-4c0d-b76c-a469d69602b2",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "c6a60412-4dc0-4dd8-a99b-086f9e275e31",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a1e97c3f-6f9e-4ac2-a775-d8bdaa5cf063",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-partner-hub"
+}

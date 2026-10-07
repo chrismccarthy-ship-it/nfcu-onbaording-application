@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>NFCU First 30 Days</masterLabel>
+    <description>New-member onboarding checklist reached by a private link (?t=token): accounts, funding, debit card activation, direct deposit and digital banking.</description>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="showSampleData" type="Boolean" default="false" label="Show sample-fill buttons (demos only)"/>
+            <property name="sampleBirthDate" type="String" default="1991-11-04" label="Sample date of birth (demos only)"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,57 @@
+<template>
+    <article class="card">
+        <header class="brand">
+            <img class="logo" src={logoUrl} alt="Navy Federal Credit Union" />
+            <span class="chip">Recommended next step</span>
+        </header>
+
+        <div class="title-band">
+            <p class="eyebrow">Household growth</p>
+            <h2 class="title">Book a video account-opening appointment</h2>
+        </div>
+
+        <div class="body">
+            <dl class="facts">
+                <div class="fact">
+                    <dt>Member</dt>
+                    <dd>{memberName}</dd>
+                </div>
+                <div class="fact">
+                    <dt>Joining</dt>
+                    <dd>{prospectLabel}</dd>
+                </div>
+                <div class="fact">
+                    <dt>Appointment</dt>
+                    <dd>30-minute video account opening</dd>
+                </div>
+            </dl>
+
+            <section class="section">
+                <h3 class="section-title">Why now</h3>
+                <p>{firstName} is getting married before her PCS move to Okinawa. Family members of members are eligible, so her fiancé can join as her spouse. A video appointment works while they are both overseas.</p>
+            </section>
+
+            <section class="section">
+                <h3 class="section-title">What he needs to bring</h3>
+                <ul class="checklist">
+                    <li>Government-issued photo ID</li>
+                    <li>Social Security number</li>
+                    <li>Current address</li>
+                    <li>$5 to open his membership savings account</li>
+                </ul>
+            </section>
+
+            <section class="section objection">
+                <h3 class="section-title">Address the switching concern</h3>
+                <p>{firstName} is frustrated that he hasn't wanted to switch banks because of the hassle. Let her know the representative will help move his direct deposit and automatic payments, and he can keep his current account open until everything has moved over.</p>
+            </section>
+        </div>
+
+        <footer class="actions">
+            <template lwc:if={hasSchedulerUrl}>
+                <a class="cta" href={schedulerUrl} target="_blank" rel="noopener noreferrer">Open the scheduling page</a>
+            </template>
+            <p class="hint">Book the slot with {firstName} on the chat, then select Finish.</p>
+        </footer>
+    </article>
+</template>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <assignments>
+        <name>Set_Result</name>
+        <label>Set Result</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>guidance</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Result_Text</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Agent action for the Underwriter Workflow topic. Returns the standard dealer-originated auto loan workflow, funding release checklist, final control, and which quick action supports each step.</description>
+    <environments>Default</environments>
+    <interviewLabel>UW - Get Underwriting Workflow Guidance {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UW - Get Underwriting Workflow Guidance</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value><stringValue>LightningFlowBuilder</stringValue></value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value><stringValue>AUTO_LAYOUT_CANVAS</stringValue></value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Result</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Result_Text</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Underwriter workflow: dealer-originated auto loan, application receipt through funding release (source: Knowledge article 000001498).
+Current stage reported: {!workflowStage}
+
+1. Intake and triage: confirm application completeness, assigned queue, dealer eligibility, and initial screening results.
+2. Risk assessment: review bureau data, identity results, income, affordability, vehicle eligibility, valuation, and transaction structure. If identity, fraud, or dealer-performance concerns appear, use the Initiate Slack Swarm quick action.
+3. Decision and documentation: issue the decision within your authority, record the rationale, and create precise stipulations. Decisions above authority go to a Slack swarm (reason: Exception above authority).
+4. Stipulation validation: review submitted evidence with the Parse Loan Documents quick action. Return incomplete or conflicting documentation to the customer with the Email Customer quick action (template: Document correction).
+5. Final approval review: confirm every condition is met and the final contract terms match the approved structure. Run Parse Loan Documents on the signed contract.
+6. Funding release: release only after final documentation, collateral, insurance, compliance, and quality-control requirements are satisfied. Then send the Funding confirmation email.
+
+Funding release checklist:
+- All underwriting stipulations are cleared.
+- Final contract terms match the approved decision.
+- Required identity, income, insurance, and collateral documents are valid.
+- No unresolved fraud, compliance, title, payoff, or dealer-performance hold exists.
+- The file contains a complete decision and audit trail in Salesforce.
+
+Final control: if final documents materially differ from the approved application, suspend funding and return the file for underwriting review. Use Initiate Slack Swarm (reason: Contract mismatch) to align credit, funding QC, and the dealer.
+
+Present only the steps that remain for this case, in order, and name the quick action for each.</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>workflowStage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>caseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>guidance</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Underwriter Workflow: pull credit, funding, dealer, fraud, or compliance experts into a Slack channel for this case (mock).</description>
+    <flowDefinition>UW_QA_Initiate_Slack_Swarm</flowDefinition>
+    <label>Initiate Slack Swarm</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

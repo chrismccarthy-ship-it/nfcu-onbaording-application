@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requested_Account_Type__c</fullName>
+    <label>Requested Account Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Premier Plus Checking</fullName>
+                <default>false</default>
+                <label>Premier Plus Checking</label>
+            </value>
+            <value>
+                <fullName>Premier Checking</fullName>
+                <default>false</default>
+                <label>Premier Checking</label>
+            </value>
+            <value>
+                <fullName>Savings</fullName>
+                <default>false</default>
+                <label>Savings</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

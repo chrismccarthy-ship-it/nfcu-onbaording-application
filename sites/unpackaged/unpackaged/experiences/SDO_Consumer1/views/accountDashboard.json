@@ -1,0 +1,146 @@
+{
+  "appPageId" : "e4bd7437-87f9-492f-bb9b-cca60c9128dd",
+  "componentName" : "siteforce:dynamicLayout",
+  "dataProviders" : [ ],
+  "id" : "81e08473-19fd-4dad-9c31-0c97d21f097a",
+  "label" : "Account Dashboard",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "8f4fdbda-cae8-4c0d-9e8b-f9e898da0fb6",
+          "columns" : [ {
+            "UUID" : "0083083b-cf48-4e72-9c1d-0aa872e55d81",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "12",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 32
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "8f4fdbda-cae8-4c0d-9e8b-f9e898da0fb6",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : { },
+          "componentName" : "c:nwDashboard",
+          "id" : "cea301d7-d8e6-45de-b758-0b8dc8d95c82",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<h1>Welcome to the Template Page</h1><p>Welcome to your new custom page. Use this space to introduce the purpose of the page and provide any necessary context or instructions for your audience. Below, you can add and organize different sections and components to meet your specific needs. Whether you're showcasing data, providing resources, or facilitating interactions, this template is designed to help you create a functional and engaging page.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "b7056f43-cc27-42c1-9be0-05a7219d73e0",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "0083083b-cf48-4e72-9c1d-0aa872e55d81",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "background" : "background: rgba(0,0,0,0)",
+        "backgroundOverlay" : "rgba(0,0,0,0.5)",
+        "contentAreaWidth" : 100,
+        "sectionConfig" : {
+          "UUID" : "fe173824-b319-4632-bd3c-37812fb83fcd",
+          "columns" : [ {
+            "UUID" : "85990b79-f7ee-480a-86fa-ada0b62a5127",
+            "columnKey" : "1",
+            "columnName" : "Column 1",
+            "columnWidth" : "8",
+            "seedComponents" : [ ]
+          }, {
+            "UUID" : "72814925-1718-4303-9863-fa5095a1aeba",
+            "columnKey" : "6d357",
+            "columnName" : "Column 2",
+            "columnWidth" : "4",
+            "seedComponents" : [ ]
+          } ]
+        },
+        "sectionHeight" : 300
+      },
+      "componentName" : "forceCommunity:section",
+      "id" : "fe173824-b319-4632-bd3c-37812fb83fcd",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<h2>Main Content</h2><p>This is where your main content will go. Add text, images, charts, or any other components that best convey your message. You can use this space to provide detailed information, tell a story, or present key data points. Consider using headings and subheadings to organize your content and make it easy to navigate.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "5e2ed0c5-07c4-4e35-9eb8-de8179cf6b06",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "85990b79-f7ee-480a-86fa-ada0b62a5127",
+        "regionLabel" : "Column 1",
+        "regionName" : "1",
+        "renditionMap" : { },
+        "type" : "region"
+      }, {
+        "components" : [ {
+          "componentAttributes" : {
+            "richTextValue" : "<h3>Additional Information</h3><p>Use this section to provide supplementary information, related resources, or any other relevant content. This could include links to external websites, downloadable files, or additional reading material.</p>"
+          },
+          "componentName" : "forceCommunity:richTextInline",
+          "id" : "9f97eb45-c102-4ef5-905e-41df24222657",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
+            "richTextValue" : "<div class=\"slds-card slds-p-vertical_large\" style=\"text-align:center;border:none;box-shadow:none;\">\n     <a href=\"{!Global.PathPrefix}/learning/blog\"> \n        <button class=\"slds-button slds-button_brand\" style=\"font-size:14px; height:46px; border-radius:5px; width:100%;\">\n            Learn More\n        </button>\n    </a>\n</div>"
+          },
+          "componentName" : "forceCommunity:htmlBlock",
+          "id" : "7333a962-810d-404c-84bc-0c27784383cb",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "72814925-1718-4303-9863-fa5095a1aeba",
+        "regionLabel" : "Column 2",
+        "regionName" : "6d357",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "a4d6a39a-85f4-4e55-97b4-9bcb4ed9089d",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "title" : "Template"
+      },
+      "componentName" : "forceCommunity:seoAssistant",
+      "id" : "016f9ad8-1410-4948-bd07-c12a27f0673c",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "7d202be5-8cd0-404b-90b4-e1d8822579bc",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "custom-account-dashboard"
+}
